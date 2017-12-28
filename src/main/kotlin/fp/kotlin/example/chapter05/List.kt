@@ -14,6 +14,16 @@ sealed class List<out T> {
             is Cons -> if (doubles.head == 0.0) 0.0 else doubles.head * product(doubles.tail)
         }
 
+        fun <T> getTail(list: List<T>): List<T> = when (list) {
+            Nil -> throw NullPointerException()
+            is Cons -> list.tail
+        }
+
+        fun <T> getHead(list: List<T>): T = when (list) {
+            Nil -> throw NullPointerException()
+            is Cons -> list.head
+        }
+
         fun <T> appendTail(list: List<T>, tail: T): List<T> = when (list) {
             Nil -> Cons(tail, Nil)
             is Cons -> Cons(list.head, appendTail(list.tail, tail))
@@ -28,6 +38,21 @@ sealed class List<out T> {
             } else {
                 filter(list.tail, f)
             }
+        }
+
+        fun <T> drop(list: List<T>, n: Int): List<T> = when {
+            n == 0 || list is Nil -> list
+            else -> drop(List.getTail(list), n - 1)
+        }
+
+        fun <T> take(list: List<T>, n: Int, acc: List<T> = Nil): List<T> = when {
+            n == 0 || list is Nil -> acc
+            else -> take(List.getTail(list), n - 1, List.appendTail(acc, List.getHead(list)))
+        }
+
+        fun <T, R> map(list: List<T>, f: (T) -> R, acc: List<R> = Nil): List<R> = when (list) {
+            Nil -> acc
+            is Cons -> map(List.getTail(list), f, List.appendTail(acc, f(List.getHead(list))))
         }
     }
 

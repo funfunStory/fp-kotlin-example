@@ -2,6 +2,9 @@ package fp.kotlin.example.chapter05
 
 sealed class List<out T> {
 
+    object Nil : List<Nothing>()
+    data class Cons<T>(val head: T, var tail: List<T>) : List<T>()
+
     companion object {
 
         fun sum(ints: List<Int>): Int = when (ints) {
@@ -55,10 +58,11 @@ sealed class List<out T> {
             is Cons -> add2(list.tail, List.appendTail(acc, list.head + 2))
         }
 
-        tailrec fun product2(list: List<Double>, acc: List<Double> = Nil): List<Double> = when (list) {
-            Nil -> acc
-            is Cons -> product2(list.tail, List.appendTail(acc, list.head * 2))
-        }
+        tailrec fun product2(list: List<Double>, acc: List<Double> = Nil): List<Double> =
+            when (list) {
+                Nil -> acc
+                is Cons -> product2(list.tail, List.appendTail(acc, list.head * 2))
+            }
 
         tailrec fun <T, R> map(list: List<T>, f: (T) -> R, acc: List<R> = Nil): List<R> = when (list) {
             Nil -> acc
@@ -76,9 +80,6 @@ sealed class List<out T> {
                 List.appendTail(acc, List.getHead(list1) to List.getHead(list2)))
         }
     }
-
-    object Nil : List<Nothing>()
-    data class Cons<T>(val head: T, var tail: List<T>) : List<T>()
 }
 
 fun List<Int>.sum(): Int = when (this) {

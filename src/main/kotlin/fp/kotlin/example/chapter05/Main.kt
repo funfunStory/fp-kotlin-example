@@ -32,7 +32,9 @@ object Main {
         require(List.product2(doubleList) == List.map(doubleList, { it * 2 }))
         println(List.map(intList, { it * 3 }))
 
-        println(List.sum(intList))  // 10
+//        println(List.sum(intList))  // 10
+        require(List.sum(intList) == 10)  // 10
+
         println(List.foldLeft(intList, { acc, x -> acc + x }, 0)) // 10
         require(List.foldLeft(intList, { acc, x -> acc + x }, 0) == List.sum(intList))
 

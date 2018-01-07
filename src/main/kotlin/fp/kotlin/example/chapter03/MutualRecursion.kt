@@ -6,16 +6,12 @@ fun main(args: Array<String>) {
 //    println(even(999999)) // java.lang.StackOverflowError occurred
 }
 
-private fun even(n: Int): Boolean {
-    return when (n) {
-        0 -> true
-        else -> odd(n -1)
-    }
+private fun even(n: Int): Boolean = when (n) {
+    0 -> true
+    else -> odd(n -1)
 }
 
-private fun odd(n: Int): Boolean {
-    return when (n) {
-        0 -> false
-        else -> even(n - 1)
-    }
+private fun odd(n: Int): Boolean = when (n) {
+    0 -> false
+    else -> even(n - 1)
 }

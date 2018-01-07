@@ -1,27 +1,25 @@
 package fp.kotlin.example.chapter03
 
-fun func() {
+private fun helloFunc() {
     println("Hello")
-    func()
+    helloFunc()
 }
 
-//fun func(n: Int) {
-//    when {
-//        0 >= n -> return
-//        else -> {
-//            println("Hello")
-//            func(n - 1)
-//        }
-//    }
-//}
+private fun helloFunc(n: Int) {
+    when {
+        0 >= n -> return
+        else -> {
+            println("Hello")
+            helloFunc(n - 1)
+        }
+    }
+}
 
 fun main(args: Array<String>) {
-    println(func(5))
+    println(func(5))    // 15
 }
 
-fun func(n: Int): Int {
-    return when {
-        0 >= n -> 0
-        else -> n + func(n - 1)
-    }
+fun func(n: Int): Int = when {
+    0 >= n -> 0
+    else -> n + func(n - 1)
 }

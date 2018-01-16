@@ -1,5 +1,8 @@
 package fp.kotlin.example.chapter03
 
+import fp.kotlin.example.head
+import fp.kotlin.example.tail
+
 fun main(args: Array<String>) {
     println(factorial(10))
     println(maximum(listOf(1, 3, 2, 8, 4)))     // "8" 출력

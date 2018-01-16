@@ -48,6 +48,11 @@ sealed class List<out T> {
             else -> drop(List.getTail(list), n - 1)
         }
 
+        fun <T> init(list: List<T>): List<T> = when (list) {
+            Nil -> Nil
+            is Cons -> if (list.tail == Nil) Nil else Cons(list.head, init(list.tail))
+        }
+
         tailrec fun <T> take(list: List<T>, n: Int, acc: List<T> = Nil): List<T> = when {
             n == 0 || list is Nil -> acc
             else -> take(List.getTail(list), n - 1, List.appendTail(acc, List.getHead(list)))

@@ -1,21 +1,9 @@
 package fp.kotlin.example.chapter03
 
 fun main(args: Array<String>) {
-    println(fiboRecursion(6))
-    println(fiboMemoization(6))
-    println(fiboFP(6))
-}
-
-private fun fiboFP(n: Int): Int {
-    return fiboFP(n, 0, 1)
-}
-
-tailrec fun fiboFP(n: Int, first: Int, second: Int): Int {
-    return when (n) {
-        0 -> first
-        1 -> second
-        else -> fiboFP(n - 1, second, first + second)
-    }
+    println(fiboRecursion(6))   // 8
+    println(fiboMemoization(6)) // 8
+    println(fiboFP(6))  // 8
 }
 
 private fun fiboRecursion(n: Int): Int {
@@ -39,4 +27,12 @@ private fun fiboMemoization(n: Int): Int {
             return memo[n]
         }
     }
+}
+
+private fun fiboFP(n: Int): Int = fiboFP(n, 0, 1)
+
+private tailrec fun fiboFP(n: Int, first: Int, second: Int): Int = when (n) {
+    0 -> first
+    1 -> second
+    else -> fiboFP(n - 1, second, first + second)
 }

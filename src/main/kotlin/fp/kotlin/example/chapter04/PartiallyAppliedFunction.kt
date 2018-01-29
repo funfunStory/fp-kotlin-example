@@ -4,16 +4,14 @@ fun main(args: Array<String>) {
     val func = { a: String, b: String -> a + b }
 
     val partiallyAppliedFunc1 = func.partial1("Hello")
-    partiallyAppliedFunc1.invoke("World")
-    partiallyAppliedFunc1("World")
     val result1 = partiallyAppliedFunc1("World")
 
-    println(result1)  // "Hello World" 출력
+    println(result1)  // Hello World
 
     val partiallyAppliedFunc2 = func.partial2("World")
     val result2 = partiallyAppliedFunc2("Hello")
 
-    println(result1)  // "Hello World" 출력
+    println(result2)  // Hello World
 }
 
 fun <P1, P2, R> ((P1, P2) -> R).partial1(p1: P1): (P2) -> R {

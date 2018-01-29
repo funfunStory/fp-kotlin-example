@@ -1,22 +1,45 @@
 package fp.kotlin.example.chapter04
 
 fun main(args: Array<String>) {
-    testPartialFunction()
+    testPartialFunction1()
+    testPartialFunction2()
     testToPartialFunction()
-    testOrElse()
-    testInvokeOrElse()
 }
 
-fun sayNumber(x: Int): String {
-    return when (x) {
-        1 -> "One!"
-        2 -> "Two!"
-        3 -> "Three!"
-        else -> throw IllegalArgumentException()
+private fun twice(x: Int) = x * 2
+
+private fun partialTwice(x: Int) = { if (100 > x) x * 2 }
+
+private fun sayNumber1(x: Int): String = when (x) {
+    1 -> "One!"
+    2 -> "Two!"
+    3 -> "Three!"
+    else -> "Not between 1 and 3"
+}
+
+private fun sayNumber2(x: Int): String = when (x) {
+    1 -> "One!"
+    2 -> "Two!"
+    3 -> "Three!"
+    else -> throw IllegalArgumentException()
+}
+
+class PartialFunction<P, R>(
+        private val condition: (P) -> Boolean,
+        private val f: (P) -> R) :(P) -> R {
+
+    override fun invoke(p: P): R {
+        if (condition(p)) {
+            return f(p)
+        } else {
+            throw IllegalArgumentException("$p isn't supported.")
+        }
     }
+
+    fun isDefinedAt(p: P): Boolean = condition(p)
 }
 
-fun demo1() {
+private fun testPartialFunction1() {
     val condition: (Int) -> Boolean = { it in 1..3}
     val body: (Int) -> String = {
         when (it) {
@@ -35,10 +58,7 @@ fun demo1() {
     }
 }
 
-val condition: (Int) -> Boolean = { 0 == it.rem(2) }
-val body: (Int) -> String = { "$it is even" }
-
-fun testPartialFunction() {
+private fun testPartialFunction2() {
     val isEven = PartialFunction<Int, String>({ 0 == it % 2 }, { "$it is even" })
 
     if (isEven.isDefinedAt(100)) {
@@ -48,7 +68,13 @@ fun testPartialFunction() {
     }
 }
 
+fun <P, R> ((P) -> R).toPartialFunction(definedAt: (P) -> Boolean)
+        : PartialFunction<P, R> = PartialFunction(definedAt, this)
+
 fun testToPartialFunction() {
+    val condition: (Int) -> Boolean = { 0 == it.rem(2) }
+    val body: (Int) -> String = { "$it is even" }
+
     val isEven = body.toPartialFunction(condition)
 
     if (isEven.isDefinedAt(100)) {
@@ -57,54 +83,3 @@ fun testToPartialFunction() {
         print("isDefinedAt(x) return false")
     }
 }
-
-fun testOrElse() {
-    val isEven = body.toPartialFunction(condition)
-    val isOdd = { i: Int -> "$i is odd" }.toPartialFunction{ !condition(it) }
-
-    // [1 is odd, 2 is even, 3 is odd]
-    print(listOf(1, 2, 3).map( isEven orElse isOdd ))
-}
-
-fun testInvokeOrElse() {
-    val isEven = body.toPartialFunction(condition)
-
-    // [1 is odd, 2 is even, 3 is odd]
-    print(listOf(1, 2, 3).map { isEven.invokeOrElse(it, "$it is odd") })
-}
-
-class PartialFunction<P, R>(
-        private val condition: (P) -> Boolean,
-        private val f: (P) -> R)
-    :(P) -> R {
-
-    override fun invoke(p: P): R {
-        if (condition(p)) {
-            return f(p)
-        } else {
-            throw IllegalArgumentException("$p isn't supported.")
-        }
-    }
-
-    fun isDefinedAt(p: P): Boolean = condition(p)
-
-    fun invokeOrElse(p: P, default: R): R {
-        return if (isDefinedAt(p)) invoke(p) else default
-    }
-
-    infix fun orElse(that: PartialFunction<P, R>): PartialFunction<P, R> {
-        return PartialFunction({ this.isDefinedAt(it) || that.isDefinedAt(it) }) {
-            when {
-                this.isDefinedAt(it) -> this(it)
-                that.isDefinedAt(it) -> that(it)
-                else -> throw IllegalArgumentException("$it isn't defined")
-            }
-        }
-    }
-}
-
-fun <P, R> ((P) -> R).toPartialFunction(definedAt: (P) -> Boolean): PartialFunction<P, R> {
-    return PartialFunction(definedAt, this)
-}
-
-

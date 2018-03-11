@@ -11,7 +11,7 @@ fun main(args: Array<String>) {
     println(replicate(5, 1))    // [1, 1, 1, 1, 1]
 }
 
-private tailrec fun replicate(n: Int, element: Int, acc: List<Int> = listOf()): List<Int> = when {
+tailrec fun replicate(n: Int, element: Int, acc: List<Int> = listOf()): List<Int> = when {
     0 >= n -> acc
     else -> {
         val repeatList = acc + listOf(element)

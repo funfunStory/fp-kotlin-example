@@ -126,6 +126,5 @@ object Main {
         val chain = intList.map({ it + 3 }).filter({ it % 2 == 0 }).sum()
 
         require(chain == notChain)
-
     }
 }

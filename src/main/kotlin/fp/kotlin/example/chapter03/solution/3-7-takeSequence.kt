@@ -19,7 +19,7 @@ fun main(args: Array<String>) {
 }
 
 private fun takeSequence(n: Int, sequence: Sequence<Int>): List<Int> = when {
-    0 >= n -> listOf()
+    n <= 0 -> listOf()
     sequence.none() -> listOf()
     else -> listOf(sequence.head()) + takeSequence(n - 1, sequence.tail())
 }

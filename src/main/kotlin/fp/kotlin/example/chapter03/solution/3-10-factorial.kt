@@ -17,7 +17,7 @@ private var memo = Array(100, { -1 })
 
 private fun factorial(n: Int): Int = when {
     0 == n -> 1
-    -1 < memo[n] -> memo[n]
+    memo[n] != -1 -> memo[n]
     else -> {
         memo[n] = n * factorial(n - 1)
         memo[n]

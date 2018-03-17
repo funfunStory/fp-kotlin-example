@@ -5,7 +5,7 @@ fun main(args: Array<String>) {
 }
 
 fun func(n: Int): Int = when {
-    0 >= n -> 0
+    n < 0 -> 0
     else -> n + func(n - 1)
 }
 
@@ -16,7 +16,7 @@ private fun helloFunc() {
 
 private fun helloFunc(n: Int) {
     when {
-        0 >= n -> return
+        n < 0 -> return
         else -> {
             println("Hello")
             helloFunc(n - 1)

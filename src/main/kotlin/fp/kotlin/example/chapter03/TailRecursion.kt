@@ -16,12 +16,12 @@ fun main(args: Array<String>) {
 
 private tailrec fun zip(list1: List<Int>, list2: List<Int>, acc: List<Pair<Int, Int>> = listOf())
     : List<Pair<Int, Int>> = when {
-        list1.isEmpty() || list2.isEmpty() -> acc
-        else -> {
-            val zipList = acc + listOf(Pair(list1.head(), list2.head()))
-            zip(list1.tail(), list2.tail(), zipList)
-        }
+    list1.isEmpty() || list2.isEmpty() -> acc
+    else -> {
+        val zipList = acc + listOf(Pair(list1.head(), list2.head()))
+        zip(list1.tail(), list2.tail(), zipList)
     }
+}
 
 private tailrec fun elem(n: Int, list: List<Int>): Boolean = when {
     list.isEmpty() -> false

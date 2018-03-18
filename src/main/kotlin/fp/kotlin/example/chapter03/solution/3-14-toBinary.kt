@@ -13,7 +13,7 @@ fun main(args: Array<String>) {
 }
 
 private tailrec fun toBinary(n: Int, acc: String = ""): String = when {
-    2 > n -> n.toString() + acc
+    n < 2 -> n.toString() + acc
     else -> {
         val binary = (n % 2).toString() + acc
         toBinary(n / 2, binary)

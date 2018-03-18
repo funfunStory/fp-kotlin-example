@@ -1,8 +1,8 @@
 package fp.kotlin.example.chapter03
 
 import fp.kotlin.example.head
-import fp.kotlin.example.tail
 import fp.kotlin.example.plus
+import fp.kotlin.example.tail
 
 fun main(args: Array<String>) {
     println(maximum(listOf(1, 3, 2, 8, 4))) // 8
@@ -13,7 +13,7 @@ fun main(args: Array<String>) {
 
 private fun maximum(items: List<Int>): Int = when {
     items.isEmpty() -> error("empty list")
-    1 == items.size -> items[0]
+    items.size == 1 -> items[0]
     else -> {
         val head = items.head()
         val tail = items.tail()
@@ -28,7 +28,7 @@ private fun reverse(str: String): String = when {
 }
 
 private fun take(n: Int, list: List<Int>): List<Int> = when {
-    0 >= n -> listOf()
+    n <= 0 -> listOf()
     list.isEmpty() -> listOf()
     else -> listOf(list.head()) + take(n - 1, list.tail())
 }
@@ -43,7 +43,6 @@ private fun take(n: Int, list: List<Int>): List<Int> = when {
 private fun repeat(n: Int): Sequence<Int> = sequenceOf(n) + { repeat(n) }
 
 private fun zip(list1: List<Int>, list2: List<Int>): List<Pair<Int, Int>> = when {
-    list1.isEmpty() -> listOf()
-    list2.isEmpty() -> listOf()
+    list1.isEmpty() || list2.isEmpty() -> listOf()
     else -> listOf(Pair(list1.head(), list2.head())) + zip(list1.tail(), list2.tail())
 }

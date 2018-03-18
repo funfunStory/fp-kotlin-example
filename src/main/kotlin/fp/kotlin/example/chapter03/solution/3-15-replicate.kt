@@ -12,7 +12,7 @@ fun main(args: Array<String>) {
 }
 
 tailrec fun replicate(n: Int, element: Int, acc: List<Int> = listOf()): List<Int> = when {
-    0 >= n -> acc
+    n <= 0 -> acc
     else -> {
         val repeatList = acc + listOf(element)
         replicate(n - 1, element, repeatList)

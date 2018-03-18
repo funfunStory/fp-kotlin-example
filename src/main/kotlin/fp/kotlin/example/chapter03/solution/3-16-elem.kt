@@ -16,6 +16,6 @@ fun main(args: Array<String>) {
 
 private tailrec fun elem(n: Int, list: List<Int>): Boolean = when {
     list.isEmpty() -> false
-    list.head() == n -> true
+    n == list.head() -> true
     else -> elem(n, list.tail())
 }

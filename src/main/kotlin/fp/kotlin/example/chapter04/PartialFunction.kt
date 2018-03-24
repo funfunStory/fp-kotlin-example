@@ -1,6 +1,9 @@
 package fp.kotlin.example.chapter04
 
 fun main(args: Array<String>) {
+    println(twice(5))
+    println(partialTwice(105))
+
     testPartialFunction1()
     testPartialFunction2()
     testToPartialFunction()
@@ -8,7 +11,13 @@ fun main(args: Array<String>) {
 
 private fun twice(x: Int) = x * 2
 
-private fun partialTwice(x: Int) = { if (100 > x) x * 2 }
+private fun partialTwice(x: Int): Int {
+    if (100 > x) {
+        return x * 2
+    } else {
+        throw IllegalArgumentException()
+    }
+}
 
 private fun sayNumber1(x: Int): String = when (x) {
     1 -> "One!"
@@ -24,9 +33,10 @@ private fun sayNumber2(x: Int): String = when (x) {
     else -> throw IllegalArgumentException()
 }
 
-class PartialFunction<P, R>(
+class PartialFunction<in P, out R>(
         private val condition: (P) -> Boolean,
-        private val f: (P) -> R) :(P) -> R {
+        private val f: (P) -> R)
+    :(P) -> R {
 
     override fun invoke(p: P): R {
         if (condition(p)) {
@@ -52,9 +62,9 @@ private fun testPartialFunction1() {
 
     val oneTwoThree = PartialFunction(condition, body)
     if (oneTwoThree.isDefinedAt(3)) {
-        print(oneTwoThree(3))
+        println(oneTwoThree(3))
     } else {
-        print("isDefinedAt(x) return false")
+        println("isDefinedAt(x) return false")
     }
 }
 
@@ -62,9 +72,9 @@ private fun testPartialFunction2() {
     val isEven = PartialFunction<Int, String>({ 0 == it % 2 }, { "$it is even" })
 
     if (isEven.isDefinedAt(100)) {
-        print(isEven(100))     // "100 is even"
+        println(isEven(100))     // "100 is even"
     } else {
-        print("isDefinedAt(x) return false")
+        println("isDefinedAt(x) return false")
     }
 }
 
@@ -78,8 +88,8 @@ fun testToPartialFunction() {
     val isEven = body.toPartialFunction(condition)
 
     if (isEven.isDefinedAt(100)) {
-        print(isEven(100))     // "100 is even!"
+        println(isEven(100))     // "100 is even!"
     } else {
-        print("isDefinedAt(x) return false")
+        println("isDefinedAt(x) return false")
     }
 }

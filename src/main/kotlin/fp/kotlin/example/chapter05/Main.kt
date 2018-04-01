@@ -1,7 +1,7 @@
 package fp.kotlin.example.chapter05
 
-import fp.kotlin.example.chapter05.List.Cons
-import fp.kotlin.example.chapter05.List.Nil
+import fp.kotlin.example.chapter05.fList.Cons
+import fp.kotlin.example.chapter05.fList.Nil
 
 object Main {
     @JvmStatic
@@ -18,8 +18,8 @@ object Main {
         require(intList.appendTail(5) == Cons(1, Cons(2, Cons(3, Cons(4, Cons(5, Nil))))))
         require(intList.addHead(0) == Cons(0, Cons(1, Cons(2, Cons(3, Cons(4, Nil))))))
 
-        require(intList.filter({ x: Int -> x > 3 }) == Cons(4, Nil))
-        require(intList.filter({ x: Int -> x % 2 == 0 }) == Cons(2, Cons(4, Nil)))
+        require(intList.filter { x: Int -> x > 3 } == Cons(4, Nil))
+        require(intList.filter { x: Int -> x % 2 == 0 } == Cons(2, Cons(4, Nil)))
 
         require(intList.drop(1) == Cons(2, Cons(3, Cons(4, Nil))))
         require(Cons(1, Nil).drop(2) == Nil)
@@ -29,40 +29,43 @@ object Main {
 
         require(intList.add2() == Cons(3, Cons(4, Cons(5, Cons(6, Nil)))))
         require((doubleList.product2() == Cons(2.0, Cons(4.0, Cons(6.0, Cons(8.0, Nil))))))
-        require(intList.add2() == intList.map({ it + 2 }))    // ok
-        require(doubleList.product2() == doubleList.map({ it * 2 }))
-        println(intList.map({ it * 3 }))
+        require(intList.add2() == intList.map { it + 2 })    // ok
+        require(doubleList.product2() == doubleList.map { it * 2 })
+        println(intList.map { it * 3 })
 
         println(intList.sum())  // 10
-        println(intList.foldLeft({ acc, x -> acc + x }, 0)) // 10
-        require(intList.foldLeft({ acc, x -> acc + x }, 0) == intList.sum())
+        println(intList.foldLeft(0) { acc, x -> acc + x }) // 10
+        require(intList.foldLeft(0) { acc, x -> acc + x } == intList.sum())
 
         println(doubleList.product())  // 24.0
-        println(doubleList.foldLeft({ acc, x -> acc * x }, 1.0)) // 24.0
-        require(doubleList.foldLeft({ acc, x -> acc * x }, 1.0) == doubleList.product())
+        println(doubleList.foldLeft(1.0) { acc, x -> acc * x }) // 24.0
+        require(doubleList.foldLeft(1.0) { acc, x -> acc * x } == doubleList.product())
 
         val lowerCharList = Cons('a', Cons('b', Cons('c', Cons('d', Nil))))
         val upperCharList = Cons('A', Cons('B', Cons('C', Cons('D', Nil))))
 
-        require(lowerCharList.foldLeft({ acc: List<Char>, char -> acc.appendTail(char.toUpperCase()) },
-            Nil) == upperCharList)
+        require(lowerCharList.foldLeft(Nil) { acc: fList<Char>, char ->
+            acc.appendTail(char.toUpperCase())
+        } == upperCharList)
 
         val sum = { acc: Int, value: Int -> acc + value }
         val product = { acc: Double, value: Double -> acc * value }
-        val upper = { acc: List<Char>, char: Char -> acc.appendTail(char.toUpperCase()) }
+        val upper = { acc: fList<Char>, char: Char -> acc.appendTail(char.toUpperCase()) }
 
 
-        println(intList.foldLeft(sum, 0)) // 10
-        println(doubleList.foldLeft(product, 1.0)) // 24.0
-        println(lowerCharList.foldLeft(upper, Nil)) // Cons('A', Cons('B', Cons('C', Cons('D', Nil))))
+        println(intList.foldLeft(0, sum)) // 10
+        println(doubleList.foldLeft(1.0, product)) // 24.0
+        println(lowerCharList.foldLeft(Nil, upper)) // Cons('A', Cons('B', Cons('C', Cons('D', Nil))))
 
         println(intList.zip(lowerCharList))   // Cons((1,a), Cons((2,b), Cons((3,c), Cons((4,d), Nil))))
 
-        val add3 = intList.map({ it + 3 })
-        val filterEven = add3.filter({ it % 2 == 0 })
+        val add3 = intList.map { it + 3 }
+        val filterEven = add3.filter { it % 2 == 0 }
         val notChain = filterEven.sum()
 
-        val chain = intList.map({ it + 3 }).filter({ it % 2 == 0 }).sum()
+        val chain = intList.map { it + 3 }
+            .filter { it % 2 == 0 }
+            .sum()
 
         require(chain == notChain)
     }

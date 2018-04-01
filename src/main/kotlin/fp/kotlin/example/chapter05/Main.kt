@@ -1,7 +1,7 @@
 package fp.kotlin.example.chapter05
 
-import fp.kotlin.example.chapter05.fList.Cons
-import fp.kotlin.example.chapter05.fList.Nil
+import fp.kotlin.example.chapter05.FunList.Cons
+import fp.kotlin.example.chapter05.FunList.Nil
 
 object Main {
     @JvmStatic
@@ -44,13 +44,13 @@ object Main {
         val lowerCharList = Cons('a', Cons('b', Cons('c', Cons('d', Nil))))
         val upperCharList = Cons('A', Cons('B', Cons('C', Cons('D', Nil))))
 
-        require(lowerCharList.foldLeft(Nil) { acc: fList<Char>, char ->
+        require(lowerCharList.foldLeft(Nil) { acc: FunList<Char>, char ->
             acc.appendTail(char.toUpperCase())
         } == upperCharList)
 
         val sum = { acc: Int, value: Int -> acc + value }
         val product = { acc: Double, value: Double -> acc * value }
-        val upper = { acc: fList<Char>, char: Char -> acc.appendTail(char.toUpperCase()) }
+        val upper = { acc: FunList<Char>, char: Char -> acc.appendTail(char.toUpperCase()) }
 
 
         println(intList.foldLeft(0, sum)) // 10

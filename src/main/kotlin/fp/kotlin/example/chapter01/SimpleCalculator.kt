@@ -4,7 +4,7 @@ fun main(args: Array<String>) {
     val calculator = SimpleCalculator()
 
     println(calculator.calculate('+', 3, 1))    // 4
-    println(calculator.calculate('-', 3, 1))    // 1
+    println(calculator.calculate('-', 3, 1))    // 2
 }
 
 class SimpleCalculator {

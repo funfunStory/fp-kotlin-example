@@ -16,6 +16,6 @@ fun main(args: Array<String>) {
 }
 
 private fun toBinary(n: Int): String = when {
-    2 > n -> n.toString()
+    n < 2 -> n.toString()
     else -> toBinary(n / 2) + (n % 2).toString()
 }

@@ -15,11 +15,11 @@ fun main(args: Array<String>) {
 }
 
 private fun squareRoot(n: Double): Double = when {
-    1 > n -> n
+    n < 1 -> n
     else -> divideTwo(Math.sqrt(n))
 }
 
 private fun divideTwo(n: Double): Double = when {
-    1 > n -> n
+    n < 1 -> n
     else -> squareRoot(n / 2)
 }

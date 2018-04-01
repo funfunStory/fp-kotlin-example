@@ -16,11 +16,11 @@ fun main(args: Array<String>) {
 }
 
 private fun squareRoot(n: Double): Bounce<Double> = when {
-    1 > n -> Done(n)
+    n < 1 -> Done(n)
     else -> More { divideTwo(Math.sqrt(n)) }
 }
 
 private fun divideTwo(n: Double): Bounce<Double> = when {
-    1 > n -> Done(n)
+    n < 1 -> Done(n)
     else -> More { squareRoot(n / 2) }
 }

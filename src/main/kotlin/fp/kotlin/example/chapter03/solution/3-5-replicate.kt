@@ -16,6 +16,6 @@ fun main(args: Array<String>) {
 }
 
 private fun replicate(n: Int, element: Int): List<Int> = when {
-    0 >= n -> listOf()
+    n <= 0 -> listOf()
     else -> listOf(element) + replicate(n - 1, element)
 }

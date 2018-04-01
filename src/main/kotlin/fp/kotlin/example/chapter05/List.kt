@@ -1,4 +1,4 @@
-package fp.kotlin.example.chapter05.solution
+package fp.kotlin.example.chapter05
 
 sealed class List<out T> {
 

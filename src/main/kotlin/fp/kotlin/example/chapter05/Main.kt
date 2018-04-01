@@ -1,22 +1,7 @@
 package fp.kotlin.example.chapter05
 
-import fp.kotlin.example.chapter05.solution.List
-import fp.kotlin.example.chapter05.solution.List.Cons
-import fp.kotlin.example.chapter05.solution.List.Nil
-import fp.kotlin.example.chapter05.solution.add2
-import fp.kotlin.example.chapter05.solution.addHead
-import fp.kotlin.example.chapter05.solution.appendTail
-import fp.kotlin.example.chapter05.solution.drop
-import fp.kotlin.example.chapter05.solution.filter
-import fp.kotlin.example.chapter05.solution.foldLeft
-import fp.kotlin.example.chapter05.solution.getHead
-import fp.kotlin.example.chapter05.solution.getTail
-import fp.kotlin.example.chapter05.solution.map
-import fp.kotlin.example.chapter05.solution.product
-import fp.kotlin.example.chapter05.solution.product2
-import fp.kotlin.example.chapter05.solution.sum
-import fp.kotlin.example.chapter05.solution.take
-import fp.kotlin.example.chapter05.solution.zip
+import fp.kotlin.example.chapter05.List.Cons
+import fp.kotlin.example.chapter05.List.Nil
 
 object Main {
     @JvmStatic

@@ -11,13 +11,12 @@ fun main(args: Array<String>) {
 
 private fun twice(x: Int) = x * 2
 
-private fun partialTwice(x: Int): Int {
-    if (100 > x) {
-        return x * 2
+private fun partialTwice(x: Int): Int =
+    if (x < 100) {
+        x * 2
     } else {
         throw IllegalArgumentException()
     }
-}
 
 private fun sayNumber1(x: Int): String = when (x) {
     1 -> "One!"

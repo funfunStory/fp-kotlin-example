@@ -12,7 +12,7 @@ import fp.kotlin.example.tail
  */
 
 fun main(args: Array<String>) {
-    println(takeWhile({ p -> 2 < p }, listOf(1, 2, 3, 4, 5)))   // [1, 2]
+    println(takeWhile({ p -> p > 2 }, listOf(1, 2, 3, 4, 5)))   // [1, 2]
     println(takeWhile({ p -> ' ' == p }, "hello world".toList()))   // [h, e, l, l, o]
 }
 

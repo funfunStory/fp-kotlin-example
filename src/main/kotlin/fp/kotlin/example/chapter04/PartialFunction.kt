@@ -11,13 +11,12 @@ fun main(args: Array<String>) {
 
 private fun twice(x: Int) = x * 2
 
-private fun partialTwice(x: Int): Int {
-    if (100 > x) {
-        return x * 2
+private fun partialTwice(x: Int): Int =
+    if (x < 100) {
+        x * 2
     } else {
         throw IllegalArgumentException()
     }
-}
 
 private fun sayNumber1(x: Int): String = when (x) {
     1 -> "One!"
@@ -34,23 +33,20 @@ private fun sayNumber2(x: Int): String = when (x) {
 }
 
 class PartialFunction<in P, out R>(
-        private val condition: (P) -> Boolean,
-        private val f: (P) -> R)
-    :(P) -> R {
+    private val condition: (P) -> Boolean,
+    private val f: (P) -> R)
+    : (P) -> R {
 
-    override fun invoke(p: P): R {
-        if (condition(p)) {
-            return f(p)
-        } else {
-            throw IllegalArgumentException("$p isn't supported.")
-        }
+    override fun invoke(p: P): R = when {
+        condition(p) -> f(p)
+        else -> throw IllegalArgumentException("$p isn't supported.")
     }
 
     fun isDefinedAt(p: P): Boolean = condition(p)
 }
 
 private fun testPartialFunction1() {
-    val condition: (Int) -> Boolean = { it in 1..3}
+    val condition: (Int) -> Boolean = { it in 1..3 }
     val body: (Int) -> String = {
         when (it) {
             1 -> "One!"
@@ -79,7 +75,7 @@ private fun testPartialFunction2() {
 }
 
 fun <P, R> ((P) -> R).toPartialFunction(definedAt: (P) -> Boolean)
-        : PartialFunction<P, R> = PartialFunction(definedAt, this)
+    : PartialFunction<P, R> = PartialFunction(definedAt, this)
 
 fun testToPartialFunction() {
     val condition: (Int) -> Boolean = { 0 == it.rem(2) }

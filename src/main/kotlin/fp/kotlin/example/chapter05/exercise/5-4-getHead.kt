@@ -1,0 +1,24 @@
+package fp.kotlin.example.chapter05.exercise
+
+import fp.kotlin.example.chapter05.FunList
+import fp.kotlin.example.chapter05.FunList.Cons
+import fp.kotlin.example.chapter05.FunList.Nil
+
+/**
+ *
+ * 연습문제 5-4
+ *
+ * 리스트에 첫번째 값을 가져오는 getHead 함수를 작성해 보자.
+ *
+ * 힌트: 함수의 선언 타입은 아래와 같다.
+ *
+ */
+
+fun main(args: Array<String>) {
+
+    val intList = Cons(1, Cons(2, Cons(3, Nil)))
+    require(intList.getHead() == 1)
+
+}
+
+fun <T> FunList<T>.getHead(): T = TODO()

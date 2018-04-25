@@ -1,5 +1,7 @@
 package fp.kotlin.example.chapter05
 
+import fp.kotlin.example.chapter05.solution.appendTail
+
 sealed class FunList<out T> {
 
     object Nil : FunList<Nothing>()
@@ -25,15 +27,6 @@ fun <T> FunList<T>.getHead(): T = when (this) {
     FunList.Nil -> throw NullPointerException()
     is FunList.Cons -> head
 }
-
-fun <T> FunList<T>.appendTail(value: T): FunList<T> = when (this) {
-    FunList.Nil -> FunList.Cons(value,
-        FunList.Nil)
-    is FunList.Cons -> FunList.Cons(head,
-        tail.appendTail(value))
-}
-
-fun <T> FunList<T>.addHead(head: T): FunList<T> = FunList.Cons(head, this)
 
 tailrec fun <T> FunList<T>.filter(acc: FunList<T> = FunList.Nil, f: (T) -> Boolean): FunList<T> = when (this) {
     FunList.Nil -> acc
@@ -74,7 +67,8 @@ tailrec fun <T, R> FunList<T>.foldLeft(acc: R, f: (R, T) -> R): R = when (this) 
     is FunList.Cons -> tail.foldLeft(f(acc, head), f)
 }
 
-tailrec fun <T, R> FunList<T>.zip(list: FunList<R>, acc: FunList<Pair<T, R>> = FunList.Nil): FunList<Pair<T, R>> = when {
+tailrec fun <T, R> FunList<T>.zip(list: FunList<R>,
+    acc: FunList<Pair<T, R>> = FunList.Nil): FunList<Pair<T, R>> = when {
     this === FunList.Nil || list === FunList.Nil -> acc
     else -> this.getTail().zip(list.getTail(), acc.appendTail(this.getHead() to list.getHead()))
 }

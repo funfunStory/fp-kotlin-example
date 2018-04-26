@@ -3,6 +3,7 @@ package fp.kotlin.example.chapter05
 import fp.kotlin.example.chapter05.solution.appendTail
 
 sealed class FunList<out T> {
+
     object Nil : FunList<Nothing>()
     data class Cons<T>(val head: T, var tail: FunList<T>) : FunList<T>()
 }
@@ -39,6 +40,10 @@ fun <T> FunList<T>.getHead(): T = when (this) {
     is FunList.Cons -> head
 }
 
+fun <T> FunList<T>.addHead(head: T): FunList<T> = FunList.Cons(head, this)
+
+fun FunList<Int>.sum(): Int = this.foldLeft(0) { acc, x -> acc + x }
+
 tailrec fun <T> FunList<T>.filter(acc: FunList<T> = FunList.Nil, f: (T) -> Boolean): FunList<T> = when (this) {
     FunList.Nil -> acc
     is FunList.Cons -> if (f(head)) {
@@ -58,16 +63,6 @@ tailrec fun <T> FunList<T>.take(n: Int, acc: FunList<T> = FunList.Nil): FunList<
     else -> getTail().take(n - 1, acc.appendTail(getHead()))
 }
 
-tailrec fun FunList<Int>.add2(acc: FunList<Int> = FunList.Nil): FunList<Int> = when (this) {
-    FunList.Nil -> acc
-    is FunList.Cons -> tail.add2(acc.appendTail(head + 2))
-}
-
-tailrec fun FunList<Double>.product2(acc: FunList<Double> = FunList.Nil): FunList<Double> = when (this) {
-    FunList.Nil -> acc
-    is FunList.Cons -> tail.product2(acc.appendTail(head * 2))
-}
-
 tailrec fun <T, R> FunList<T>.map(acc: FunList<R> = FunList.Nil, f: (T) -> R): FunList<R> = when (this) {
     FunList.Nil -> acc
     is FunList.Cons -> tail.map(acc.appendTail(f(head)), f)
@@ -78,8 +73,25 @@ tailrec fun <T, R> FunList<T>.foldLeft(acc: R, f: (R, T) -> R): R = when (this) 
     is FunList.Cons -> tail.foldLeft(f(acc, head), f)
 }
 
-tailrec fun <T, R> FunList<T>.zip(list: FunList<R>,
-    acc: FunList<Pair<T, R>> = FunList.Nil): FunList<Pair<T, R>> = when {
+fun <T, R> FunList<T>.foldRight(acc: R, f: (T, R) -> R): R = when (this) {
+    FunList.Nil -> acc
+    is FunList.Cons -> f(head, tail.foldRight(acc, f))
+}
+
+fun <T, R> FunList<T>.mapByFoldLeft(f: (T) -> R): FunList<R> = this.foldLeft(FunList.Nil) {
+    acc: FunList<R>, x -> acc.appendTail(f(x))
+}
+
+fun <T, R> FunList<T>.mapByFoldRight(f: (T) -> R): FunList<R> = this.foldRight(FunList.Nil) {
+    x, acc: FunList<R> -> acc.addHead(f(x))
+}
+
+tailrec fun <T, R> FunList<T>.zip(list: FunList<R>, acc: FunList<Pair<T, R>> = FunList.Nil): FunList<Pair<T, R>> = when {
     this === FunList.Nil || list === FunList.Nil -> acc
     else -> this.getTail().zip(list.getTail(), acc.appendTail(this.getHead() to list.getHead()))
+}
+
+fun <T1, T2, R> FunList<T1>.zipWith(f: (T1, T2) -> R, list: FunList<T2>, acc: FunList<R> = FunList.Nil): FunList<R> = when {
+    this === FunList.Nil || list === FunList.Nil -> acc
+    else -> this.getTail().zipWith(f, list.getTail(), acc.appendTail(f(this.getHead(), list.getHead())))
 }

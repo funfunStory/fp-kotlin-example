@@ -1,8 +1,8 @@
 package fp.kotlin.example.chapter05
 
-import fp.kotlin.example.chapter05.solution.appendTail
 import fp.kotlin.example.chapter05.FunList.Cons
 import fp.kotlin.example.chapter05.FunList.Nil
+import fp.kotlin.example.chapter05.solution.appendTail
 
 fun main(args: Array<String>) {
     val intList = FunList.Cons(1, FunList.Cons(2, FunList.Cons(3, Nil)))
@@ -25,8 +25,8 @@ fun main(args: Array<String>) {
     printFunList(intList.mapByFoldLeft { it + 2 })  // [3, 4, 5]
 
     val intList2 = FunList.Cons(1, FunList.Cons(3, FunList.Cons(10, Nil)))
-    println(intList2.foldRight(0) { x, y ->  x - y })    // 8
-    println(intList2.foldLeft(0) { x, y ->  y - x })    // 8
+    println(intList2.foldRight(0) { x, y -> x - y })    // 8
+    println(intList2.foldLeft(0) { x, y -> y - x })    // 8
 
     printFunList(intList.mapByFoldRight { it + 2 })  // [3, 4, 5]
 
@@ -54,8 +54,8 @@ fun sum(list: FunList<Int>): Int = when (list) {
 
 fun sumByFoldLeft(list: FunList<Int>): Int = list.foldLeft(0) { acc, x -> acc + x }
 
-fun toUpper(list: FunList<Char>): FunList<Char> = list.foldLeft(Nil) {
-    acc: FunList<Char>, char: Char -> acc.appendTail(char.toUpperCase())
+fun toUpper(list: FunList<Char>): FunList<Char> = list.foldLeft(Nil) { acc: FunList<Char>, char: Char ->
+    acc.appendTail(char.toUpperCase())
 }
 
 tailrec fun <T> printFunList1(list: FunList<T>, acc: String = ""): Unit = when (list) {
@@ -78,6 +78,7 @@ tailrec fun <T> printFunList2(list: FunList<T>, acc: String = ""): Unit = when (
 fun <T> printFunList(list: FunList<T>) {
     println("[${printByFoldLeft(list).drop(2)}]")
 }
+
 fun <T> printByFoldLeft(list: FunList<T>): String = list.foldLeft("") { acc, x -> "$acc, $x" }
 
 object Main {

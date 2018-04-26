@@ -20,11 +20,6 @@ fun <T> FunList<T>.toFunStream(): FunStream<T> = when (this) {
     else -> FunStream.Cons({ this.getHead() }, { this.getTail().toFunStream() })
 }
 
-fun FunList<Int>.sum(): Int = when (this) {
-    FunList.Nil -> 0
-    is FunList.Cons -> head + tail.sum()
-}
-
 fun FunList<Double>.product(): Double = when (this) {
     FunList.Nil -> 1.0
     is FunList.Cons -> if (head == 0.0) 0.0 else head * tail.product()
@@ -78,20 +73,22 @@ fun <T, R> FunList<T>.foldRight(acc: R, f: (T, R) -> R): R = when (this) {
     is FunList.Cons -> f(head, tail.foldRight(acc, f))
 }
 
-fun <T, R> FunList<T>.mapByFoldLeft(f: (T) -> R): FunList<R> = this.foldLeft(FunList.Nil) {
-    acc: FunList<R>, x -> acc.appendTail(f(x))
+fun <T, R> FunList<T>.mapByFoldLeft(f: (T) -> R): FunList<R> = this.foldLeft(FunList.Nil) { acc: FunList<R>, x ->
+    acc.appendTail(f(x))
 }
 
-fun <T, R> FunList<T>.mapByFoldRight(f: (T) -> R): FunList<R> = this.foldRight(FunList.Nil) {
-    x, acc: FunList<R> -> acc.addHead(f(x))
+fun <T, R> FunList<T>.mapByFoldRight(f: (T) -> R): FunList<R> = this.foldRight(FunList.Nil) { x, acc: FunList<R> ->
+    acc.addHead(f(x))
 }
 
-tailrec fun <T, R> FunList<T>.zip(list: FunList<R>, acc: FunList<Pair<T, R>> = FunList.Nil): FunList<Pair<T, R>> = when {
+tailrec fun <T, R> FunList<T>.zip(list: FunList<R>,
+    acc: FunList<Pair<T, R>> = FunList.Nil): FunList<Pair<T, R>> = when {
     this === FunList.Nil || list === FunList.Nil -> acc
     else -> this.getTail().zip(list.getTail(), acc.appendTail(this.getHead() to list.getHead()))
 }
 
-fun <T1, T2, R> FunList<T1>.zipWith(f: (T1, T2) -> R, list: FunList<T2>, acc: FunList<R> = FunList.Nil): FunList<R> = when {
+fun <T1, T2, R> FunList<T1>.zipWith(f: (T1, T2) -> R, list: FunList<T2>,
+    acc: FunList<R> = FunList.Nil): FunList<R> = when {
     this === FunList.Nil || list === FunList.Nil -> acc
     else -> this.getTail().zipWith(f, list.getTail(), acc.appendTail(f(this.getHead(), list.getHead())))
 }

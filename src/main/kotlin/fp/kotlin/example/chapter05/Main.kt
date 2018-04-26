@@ -2,6 +2,7 @@ package fp.kotlin.example.chapter05
 
 import fp.kotlin.example.chapter05.FunList.Cons
 import fp.kotlin.example.chapter05.FunList.Nil
+import fp.kotlin.example.chapter05.solution.appendTail
 
 object Main {
     @JvmStatic
@@ -16,7 +17,7 @@ object Main {
         require(intList.getTail() == Cons(2, Cons(3, Cons(4, Nil))))
 
         require(intList.appendTail(5) == Cons(1, Cons(2, Cons(3, Cons(4, Cons(5, Nil))))))
-        require(intList.addHead(0) == Cons(0, Cons(1, Cons(2, Cons(3, Cons(4, Nil))))))
+        //        require(intList.addHead(0) == Cons(0, Cons(1, Cons(2, Cons(3, Cons(4, Nil))))))
 
         require(intList.filter { x: Int -> x > 3 } == Cons(4, Nil))
         require(intList.filter { x: Int -> x % 2 == 0 } == Cons(2, Cons(4, Nil)))
@@ -68,5 +69,7 @@ object Main {
             .sum()
 
         require(chain == notChain)
+
+        require(intList.toFunStream().sum() == 10)
     }
 }

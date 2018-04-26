@@ -3,9 +3,20 @@ package fp.kotlin.example.chapter05
 import fp.kotlin.example.chapter05.solution.appendTail
 
 sealed class FunList<out T> {
-
     object Nil : FunList<Nothing>()
     data class Cons<T>(val head: T, var tail: FunList<T>) : FunList<T>()
+}
+
+fun <T> funListOf(vararg elements: T): FunList<T> =
+    if (elements.isEmpty()) {
+        FunList.Nil
+    } else {
+        elements.fold(FunList.Nil as FunList<T>, { acc, elm -> acc.appendTail(elm) })
+    }
+
+fun <T> FunList<T>.toFunStream(): FunStream<T> = when (this) {
+    FunList.Nil -> FunStream.Nil
+    else -> FunStream.Cons({ this.getHead() }, this.getTail().toFunStream())
 }
 
 fun FunList<Int>.sum(): Int = when (this) {

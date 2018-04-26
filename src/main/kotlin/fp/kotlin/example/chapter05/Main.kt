@@ -70,6 +70,11 @@ object Main {
 
         require(chain == notChain)
 
-        require(intList.toFunStream().sum() == 10)
+        require(funListOf(1, 2, 3, 4, 5).sum() == 15)
+        require(funStreemOf(1, 2, 3, 4, 5).sum() == 15)
+        require(funStreemOf(1, 2, 3, 4, 5).sum() == 15)
+
+        println(generateSequence(1) { it + 5 }.take(5).last())
+        println(generateFunStream(1) { it + 5 }.take(5).last())
     }
 }

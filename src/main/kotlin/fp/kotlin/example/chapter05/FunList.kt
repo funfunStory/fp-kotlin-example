@@ -16,7 +16,7 @@ fun <T> funListOf(vararg elements: T): FunList<T> =
 
 fun <T> FunList<T>.toFunStream(): FunStream<T> = when (this) {
     FunList.Nil -> FunStream.Nil
-    else -> FunStream.Cons({ this.getHead() }, this.getTail().toFunStream())
+    else -> FunStream.Cons({ this.getHead() }, { this.getTail().toFunStream() })
 }
 
 fun FunList<Int>.sum(): Int = when (this) {

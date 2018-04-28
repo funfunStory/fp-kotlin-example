@@ -17,7 +17,7 @@ fun <T> generateFunStream(seed: T, generate: (T) -> T): FunStream<T> =
 
 fun <T> FunStream<T>.toFunList(): FunList<T> = when (this) {
     FunStream.Nil -> FunList.Nil
-    else -> FunList.Cons(this.getHead(), this.getTail().toFunList())
+    else -> FunList.Cons(getHead(), getTail().toFunList())
 }
 
 fun FunStream<Int>.sum(): Int = when (this) {
@@ -32,26 +32,31 @@ fun FunStream<Double>.product(): Double = when (this) {
 
 fun <T> FunStream<T>.getHead(): T = when (this) {
     FunStream.Nil -> throw NullPointerException()
-    is FunStream.Cons -> this.head()
+    is FunStream.Cons -> head()
 }
 
 fun <T> FunStream<T>.getTail(): FunStream<T> = when (this) {
     FunStream.Nil -> throw NullPointerException()
-    is FunStream.Cons -> this.tail()
+    is FunStream.Cons -> tail()
 }
 
 fun <T> FunStream<T>.appendTail(value: T): FunStream<T> = when (this) {
     FunStream.Nil -> FunStream.Cons({ value }, { FunStream.Nil })
-    is FunStream.Cons -> FunStream.Cons(this.head, { this.tail().appendTail(value) })
+    is FunStream.Cons -> FunStream.Cons(head, { tail().appendTail(value) })
 }
 
-fun <T> FunStream<T>.last(): T = when (this) {
-    FunStream.Nil -> throw NullPointerException()
-    is FunStream.Cons -> if (this.tail() === FunStream.Nil) {
-        this.head()
+tailrec fun <T> FunStream<T>.filter(acc: FunStream<T> = FunStream.Nil, f: (T) -> Boolean): FunStream<T> = when (this) {
+    FunStream.Nil -> acc
+    is FunStream.Cons -> if (f(getHead())) {
+        getTail().filter(acc.appendTail(head()), f)
     } else {
-        this.tail().last()
+        getTail().filter(acc, f)
     }
+}
+
+tailrec fun <T> FunStream<T>.drop(n: Int): FunStream<T> = when {
+    n == 0 || this === FunStream.Nil -> this
+    else -> getTail().drop(n - 1)
 }
 
 tailrec fun <T> FunStream<T>.take(n: Int, acc: FunStream<T> = FunStream.Nil): FunStream<T> = when {
@@ -61,5 +66,5 @@ tailrec fun <T> FunStream<T>.take(n: Int, acc: FunStream<T> = FunStream.Nil): Fu
         FunStream.Nil -> acc
         is FunStream.Cons -> getTail().take(n - 1, acc.appendTail(getHead()))
     }
-
 }
+

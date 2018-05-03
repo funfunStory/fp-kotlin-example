@@ -3,17 +3,16 @@ package fp.kotlin.example.chapter05
 import fp.kotlin.example.chapter05.solution.appendTail
 
 sealed class FunList<out T> {
-
     object Nil : FunList<Nothing>()
-    data class Cons<T>(val head: T, var tail: FunList<T>) : FunList<T>()
+    data class Cons<out T>(val head: T, val tail: FunList<T>) : FunList<T>()
 }
 
-fun <T> funListOf(vararg elements: T): FunList<T> =
-    if (elements.isEmpty()) {
-        FunList.Nil
-    } else {
-        elements.fold(FunList.Nil as FunList<T>, { acc, elm -> acc.appendTail(elm) })
-    }
+fun <T> funListOf(vararg elements: T): FunList<T> = elements.toFunList()
+
+private tailrec fun <T> Array<out T>.toFunList(acc: FunList<T> = FunList.Nil): FunList<T> = when {
+    this.isEmpty() -> acc
+    else -> this.copyOfRange(1, this.size).toFunList(acc.appendTail(this[0]))
+}
 
 fun <T> FunList<T>.toFunStream(): FunStream<T> = when (this) {
     FunList.Nil -> FunStream.Nil

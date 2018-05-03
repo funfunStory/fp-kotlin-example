@@ -34,7 +34,7 @@ fun main(args: Array<String>) {
     printFunList(intList.zipWith({ x, y -> if (x > y) x else y }, intList2))  // [1, 3, 10]
     printFunList(intList.zipWith({ x, y -> x to y }, lowerCharList))  // [(1, a), (2, b), (3, c)]
 
-
+    require(Cons(1, Cons(2, Nil)) == funListOf(1, 2))
 }
 
 tailrec fun add2(list: FunList<Int>, acc: FunList<Int> = FunList.Nil): FunList<Int> = when (list) {

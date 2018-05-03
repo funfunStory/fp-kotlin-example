@@ -5,12 +5,12 @@ sealed class FunStream<out T> {
     data class Cons<out T>(val head: () -> T, val tail: () -> FunStream<T>) : FunStream<T>()
 }
 
-fun <T> funStreemOf(vararg elements: T): FunStream<T> =
-    if (elements.isEmpty()) {
-        FunStream.Nil
-    } else {
-        elements.fold(FunStream.Nil as FunStream<T>, { acc, elm -> acc.appendTail(elm) })
-    }
+fun <T> funStreamOf(vararg elements: T): FunStream<T> = elements.toFunStream()
+
+private tailrec fun <T> Array<out T>.toFunStream(acc: FunStream<T> = FunStream.Nil): FunStream<T> = when {
+    this.isEmpty() -> acc
+    else -> this.copyOfRange(1, this.size).toFunStream(acc.appendTail(this[0]))
+}
 
 fun <T> generateFunStream(seed: T, generate: (T) -> T): FunStream<T> =
     FunStream.Cons({ seed }, { generateFunStream(generate(seed), generate) })
@@ -66,5 +66,10 @@ tailrec fun <T> FunStream<T>.take(n: Int, acc: FunStream<T> = FunStream.Nil): Fu
         FunStream.Nil -> acc
         is FunStream.Cons -> getTail().take(n - 1, acc.appendTail(getHead()))
     }
+}
+
+tailrec fun <T, R> FunStream<T>.map(acc: FunStream<R> = FunStream.Nil, f: (T) -> R): FunStream<R> = when (this) {
+    FunStream.Nil -> acc
+    is FunStream.Cons -> tail().map(acc.appendTail(f(head())), f)
 }
 

@@ -39,17 +39,17 @@ fun main(args: Array<String>) {
 
 tailrec fun add2(list: FunList<Int>, acc: FunList<Int> = FunList.Nil): FunList<Int> = when (list) {
     FunList.Nil -> acc
-    is FunList.Cons -> add2(list.getTail(), acc.appendTail(list.getHead() + 2))
+    is FunList.Cons -> add2(list.tail, acc.appendTail(list.head + 2))
 }
 
 tailrec fun product2(list: FunList<Double>, acc: FunList<Double> = FunList.Nil): FunList<Double> = when (list) {
     FunList.Nil -> acc
-    is FunList.Cons -> product2(list.getTail(), acc.appendTail(list.getHead() * 2))
+    is FunList.Cons -> product2(list.tail, acc.appendTail(list.head * 2))
 }
 
 fun sum(list: FunList<Int>): Int = when (list) {
     FunList.Nil -> 0
-    is FunList.Cons -> list.getHead() + sum(list.getTail())
+    is FunList.Cons -> list.head + sum(list.tail)
 }
 
 fun sumByFoldLeft(list: FunList<Int>): Int = list.foldLeft(0) { acc, x -> acc + x }
@@ -61,15 +61,15 @@ fun toUpper(list: FunList<Char>): FunList<Char> = list.foldLeft(Nil) { acc: FunL
 tailrec fun <T> printFunList1(list: FunList<T>, acc: String = ""): Unit = when (list) {
     FunList.Nil -> println("[$acc]")
     is FunList.Cons -> if (acc.isEmpty()) {
-        printFunList1(list.getTail(), "${list.getHead()}")
+        printFunList1(list.tail, "${list.head}")
     } else {
-        printFunList1(list.getTail(), "$acc, ${list.getHead()}")
+        printFunList1(list.tail, "$acc, ${list.head}")
     }
 }
 
 tailrec fun <T> printFunList2(list: FunList<T>, acc: String = ""): Unit = when (list) {
     FunList.Nil -> println("[${acc.drop(2)}]")
-    is FunList.Cons -> printFunList2(list.getTail(), "$acc, ${list.getHead()}")
+    is FunList.Cons -> printFunList2(list.tail, "$acc, ${list.head}")
 }
 
 // 컴파일 에러가 발생

@@ -54,6 +54,11 @@ tailrec fun <T> FunStream<T>.filter(acc: FunStream<T> = FunStream.Nil, f: (T) ->
     }
 }
 
+tailrec fun <T, R> FunStream<T>.map(acc: FunStream<R> = FunStream.Nil, f: (T) -> R): FunStream<R> = when (this) {
+    FunStream.Nil -> acc
+    is FunStream.Cons -> tail().map(acc.appendTail(f(head())), f)
+}
+
 tailrec fun <T> FunStream<T>.drop(n: Int): FunStream<T> = when {
     n == 0 || this === FunStream.Nil -> this
     else -> getTail().drop(n - 1)
@@ -67,9 +72,3 @@ tailrec fun <T> FunStream<T>.take(n: Int, acc: FunStream<T> = FunStream.Nil): Fu
         is FunStream.Cons -> tail().take(n - 1, acc.appendTail(getHead()))
     }
 }
-
-tailrec fun <T, R> FunStream<T>.map(acc: FunStream<R> = FunStream.Nil, f: (T) -> R): FunStream<R> = when (this) {
-    FunStream.Nil -> acc
-    is FunStream.Cons -> tail().map(acc.appendTail(f(head())), f)
-}
-

@@ -1,12 +1,11 @@
 package fp.kotlin.example.chapter05
 
-import fp.kotlin.example.chapter05.FunList.Cons
 import fp.kotlin.example.chapter05.FunList.Nil
 import fp.kotlin.example.chapter05.solution.appendTail
 
 fun main(args: Array<String>) {
-    val intList = FunList.Cons(1, FunList.Cons(2, FunList.Cons(3, Nil)))
-    val doubleList = Cons(1.0, Cons(2.0, Cons(3.0, Nil)))
+    val intList = funListOf(1, 2, 3)
+    val doubleList = funListOf(1.0, 2.0, 3.0)
 
     printFunList(add2(intList))         // [3, 4, 5]
     printFunList(product2(doubleList))  // [2.0, 4.0, 6.0]
@@ -19,12 +18,12 @@ fun main(args: Array<String>) {
 
     println(intList.map { it + 3 }.filter { it % 2 == 0 }.sum())     // 10
 
-    val lowerCharList = Cons('a', Cons('b', Cons('c', Nil)))
+    val lowerCharList = funListOf('a', 'b', 'c')
     printFunList(toUpper(lowerCharList))    // [A, B, C]
 
     printFunList(intList.mapByFoldLeft { it + 2 })  // [3, 4, 5]
 
-    val intList2 = FunList.Cons(1, FunList.Cons(3, FunList.Cons(10, Nil)))
+    val intList2 = funListOf(1, 3, 10)
     println(intList2.foldRight(0) { x, y -> x - y })    // 8
     println(intList2.foldLeft(0) { x, y -> y - x })    // 8
 
@@ -34,8 +33,11 @@ fun main(args: Array<String>) {
     printFunList(intList.zipWith({ x, y -> if (x > y) x else y }, intList2))  // [1, 3, 10]
     printFunList(intList.zipWith({ x, y -> x to y }, lowerCharList))  // [(1, a), (2, b), (3, c)]
 
-    require(Cons(1, Cons(2, Nil)) == funListOf(1, 2))
-}
+    println(funStreamOf(1, 2, 3).getHead())   // 1
+    println(funStreamOf(1, 2, 3).getTail())   // Cons(head=() -> T, tail=() -> fp.kotlin.example.chapter05.FunStream<T>)
+
+    println(funStreamOf(1, 2, 3, 4, 5).filter { it > 3 }.getHead())
+ }
 
 tailrec fun add2(list: FunList<Int>, acc: FunList<Int> = FunList.Nil): FunList<Int> = when (list) {
     FunList.Nil -> acc
@@ -80,23 +82,3 @@ fun <T> printFunList(list: FunList<T>) {
 }
 
 fun <T> printByFoldLeft(list: FunList<T>): String = list.foldLeft("") { acc, x -> "$acc, $x" }
-
-object Main {
-    @JvmStatic
-    fun main(args: Array<String>) {
-        val intList = Cons(1, Cons(2, Cons(3, Cons(4, Nil))))
-        val lowerCharList = Cons('a', Cons('b', Cons('c', Cons('d', Nil))))
-
-        println(intList.zip(lowerCharList))   // Cons((1,a), Cons((2,b), Cons((3,c), Cons((4,d), Nil))))
-
-        val add3 = intList.map { it + 3 }
-        val filterEven = add3.filter { it % 2 == 0 }
-        val notChain = filterEven.sum()
-
-        val chain = intList.map { it + 3 }
-            .filter { it % 2 == 0 }
-            .sum()
-
-        require(chain == notChain)
-    }
-}

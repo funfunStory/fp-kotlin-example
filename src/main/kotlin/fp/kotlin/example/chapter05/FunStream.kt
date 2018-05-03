@@ -47,10 +47,10 @@ fun <T> FunStream<T>.appendTail(value: T): FunStream<T> = when (this) {
 
 tailrec fun <T> FunStream<T>.filter(acc: FunStream<T> = FunStream.Nil, f: (T) -> Boolean): FunStream<T> = when (this) {
     FunStream.Nil -> acc
-    is FunStream.Cons -> if (f(getHead())) {
-        getTail().filter(acc.appendTail(head()), f)
+    is FunStream.Cons -> if (f(head())) {
+        tail().filter(acc.appendTail(head()), f)
     } else {
-        getTail().filter(acc, f)
+        tail().filter(acc, f)
     }
 }
 
@@ -64,7 +64,7 @@ tailrec fun <T> FunStream<T>.take(n: Int, acc: FunStream<T> = FunStream.Nil): Fu
     n == 0 -> acc
     else -> when (this) {
         FunStream.Nil -> acc
-        is FunStream.Cons -> getTail().take(n - 1, acc.appendTail(getHead()))
+        is FunStream.Cons -> tail().take(n - 1, acc.appendTail(getHead()))
     }
 }
 

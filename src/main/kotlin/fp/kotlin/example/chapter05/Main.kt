@@ -82,3 +82,8 @@ fun <T> printFunList(list: FunList<T>) {
 }
 
 fun <T> printByFoldLeft(list: FunList<T>): String = list.foldLeft("") { acc, x -> "$acc, $x" }
+
+tailrec fun IntProgression.toFunList(acc: FunList<Int> = FunList.Nil): FunList<Int> = when {
+    first > last -> acc
+    else -> ((first + step)..last step step).toFunList(acc.appendTail(first))
+}

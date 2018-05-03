@@ -14,11 +14,6 @@ private tailrec fun <T> Array<out T>.toFunList(acc: FunList<T> = FunList.Nil): F
     else -> this.copyOfRange(1, this.size).toFunList(acc.appendTail(this[0]))
 }
 
-tailrec fun IntProgression.toFunList(acc: FunList<Int> = FunList.Nil): FunList<Int> = when {
-    first > last -> acc
-    else -> ((first + step)..last step step).toFunList(acc.appendTail(first))
-}
-
 fun <T> FunList<T>.toFunStream(): FunStream<T> = when (this) {
     FunList.Nil -> FunStream.Nil
     else -> FunStream.Cons({ this.getHead() }, { this.getTail().toFunStream() })

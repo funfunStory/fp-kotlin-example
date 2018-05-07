@@ -11,14 +11,14 @@ fun main(args: Array<String>) {
     println("${System.currentTimeMillis() - start} ms")    // 8 ms
 }
 
-fun funListWay(intList: FunList<Int>): Int {
+private fun funListWay(intList: FunList<Int>): Int {
     return intList
             .map { n -> n * n }
             .filter { n -> n < 10 }
             .getHead()
 }
 
-fun funStreamWay(intList: FunList<Int>): Int {
+private fun funStreamWay(intList: FunList<Int>): Int {
     return intList.toFunStream()
             .map { n -> n * n }
             .filter { n -> n < 10 }

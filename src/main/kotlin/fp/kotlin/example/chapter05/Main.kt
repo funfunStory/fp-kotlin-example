@@ -37,6 +37,9 @@ fun main(args: Array<String>) {
     println(funStreamOf(1, 2, 3).getTail())   // Cons(head=() -> T, tail=() -> fp.kotlin.example.chapter05.FunStream<T>)
 
     println(funStreamOf(1, 2, 3, 4, 5).filter { it > 3 }.getHead())
+
+    val infiniteVal = generateFunStream(0) { it + 5 }
+//    infiniteVal.forEach { print(it) }   // 0부터 계속 5씩 증가하는 값을 출력
  }
 
 tailrec fun add2(list: FunList<Int>, acc: FunList<Int> = FunList.Nil): FunList<Int> = when (list) {

@@ -18,7 +18,7 @@ fun main(args: Array<String>) {
     println("${System.currentTimeMillis() - start} ms")    // 8 ms
 }
 
-fun imperativeWay(intList: List<Int>): Int {
+private fun imperativeWay(intList: List<Int>): Int {
     for (value in intList) {
         val doubleValue = value * value
         if (doubleValue < 10) {
@@ -29,14 +29,14 @@ fun imperativeWay(intList: List<Int>): Int {
     throw NoSuchElementException("There is no value")
 }
 
-fun functionalWay(intList: List<Int>): Int {
+private fun functionalWay(intList: List<Int>): Int {
     return intList
             .map { n -> n * n }
             .filter { n -> n < 10 }
             .first()
 }
 
-fun realFunctionalWay(intList: List<Int>): Int {
+private fun realFunctionalWay(intList: List<Int>): Int {
     return intList.asSequence()
             .map { n -> n * n }
             .filter { n -> n < 10 }

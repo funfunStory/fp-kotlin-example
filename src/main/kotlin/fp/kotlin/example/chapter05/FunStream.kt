@@ -72,3 +72,11 @@ tailrec fun <T> FunStream<T>.take(n: Int, acc: FunStream<T> = FunStream.Nil): Fu
         is FunStream.Cons -> tail().take(n - 1, acc.appendTail(getHead()))
     }
 }
+
+tailrec fun <T> FunStream<T>.forEach(f: (T)-> Unit): Unit = when(this) {
+    FunStream.Nil -> Unit
+    is FunStream.Cons -> {
+        f(head())
+        tail().forEach(f)
+    }
+}

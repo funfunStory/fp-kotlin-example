@@ -63,29 +63,6 @@ fun toUpper(list: FunList<Char>): FunList<Char> = list.foldLeft(Nil) { acc: FunL
     acc.appendTail(char.toUpperCase())
 }
 
-tailrec fun <T> printFunList1(list: FunList<T>, acc: String = ""): Unit = when (list) {
-    FunList.Nil -> println("[$acc]")
-    is FunList.Cons -> if (acc.isEmpty()) {
-        printFunList1(list.tail, "${list.head}")
-    } else {
-        printFunList1(list.tail, "$acc, ${list.head}")
-    }
-}
-
-tailrec fun <T> printFunList2(list: FunList<T>, acc: String = ""): Unit = when (list) {
-    FunList.Nil -> println("[${acc.drop(2)}]")
-    is FunList.Cons -> printFunList2(list.tail, "$acc, ${list.head}")
-}
-
-// 컴파일 에러가 발생
-// fun <T> printFunList(list: FunList<T>): Unit = list.foldLeft("") { acc, x -> ... }
-
-fun <T> printFunList(list: FunList<T>) {
-    println("[${printByFoldLeft(list).drop(2)}]")
-}
-
-fun <T> printByFoldLeft(list: FunList<T>): String = list.foldLeft("") { acc, x -> "$acc, $x" }
-
 tailrec fun IntProgression.toFunList(acc: FunList<Int> = FunList.Nil): FunList<Int> = when {
     first > last -> acc
     else -> ((first + step)..last step step).toFunList(acc.appendTail(first))

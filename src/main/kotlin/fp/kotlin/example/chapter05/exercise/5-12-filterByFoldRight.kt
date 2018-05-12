@@ -5,7 +5,7 @@ import fp.kotlin.example.chapter05.funListOf
 
 /**
  *
- * 연습문제 5-11
+ * 연습문제 5-12
  *
  * filter 함수를 foldRight 함수를 사용해서 재작성 해보자.
  */

@@ -5,7 +5,7 @@ import fp.kotlin.example.chapter05.funListOf
 
 /**
  *
- * 연습문제 5-10
+ * 연습문제 5-11
  *
  * reverse 함수를 foldLeft 함수를 사용해서 재작성 해보자.
  */

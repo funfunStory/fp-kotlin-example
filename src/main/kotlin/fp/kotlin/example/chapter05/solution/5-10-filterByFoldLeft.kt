@@ -7,7 +7,7 @@ import fp.kotlin.example.chapter05.solution.appendTail
 
 /**
  *
- * 연습문제 5-9
+ * 연습문제 5-10
  *
  * filter 함수를 foldLeft 함수를 사용해서 재작성 해보자.
  */

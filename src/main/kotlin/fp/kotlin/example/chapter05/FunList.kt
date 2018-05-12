@@ -30,18 +30,13 @@ fun FunList<Double>.product(): Double = when (this) {
 }
 
 fun <T> FunList<T>.getTail(): FunList<T> = when (this) {
-    FunList.Nil -> this
+    FunList.Nil -> throw NullPointerException()
     is FunList.Cons -> tail
 }
 
 fun <T> FunList<T>.getHead(): T = when (this) {
     FunList.Nil -> throw NullPointerException()
     is FunList.Cons -> head
-}
-
-tailrec fun <T> FunList<T>.reverse(acc: FunList<T> = FunList.Nil): FunList<T> = when (this) {
-    FunList.Nil -> acc
-    is FunList.Cons -> tail.reverse(acc.addHead(head))
 }
 
 fun <T> FunList<T>.addHead(head: T): FunList<T> = FunList.Cons(head, this)

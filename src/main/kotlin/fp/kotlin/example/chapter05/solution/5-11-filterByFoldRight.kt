@@ -1,6 +1,7 @@
 package fp.kotlin.example.chapter05.solution
 
 import fp.kotlin.example.chapter05.FunList
+import fp.kotlin.example.chapter05.addHead
 import fp.kotlin.example.chapter05.foldRight
 import fp.kotlin.example.chapter05.funListOf
 
@@ -17,10 +18,9 @@ fun main(args: Array<String>) {
 }
 
 fun <T> FunList<T>.filterByFoldRight(f: (T) -> Boolean): FunList<T> = this
-    .reverseByFoldRight()
     .foldRight(FunList.Nil as FunList<T>) { value, acc ->
         if (f(value)) {
-            acc.appendTail(value)
+            acc.addHead(value)
         } else {
             acc
         }

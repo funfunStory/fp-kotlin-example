@@ -1,12 +1,23 @@
 package fp.kotlin.example.chapter01
 
+fun main(args: Array<String>) {
+    println(impureFunction(1, 2))   // 13
+    z = 20
+    println(impureFunction(1, 2))   // 23
+
+    z = 10
+    println(impureFunction(1, 2))   // 13
+    println(withSideEffect(10, 20))   // 30
+    println(impureFunction(1, 2))   // 23
+}
+
+// 순수한 함수
+fun pureFunction(x: Int, y: Int): Int = x + y
+
 var z = 10
 
 // 순수하지 않은 함수
 fun impureFunction(x: Int, y: Int): Int = x + y + z
-
-// 순수한 함수
-fun pureFunction(x: Int, y: Int): Int = x + y
 
 // 부수 효과가 있는 함수
 fun withSideEffect(x: Int, y: Int): Int {

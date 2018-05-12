@@ -2,6 +2,7 @@ package fp.kotlin.example.chapter05.solution
 
 import fp.kotlin.example.chapter05.FunList
 import fp.kotlin.example.chapter05.funListOf
+import fp.kotlin.example.chapter05.getTail
 
 /**
  *
@@ -19,6 +20,6 @@ fun main(args: Array<String>) {
 fun <T, R> FunList<T>.zip(other: FunList<R>, acc: FunList<Pair<T, R>> = FunList.Nil): FunList<Pair<T, R>> =
     when {
         this === FunList.Nil || other === FunList.Nil -> acc
-        else -> (this as FunList.Cons).tail
-            .zip((other as FunList.Cons).tail, acc.appendTail(this.head to other.head))
+        else -> this.getTail()
+            .zip(other.getTail(), acc.appendTail(this.getHead() to other.getHead()))
     }

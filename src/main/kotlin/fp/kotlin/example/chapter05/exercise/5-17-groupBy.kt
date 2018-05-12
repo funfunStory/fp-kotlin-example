@@ -5,9 +5,11 @@ import fp.kotlin.example.chapter05.funListOf
 
 /**
  *
- * 연습문제 5-15@author
+ * 연습문제 5-17
  *
  * FunList의 값들을 입력받은 키 생성 함수를 기준으로 맵을 생성하는 groupBy 함수를 작성해보자.
+ *
+ * 힌트: 함수의 선언 타입은 아래와 같다
  *
  */
 
@@ -18,4 +20,4 @@ fun main(args: Array<String>) {
         mapOf(false to funListOf(1, 3, 5), true to funListOf(2, 4, 6)))
 }
 
-tailrec fun <T, K> FunList<T>.groupBy(acc: Map<K, FunList<T>> = emptyMap(), f: (T) -> K): Map<K, FunList<T>> = TODO()
+fun <T, K> FunList<T>.groupBy(f: (T) -> K): Map<K, FunList<T>> = TODO()

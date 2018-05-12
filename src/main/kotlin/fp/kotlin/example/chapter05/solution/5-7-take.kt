@@ -8,7 +8,7 @@ import fp.kotlin.example.chapter05.getTail
 
 /**
  *
- * 연습문제 5-6
+ * 연습문제 5-7
  *
  * 전체 List 중 앞에서부터 n개의 List를 반환하는 take 함수를 구현하자.
  * 이때 원본 리스트가 바뀌지 않고, 새로운 리스트를 반환할때 매번 리스트를 생성하지 않아야 한다.
@@ -23,7 +23,8 @@ fun main(args: Array<String>) {
     require(intList.take(2) == funListOf(1, 2))
 }
 
-tailrec fun <T> FunList<T>.take(n: Int, acc: FunList<T> = FunList.Nil): FunList<T> = when {
-    n == 0 || this === Nil -> acc
-    else -> getTail().take(n - 1, acc.appendTail(getHead()))
+fun <T> FunList<T>.take(n: Int): FunList<T> = when {
+    n < 0 -> throw IllegalArgumentException()
+    n == 0 || this === Nil -> Nil
+    else -> Cons(getHead(), getTail().take(n - 1))
 }

@@ -42,14 +42,14 @@ fun main(args: Array<String>) {
 //    infiniteVal.forEach { print(it) }   // 0부터 계속 5씩 증가하는 값을 출력
  }
 
-tailrec fun add2(list: FunList<Int>, acc: FunList<Int> = FunList.Nil): FunList<Int> = when (list) {
-    FunList.Nil -> acc
-    is FunList.Cons -> add2(list.tail, acc.appendTail(list.head + 2))
+fun add2(list: FunList<Int>): FunList<Int> = when (list) {
+    FunList.Nil -> Nil
+    is FunList.Cons -> FunList.Cons(list.head +2, add2(list.tail))
 }
 
-tailrec fun product2(list: FunList<Double>, acc: FunList<Double> = FunList.Nil): FunList<Double> = when (list) {
-    FunList.Nil -> acc
-    is FunList.Cons -> product2(list.tail, acc.appendTail(list.head * 2))
+fun product2(list: FunList<Double>): FunList<Double> = when (list) {
+    FunList.Nil -> Nil
+    is FunList.Cons -> FunList.Cons(list.head, product2(list.tail))
 }
 
 fun sum(list: FunList<Int>): Int = when (list) {
@@ -61,9 +61,4 @@ fun sumByFoldLeft(list: FunList<Int>): Int = list.foldLeft(0) { acc, x -> acc + 
 
 fun toUpper(list: FunList<Char>): FunList<Char> = list.foldLeft(Nil) { acc: FunList<Char>, char: Char ->
     acc.appendTail(char.toUpperCase())
-}
-
-tailrec fun IntProgression.toFunList(acc: FunList<Int> = FunList.Nil): FunList<Int> = when {
-    first > last -> acc
-    else -> ((first + step)..last step step).toFunList(acc.appendTail(first))
 }

@@ -1,10 +1,11 @@
-package fp.kotlin.example.chapter05.exercise
+package fp.kotlin.example.chapter05.solution
 
+import fp.kotlin.example.chapter05.foldLeft
 import fp.kotlin.example.chapter05.toFunList
 
 /**
  *
- * 연습문제 5-8
+ * 연습문제 5-10
  *
  * Factorial 함수를 FunList의 foldLeft를 사용하여 재작성해보자.
  *
@@ -22,5 +23,5 @@ fun main(args: Array<String>) {
 
 fun factorialByFoldLeft(n: Int): Int {
     val list = (1..n).toFunList()
-    TODO()
+    return list.foldLeft(1) { x, acc -> x * acc }
 }

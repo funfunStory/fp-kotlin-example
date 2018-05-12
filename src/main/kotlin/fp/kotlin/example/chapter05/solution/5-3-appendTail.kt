@@ -24,5 +24,5 @@ fun main(args: Array<String>) {
 
 fun <T> FunList<T>.appendTail(value: T): FunList<T> = when (this) {
     Nil -> Cons(value, Nil)
-    is Cons -> Cons(this.head, this.getTail().appendTail(value))
+    is Cons -> Cons(head, getTail().appendTail(value))
 }

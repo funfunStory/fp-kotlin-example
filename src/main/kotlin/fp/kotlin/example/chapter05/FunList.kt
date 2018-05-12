@@ -9,14 +9,19 @@ sealed class FunList<out T> {
 
 fun <T> funListOf(vararg elements: T): FunList<T> = elements.toFunList()
 
-private tailrec fun <T> Array<out T>.toFunList(acc: FunList<T> = FunList.Nil): FunList<T> = when {
-    this.isEmpty() -> acc
-    else -> this.copyOfRange(1, this.size).toFunList(acc.appendTail(this[0]))
+private fun <T> Array<out T>.toFunList(): FunList<T> = when {
+    this.isEmpty() -> FunList.Nil
+    else -> FunList.Cons(this[0], this.copyOfRange(1, this.size).toFunList())
 }
 
 fun <T> FunList<T>.toFunStream(): FunStream<T> = when (this) {
     FunList.Nil -> FunStream.Nil
     else -> FunStream.Cons({ this.getHead() }, { this.getTail().toFunStream() })
+}
+
+fun IntProgression.toFunList(): FunList<Int> = when {
+    first > last -> FunList.Nil
+    else -> FunList.Cons(first, ((first + step)..last step step).toFunList())
 }
 
 fun FunList<Double>.product(): Double = when (this) {
@@ -34,16 +39,21 @@ fun <T> FunList<T>.getHead(): T = when (this) {
     is FunList.Cons -> head
 }
 
+tailrec fun <T> FunList<T>.reverse(acc: FunList<T> = FunList.Nil): FunList<T> = when (this) {
+    FunList.Nil -> acc
+    is FunList.Cons -> tail.reverse(acc.addHead(head))
+}
+
 fun <T> FunList<T>.addHead(head: T): FunList<T> = FunList.Cons(head, this)
 
-fun FunList<Int>.sum(): Int = this.foldLeft(0) { acc, x -> acc + x }
+fun FunList<Int>.sum(): Int = foldLeft(0) { acc, x -> acc + x }
 
-tailrec fun <T> FunList<T>.filter(acc: FunList<T> = FunList.Nil, f: (T) -> Boolean): FunList<T> = when (this) {
-    FunList.Nil -> acc
+fun <T> FunList<T>.filter(f: (T) -> Boolean): FunList<T> = when (this) {
+    FunList.Nil -> this
     is FunList.Cons -> if (f(head)) {
-        tail.filter(acc.appendTail(head), f)
+        FunList.Cons(head, tail.filter(f))
     } else {
-        tail.filter(acc, f)
+        tail.filter(f)
     }
 }
 
@@ -52,14 +62,14 @@ tailrec fun <T> FunList<T>.drop(n: Int): FunList<T> = when {
     else -> getTail().drop(n - 1)
 }
 
-tailrec fun <T> FunList<T>.take(n: Int, acc: FunList<T> = FunList.Nil): FunList<T> = when {
+fun <T> FunList<T>.take(n: Int, acc: FunList<T> = FunList.Nil): FunList<T> = when {
     n == 0 || this === FunList.Nil -> acc
-    else -> getTail().take(n - 1, acc.appendTail(getHead()))
+    else -> getTail().take(n - 1, acc.addHead(getHead()))
 }
 
-tailrec fun <T, R> FunList<T>.map(acc: FunList<R> = FunList.Nil, f: (T) -> R): FunList<R> = when (this) {
-    FunList.Nil -> acc
-    is FunList.Cons -> tail.map(acc.appendTail(f(head)), f)
+fun <T, R> FunList<T>.map(f: (T) -> R): FunList<R> = when (this) {
+    FunList.Nil -> FunList.Nil
+    is FunList.Cons -> FunList.Cons(f(head), tail.map(f))
 }
 
 tailrec fun <T, R> FunList<T>.foldLeft(acc: R, f: (R, T) -> R): R = when (this) {
@@ -72,22 +82,17 @@ fun <T, R> FunList<T>.foldRight(acc: R, f: (T, R) -> R): R = when (this) {
     is FunList.Cons -> f(head, tail.foldRight(acc, f))
 }
 
-fun <T, R> FunList<T>.mapByFoldLeft(f: (T) -> R): FunList<R> = this.foldLeft(FunList.Nil) { acc: FunList<R>, x ->
-    acc.appendTail(f(x))
-}
+fun <T, R> FunList<T>.mapByFoldLeft(f: (T) -> R): FunList<R> =
+    foldLeft(FunList.Nil) { acc: FunList<R>, x ->
+        acc.appendTail(f(x))
+    }
 
-fun <T, R> FunList<T>.mapByFoldRight(f: (T) -> R): FunList<R> = this.foldRight(FunList.Nil) { x, acc: FunList<R> ->
-    acc.addHead(f(x))
-}
+fun <T, R> FunList<T>.mapByFoldRight(f: (T) -> R): FunList<R> =
+    foldRight(FunList.Nil) { x, acc: FunList<R> ->
+        acc.addHead(f(x))
+    }
 
-tailrec fun <T, R> FunList<T>.zip(list: FunList<R>,
-    acc: FunList<Pair<T, R>> = FunList.Nil): FunList<Pair<T, R>> = when {
-    this === FunList.Nil || list === FunList.Nil -> acc
-    else -> this.getTail().zip(list.getTail(), acc.appendTail(this.getHead() to list.getHead()))
-}
-
-fun <T1, T2, R> FunList<T1>.zipWith(f: (T1, T2) -> R, list: FunList<T2>,
-    acc: FunList<R> = FunList.Nil): FunList<R> = when {
-    this === FunList.Nil || list === FunList.Nil -> acc
-    else -> this.getTail().zipWith(f, list.getTail(), acc.appendTail(f(this.getHead(), list.getHead())))
+fun <T1, T2, R> FunList<T1>.zipWith(f: (T1, T2) -> R, list: FunList<T2>): FunList<R> = when {
+    this === FunList.Nil || list === FunList.Nil -> FunList.Nil
+    else -> FunList.Cons(f(getHead(), list.getHead()), getTail().zipWith(f, list.getTail()))
 }

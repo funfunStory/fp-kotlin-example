@@ -20,6 +20,11 @@ fun <T> FunStream<T>.toFunList(): FunList<T> = when (this) {
     else -> FunList.Cons(getHead(), getTail().toFunList())
 }
 
+fun IntProgression.toFunStream(): FunStream<Int> = when {
+    first > last -> FunStream.Nil
+    else -> FunStream.Cons({ first }, { ((first + step)..last step step).toFunStream() })
+}
+
 fun FunStream<Int>.sum(): Int = when (this) {
     FunStream.Nil -> 0
     is FunStream.Cons -> head() + tail().sum()
@@ -28,6 +33,15 @@ fun FunStream<Int>.sum(): Int = when (this) {
 fun FunStream<Double>.product(): Double = when (this) {
     FunStream.Nil -> 1.0
     is FunStream.Cons -> if (head() == 0.0) 0.0 else head() * tail().product()
+}
+
+tailrec fun <T> FunStream<T>.last(): T = when (this) {
+    FunStream.Nil -> throw NullPointerException()
+    is FunStream.Cons -> if (tail() === FunStream.Nil) {
+        this.getHead()
+    } else {
+        tail().last()
+    }
 }
 
 fun <T> FunStream<T>.getHead(): T = when (this) {
@@ -40,40 +54,55 @@ fun <T> FunStream<T>.getTail(): FunStream<T> = when (this) {
     is FunStream.Cons -> tail()
 }
 
+fun <T> FunStream<T>.addHead(value: T): FunStream<T> = when (this) {
+    FunStream.Nil -> FunStream.Cons({ value }, { FunStream.Nil })
+    is FunStream.Cons -> FunStream.Cons(head, { this })
+}
+
 fun <T> FunStream<T>.appendTail(value: T): FunStream<T> = when (this) {
     FunStream.Nil -> FunStream.Cons({ value }, { FunStream.Nil })
     is FunStream.Cons -> FunStream.Cons(head, { tail().appendTail(value) })
 }
 
-tailrec fun <T> FunStream<T>.filter(acc: FunStream<T> = FunStream.Nil, f: (T) -> Boolean): FunStream<T> = when (this) {
-    FunStream.Nil -> acc
-    is FunStream.Cons -> if (f(head())) {
-        tail().filter(acc.appendTail(head()), f)
-    } else {
-        tail().filter(acc, f)
-    }
+fun <T> FunStream<T>.filter(f: (T) -> Boolean): FunStream<T> = when (this) {
+    FunStream.Nil -> FunStream.Nil
+    is FunStream.Cons ->
+        if (f(head())) {
+            FunStream.Cons({ head() }, { tail().filter(f) })
+        } else {
+            FunStream.Cons({ this.dropWhile(f).getHead() }, { this.dropWhile(f).getTail().filter(f) })
+        }
 }
 
-tailrec fun <T, R> FunStream<T>.map(acc: FunStream<R> = FunStream.Nil, f: (T) -> R): FunStream<R> = when (this) {
-    FunStream.Nil -> acc
-    is FunStream.Cons -> tail().map(acc.appendTail(f(head())), f)
+fun <T, R> FunStream<T>.map(f: (T) -> R): FunStream<R> = when (this) {
+    FunStream.Nil -> FunStream.Nil
+    is FunStream.Cons -> FunStream.Cons({ f(head()) }, { tail().map(f) })
 }
 
 tailrec fun <T> FunStream<T>.drop(n: Int): FunStream<T> = when {
-    n == 0 || this === FunStream.Nil -> this
+    n <= 0 || this === FunStream.Nil -> FunStream.Nil
     else -> getTail().drop(n - 1)
 }
 
-tailrec fun <T> FunStream<T>.take(n: Int, acc: FunStream<T> = FunStream.Nil): FunStream<T> = when {
-    n < 0 -> throw IllegalArgumentException()
-    n == 0 -> acc
-    else -> when (this) {
-        FunStream.Nil -> acc
-        is FunStream.Cons -> tail().take(n - 1, acc.appendTail(getHead()))
+tailrec fun <T> FunStream<T>.dropWhile(f: (T) -> Boolean): FunStream<T> = when (this) {
+    FunStream.Nil -> this
+    is FunStream.Cons -> if (f(head())) {
+        this
+    } else {
+        tail().dropWhile(f)
     }
 }
 
-tailrec fun <T> FunStream<T>.forEach(f: (T)-> Unit): Unit = when(this) {
+fun <T> FunStream<T>.take(n: Int): FunStream<T> = when {
+    n < 0 -> throw IllegalArgumentException()
+    n == 0 -> FunStream.Nil
+    else -> when (this) {
+        FunStream.Nil -> FunStream.Nil
+        is FunStream.Cons -> FunStream.Cons({head()}, { tail().take(n - 1) })
+    }
+}
+
+tailrec fun <T> FunStream<T>.forEach(f: (T) -> Unit): Unit = when (this) {
     FunStream.Nil -> Unit
     is FunStream.Cons -> {
         f(head())

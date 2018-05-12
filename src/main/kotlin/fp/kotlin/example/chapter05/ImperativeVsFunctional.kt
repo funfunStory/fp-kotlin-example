@@ -4,18 +4,31 @@ fun main(args: Array<String>) {
     println(imperativeWay(listOf(1, 2, 3, 4, 5)))   // 1
     println(functionalWay(listOf(1, 2, 3, 4, 5)))    // 1
 
-    val bigIntList = (1..10000000).toList()
+//    val bigIntList = (1..10000000).toList()
+
     var start = System.currentTimeMillis()
-    imperativeWay(bigIntList)
-    println("${System.currentTimeMillis() - start} ms")    // 0 ms
+//    imperativeWay(bigIntList)
+//    println("${System.currentTimeMillis() - start} ms")    // 0 ms
+
+//    start = System.currentTimeMillis()
+//    functionalWay(bigIntList)
+//    println("${System.currentTimeMillis() - start} ms")    // 600 ms
+
+    val bigIntFunList = (1..1000).toFunList()
 
     start = System.currentTimeMillis()
-    functionalWay(bigIntList)
+    functionalWay(bigIntFunList)
     println("${System.currentTimeMillis() - start} ms")    // 2180 ms
 
+    val bigIntFunStream= (1..10000000).toFunStream()
+
     start = System.currentTimeMillis()
-    realFunctionalWay(bigIntList)
-    println("${System.currentTimeMillis() - start} ms")    // 8 ms
+    println(functionalWay(bigIntFunStream))
+    println("${System.currentTimeMillis() - start} ms")    // 2180 ms
+
+//    start = System.currentTimeMillis()
+//    realFunctionalWay(bigIntList)
+//    println("${System.currentTimeMillis() - start} ms")    // 8 ms
 }
 
 private fun imperativeWay(intList: List<Int>): Int {
@@ -34,6 +47,20 @@ private fun functionalWay(intList: List<Int>): Int {
             .map { n -> n * n }
             .filter { n -> n < 10 }
             .first()
+}
+
+private fun functionalWay(intList: FunList<Int>): Int {
+    return intList
+        .map { n -> n * n }
+        .filter { n -> n < 10 }
+        .take(1).getHead()
+}
+
+private fun functionalWay(intList: FunStream<Int>): Int {
+    return intList
+        .map { n -> n * n }
+        .filter { n -> n < 10000 }
+        .take(20).last()
 }
 
 private fun realFunctionalWay(intList: List<Int>): Int {

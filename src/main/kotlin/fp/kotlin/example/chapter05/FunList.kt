@@ -24,6 +24,11 @@ fun IntProgression.toFunList(): FunList<Int> = when {
     else -> FunList.Cons(first, ((first + step)..last step step).toFunList())
 }
 
+tailrec fun IntProgression.toFunListViaTailrec(acc: FunList<Int> = FunList.Nil): FunList<Int> = when {
+    first > last -> acc
+    else -> ((first + step)..last step step).toFunListViaTailrec(acc.addHead(first))
+}
+
 fun FunList<Double>.product(): Double = when (this) {
     FunList.Nil -> 1.0
     is FunList.Cons -> if (head == 0.0) 0.0 else head * tail.product()
@@ -52,6 +57,15 @@ fun <T> FunList<T>.filter(f: (T) -> Boolean): FunList<T> = when (this) {
     }
 }
 
+tailrec fun <T> FunList<T>.filterViaTailrec(acc: FunList<T> = FunList.Nil, f: (T) -> Boolean): FunList<T> = when (this) {
+    FunList.Nil -> acc.reverse()
+    is FunList.Cons -> if (f(head)) {
+        tail.filterViaTailrec(acc.addHead(head),f)
+    } else {
+        tail.filterViaTailrec(acc,f)
+    }
+}
+
 tailrec fun <T> FunList<T>.drop(n: Int): FunList<T> = when {
     n == 0 || this === FunList.Nil -> this
     else -> getTail().drop(n - 1)
@@ -65,6 +79,16 @@ fun <T> FunList<T>.take(n: Int, acc: FunList<T> = FunList.Nil): FunList<T> = whe
 fun <T, R> FunList<T>.map(f: (T) -> R): FunList<R> = when (this) {
     FunList.Nil -> FunList.Nil
     is FunList.Cons -> FunList.Cons(f(head), tail.map(f))
+}
+
+tailrec fun <T, R> FunList<T>.mapViaTailrec(acc: FunList<R> = FunList.Nil, f: (T) -> R): FunList<R> = when (this) {
+    FunList.Nil -> acc.reverse()
+    is FunList.Cons -> tail.mapViaTailrec(acc.addHead(f(head)), f)
+}
+
+tailrec fun <T> FunList<T>.reverse(acc: FunList<T> = FunList.Nil): FunList<T> = when(this){
+    FunList.Nil -> acc
+    is FunList.Cons -> tail.reverse(acc.addHead(head))
 }
 
 tailrec fun <T, R> FunList<T>.foldLeft(acc: R, f: (R, T) -> R): R = when (this) {

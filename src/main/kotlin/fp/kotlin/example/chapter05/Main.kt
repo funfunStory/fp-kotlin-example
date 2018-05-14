@@ -2,6 +2,7 @@ package fp.kotlin.example.chapter05
 
 import fp.kotlin.example.chapter05.FunList.Nil
 import fp.kotlin.example.chapter05.solution.appendTail
+import fp.kotlin.example.chapter05.solution.filter
 
 fun main(args: Array<String>) {
     val intList = funListOf(1, 2, 3)

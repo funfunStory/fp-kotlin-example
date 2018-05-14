@@ -1,7 +1,6 @@
 package fp.kotlin.example.chapter05.exercise
 
 import fp.kotlin.example.chapter05.FunList
-import fp.kotlin.example.chapter05.foldLeft
 import fp.kotlin.example.chapter05.funListOf
 
 /**

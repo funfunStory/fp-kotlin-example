@@ -73,21 +73,6 @@ fun <T> FunStream<T>.addHead(value: T): FunStream<T> = when (this) {
     is FunStream.Cons -> FunStream.Cons(head, { this })
 }
 
-fun <T> FunStream<T>.filter(f: (T) -> Boolean): FunStream<T> = when (this) {
-    FunStream.Nil -> FunStream.Nil
-    is FunStream.Cons ->
-        if (f(head())) {
-            FunStream.Cons({ head() }, { tail().filter(f) })
-        } else {
-            FunStream.Cons({ this.dropWhile(f).getHead() }, { this.dropWhile(f).getTail().filter(f) })
-        }
-}
-
-fun <T, R> FunStream<T>.map(f: (T) -> R): FunStream<R> = when (this) {
-    FunStream.Nil -> FunStream.Nil
-    is FunStream.Cons -> FunStream.Cons({ f(head()) }, { tail().map(f) })
-}
-
 tailrec fun <T> FunStream<T>.drop(n: Int): FunStream<T> = when {
     n <= 0 || this === FunStream.Nil -> FunStream.Nil
     else -> getTail().drop(n - 1)
@@ -99,15 +84,6 @@ tailrec fun <T> FunStream<T>.dropWhile(f: (T) -> Boolean): FunStream<T> = when (
         this
     } else {
         tail().dropWhile(f)
-    }
-}
-
-fun <T> FunStream<T>.take(n: Int): FunStream<T> = when {
-    n < 0 -> throw IllegalArgumentException()
-    n == 0 -> FunStream.Nil
-    else -> when (this) {
-        FunStream.Nil -> FunStream.Nil
-        is FunStream.Cons -> FunStream.Cons({ head() }, { tail().take(n - 1) })
     }
 }
 

@@ -8,7 +8,7 @@ import fp.kotlin.example.chapter05.FunList.Nil
  *
  * 연습문제 5-4
  *
- * 리스트에 첫번째 값을 가져오는 getHead 함수를 작성해 보자.
+ * 리스트의 첫번째 값을 가져오는 getHead 함수를 작성해 보자.
  *
  * 힌트: 함수의 선언 타입은 아래와 같다.
  *

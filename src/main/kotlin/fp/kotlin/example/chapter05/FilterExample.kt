@@ -16,6 +16,5 @@ fun imperativeFilter(numList: List<Int>): List<Int> {
     return newList
 }
 
-fun functionalFilter(numList: List<Int>): List<Int> {
-    return numList.filter { it % 2 == 0 }
-}
+fun functionalFilter(numList: List<Int>): List<Int> =
+    numList.filter { it % 2 == 0 }

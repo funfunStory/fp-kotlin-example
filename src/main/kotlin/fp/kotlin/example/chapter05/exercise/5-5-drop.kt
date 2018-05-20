@@ -22,4 +22,4 @@ fun main(args: Array<String>) {
     require(intList.drop(1) == funListOf(2, 3))
 }
 
-tailrec fun <T> FunList<T>.drop(n: Int): FunList<T> = TODO()
+fun <T> FunList<T>.drop(n: Int): FunList<T> = TODO()

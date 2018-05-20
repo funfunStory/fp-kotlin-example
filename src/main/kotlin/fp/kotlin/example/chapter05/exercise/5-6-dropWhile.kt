@@ -22,4 +22,4 @@ fun main(args: Array<String>) {
     require(intList.dropWhile { it % 2 == 0 } == funListOf(2, 3, 4))
 }
 
-tailrec fun <T> FunList<T>.dropWhile(f: (T) -> Boolean): FunList<T> = TODO()
+fun <T> FunList<T>.dropWhile(f: (T) -> Boolean): FunList<T> = TODO()

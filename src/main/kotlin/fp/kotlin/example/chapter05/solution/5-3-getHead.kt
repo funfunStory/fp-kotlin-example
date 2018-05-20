@@ -1,4 +1,4 @@
-package fp.kotlin.example.chapter05.exercise
+package fp.kotlin.example.chapter05.solution
 
 import fp.kotlin.example.chapter05.FunList
 import fp.kotlin.example.chapter05.FunList.Cons
@@ -6,7 +6,7 @@ import fp.kotlin.example.chapter05.FunList.Nil
 
 /**
  *
- * 연습문제 5-4
+ * 연습문제 5-3
  *
  * 리스트의 첫번째 값을 가져오는 getHead 함수를 작성해 보자.
  *
@@ -21,4 +21,7 @@ fun main(args: Array<String>) {
 
 }
 
-fun <T> FunList<T>.getHead(): T = TODO()
+fun <T> FunList<T>.getHead(): T = when (this) {
+    Nil -> throw NullPointerException()
+    is Cons -> this.head
+}

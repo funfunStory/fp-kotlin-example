@@ -23,7 +23,7 @@ fun main(args: Array<String>) {
     require(intList.drop(1) == funListOf(2, 3))
 }
 
-tailrec fun <T> FunList<T>.drop(n: Int): FunList<T> = when {
+fun <T> FunList<T>.drop(n: Int): FunList<T> = when {
     n == 0 || this === FunList.Nil -> this
     else -> getTail().drop(n - 1)
 }

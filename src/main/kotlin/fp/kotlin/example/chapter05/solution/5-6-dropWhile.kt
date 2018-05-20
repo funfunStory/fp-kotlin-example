@@ -22,7 +22,7 @@ fun main(args: Array<String>) {
     require(intList.dropWhile { it % 2 == 0 } == funListOf(2, 3, 4))
 }
 
-tailrec fun <T> FunList<T>.dropWhile(f: (T) -> Boolean): FunList<T> = when (this) {
+fun <T> FunList<T>.dropWhile(f: (T) -> Boolean): FunList<T> = when (this) {
     FunList.Nil -> this
     is FunList.Cons -> if (f(head)) {
         this

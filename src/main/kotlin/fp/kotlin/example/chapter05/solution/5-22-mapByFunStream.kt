@@ -3,7 +3,6 @@ package fp.kotlin.example.chapter05.solution
 import fp.kotlin.example.chapter05.FunStream
 import fp.kotlin.example.chapter05.funStreamOf
 import fp.kotlin.example.chapter05.getHead
-import fp.kotlin.example.chapter05.take
 import fp.kotlin.example.chapter05.toFunStream
 
 /**

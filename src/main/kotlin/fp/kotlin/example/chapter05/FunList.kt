@@ -46,18 +46,18 @@ tailrec fun <T> FunList<T>.appendTail(value: T, acc: FunList<T> = FunList.Nil): 
 
 fun FunList<Int>.sum(): Int = foldLeft(0) { acc, x -> acc + x }
 
-fun <T> FunList<T>.filter(f: (T) -> Boolean): FunList<T> = when (this) {
-    FunList.Nil -> this
+tailrec fun <T> FunList<T>.filter(acc: FunList<T> = FunList.Nil, f: (T) -> Boolean): FunList<T> = when (this) {
+    FunList.Nil -> acc.reverse()
     is FunList.Cons -> if (f(head)) {
-        FunList.Cons(head, tail.filter(f))
+        tail.filter(acc.addHead(head), f)
     } else {
-        tail.filter(f)
+        tail.filter(acc, f)
     }
 }
 
-fun <T, R> FunList<T>.map(f: (T) -> R): FunList<R> = when (this) {
-    FunList.Nil -> FunList.Nil
-    is FunList.Cons -> FunList.Cons(f(head), tail.map(f))
+tailrec fun <T, R> FunList<T>.map(acc: FunList<R> = FunList.Nil, f: (T) -> R): FunList<R> = when (this) {
+    FunList.Nil -> acc.reverse()
+    is FunList.Cons -> tail.map(acc.addHead(f(head)), f)
 }
 
 fun <T, R> FunList<T>.foldRight(acc: R, f: (T, R) -> R): R = when (this) {
@@ -78,21 +78,6 @@ fun <T, R> FunList<T>.mapByFoldRight(f: (T) -> R): FunList<R> =
 fun <T1, T2, R> FunList<T1>.zipWith(f: (T1, T2) -> R, list: FunList<T2>): FunList<R> = when {
     this === FunList.Nil || list === FunList.Nil -> FunList.Nil
     else -> FunList.Cons(f(getHead(), list.getHead()), getTail().zipWith(f, list.getTail()))
-}
-
-tailrec fun <T, R> FunList<T>.mapViaTailrec(acc: FunList<R> = FunList.Nil, f: (T) -> R): FunList<R> = when (this) {
-    FunList.Nil -> acc.reverse()
-    is FunList.Cons -> tail.mapViaTailrec(acc.addHead(f(head)), f)
-}
-
-tailrec fun <T> FunList<T>.filterViaTailrec(acc: FunList<T> = FunList.Nil,
-    f: (T) -> Boolean): FunList<T> = when (this) {
-    FunList.Nil -> acc.reverse()
-    is FunList.Cons -> if (f(head)) {
-        tail.filterViaTailrec(acc.addHead(head), f)
-    } else {
-        tail.filterViaTailrec(acc, f)
-    }
 }
 
 tailrec fun <T> FunList<T>.reverse(acc: FunList<T> = FunList.Nil): FunList<T> = when (this) {

@@ -20,6 +20,9 @@ fun main(args: Array<String>) {
 
     val intList = Cons(1, Cons(2, Cons(3, Nil)))
     require(intList.take(2) == funListOf(1, 2))
+    require(intList.take(2) == funListOf(1, 2))
+    require(intList.take(3) == funListOf(1, 2, 3))
+    require(intList.take(0) == Nil)
 }
 
-fun <T> FunList<T>.take(n: Int): FunList<T> = TODO()
+tailrec fun <T> FunList<T>.take(n: Int, acc: FunList<T> = Nil): FunList<T> = TODO()

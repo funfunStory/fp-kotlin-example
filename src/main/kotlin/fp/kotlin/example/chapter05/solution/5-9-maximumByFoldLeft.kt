@@ -6,7 +6,7 @@ import fp.kotlin.example.chapter05.funListOf
 
 /**
  *
- * 연습문제 5-11
+ * 연습문제 5-9
  *
  * maximum 함수를 foldLeft 함수를 사용해서 재작성 해보자.
  *

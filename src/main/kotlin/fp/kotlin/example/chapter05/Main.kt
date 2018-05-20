@@ -1,7 +1,6 @@
 package fp.kotlin.example.chapter05
 
 import fp.kotlin.example.chapter05.FunList.Nil
-import fp.kotlin.example.chapter05.solution.appendTail
 import fp.kotlin.example.chapter05.solution.filter
 
 fun main(args: Array<String>) {
@@ -40,12 +39,12 @@ fun main(args: Array<String>) {
     println(funStreamOf(1, 2, 3, 4, 5).filter { it > 3 }.getHead())
 
     val infiniteVal = generateFunStream(0) { it + 5 }
-//    infiniteVal.forEach { print(it) }   // 0부터 계속 5씩 증가하는 값을 출력
- }
+    //    infiniteVal.forEach { print(it) }   // 0부터 계속 5씩 증가하는 값을 출력
+}
 
 fun add2(list: FunList<Int>): FunList<Int> = when (list) {
     FunList.Nil -> Nil
-    is FunList.Cons -> FunList.Cons(list.head +2, add2(list.tail))
+    is FunList.Cons -> FunList.Cons(list.head + 2, add2(list.tail))
 }
 
 fun product2(list: FunList<Double>): FunList<Double> = when (list) {
@@ -60,6 +59,6 @@ fun sum(list: FunList<Int>): Int = when (list) {
 
 fun sumByFoldLeft(list: FunList<Int>): Int = list.foldLeft(0) { acc, x -> acc + x }
 
-fun toUpper(list: FunList<Char>): FunList<Char> = list.foldLeft(Nil) { acc: FunList<Char>, char: Char ->
-    acc.appendTail(char.toUpperCase())
-}
+fun toUpper(list: FunList<Char>): FunList<Char> =
+    list.foldLeft(Nil) { acc: FunList<Char>, char: Char -> acc.addHead(char.toUpperCase()) }
+        .reverse()

@@ -3,8 +3,10 @@ package fp.kotlin.example.chapter05.solution
 import fp.kotlin.example.chapter05.FunList
 import fp.kotlin.example.chapter05.FunList.Cons
 import fp.kotlin.example.chapter05.FunList.Nil
+import fp.kotlin.example.chapter05.addHead
 import fp.kotlin.example.chapter05.funListOf
 import fp.kotlin.example.chapter05.getTail
+import fp.kotlin.example.chapter05.reverse
 
 /**
  *
@@ -21,10 +23,12 @@ fun main(args: Array<String>) {
 
     val intList = Cons(1, Cons(2, Cons(3, Nil)))
     require(intList.take(2) == funListOf(1, 2))
+    require(intList.take(3) == funListOf(1, 2, 3))
+    require(intList.take(0) == Nil)
 }
 
-fun <T> FunList<T>.take(n: Int): FunList<T> = when {
+tailrec fun <T> FunList<T>.take(n: Int, acc: FunList<T> = Nil): FunList<T> = when {
     n < 0 -> throw IllegalArgumentException()
-    n == 0 || this === Nil -> Nil
-    else -> Cons(getHead(), getTail().take(n - 1))
+    n == 0 || this === Nil -> acc.reverse()
+    else -> getTail().take(n - 1, acc.addHead(getHead()))
 }

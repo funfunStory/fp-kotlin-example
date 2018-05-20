@@ -2,6 +2,7 @@ package fp.kotlin.example.chapter05.solution
 
 import fp.kotlin.example.chapter05.FunList
 import fp.kotlin.example.chapter05.addHead
+import fp.kotlin.example.chapter05.appendTail
 import fp.kotlin.example.chapter05.foldRight
 import fp.kotlin.example.chapter05.funListOf
 

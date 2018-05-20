@@ -1,7 +1,5 @@
 package fp.kotlin.example.chapter05
 
-import fp.kotlin.example.chapter05.solution.appendTail
-
 sealed class FunList<out T> {
     object Nil : FunList<Nothing>()
     data class Cons<out T>(val head: T, val tail: FunList<T>) : FunList<T>()
@@ -40,6 +38,11 @@ fun <T> FunList<T>.getHead(): T = when (this) {
 }
 
 fun <T> FunList<T>.addHead(head: T): FunList<T> = FunList.Cons(head, this)
+
+tailrec fun <T> FunList<T>.appendTail(value: T, acc: FunList<T> = FunList.Nil): FunList<T> = when (this) {
+    FunList.Nil -> FunList.Cons(value, acc).reverse()
+    is FunList.Cons -> tail.appendTail(value, acc.addHead(head))
+}
 
 fun FunList<Int>.sum(): Int = foldLeft(0) { acc, x -> acc + x }
 

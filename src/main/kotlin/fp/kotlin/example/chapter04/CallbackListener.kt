@@ -41,7 +41,7 @@ class ItemAdatper(private val selectListener: SelectListener) {
     }
 }
 
-//
+// Android UI 의 View를 사용하기 위해 임시로 생서해놓은 View class 실제코드와는 다르지만 4장을 이해하는데 View의 실제 코드를 이해할 필요는 없다.
 class View {
     fun setOnClickListener(function: (View) -> Unit) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

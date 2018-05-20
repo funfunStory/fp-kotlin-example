@@ -17,11 +17,6 @@ fun <T> FunList<T>.toFunStream(): FunStream<T> = when (this) {
     else -> FunStream.Cons({ this.getHead() }, { this.getTail().toFunStream() })
 }
 
-fun IntProgression.toFunList(): FunList<Int> = when {
-    first > last -> FunList.Nil
-    else -> FunList.Cons(first, ((first + step)..last step step).toFunList())
-}
-
 fun FunList<Double>.product(): Double = when (this) {
     FunList.Nil -> 1.0
     is FunList.Cons -> if (head == 0.0) 0.0 else head * tail.product()
@@ -90,7 +85,7 @@ tailrec fun <T, R> FunList<T>.foldLeft(acc: R, f: (R, T) -> R): R = when (this) 
     is FunList.Cons -> tail.foldLeft(f(acc, head), f)
 }
 
-tailrec fun IntProgression.toFunListViaTailrec(acc: FunList<Int> = FunList.Nil): FunList<Int> = when {
+tailrec fun IntProgression.toFunList(acc: FunList<Int> = FunList.Nil): FunList<Int> = when {
     first > last -> acc
-    else -> ((first + step)..last step step).toFunListViaTailrec(acc.addHead(first))
+    else -> ((first + step)..last step step).toFunList(acc.addHead(first))
 }

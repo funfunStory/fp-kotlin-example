@@ -5,9 +5,9 @@ import fp.kotlin.example.chapter05.funListOf
 
 /**
  *
- * 연습문제 5-14
+ * 연습문제 5-11
  *
- * filter 함수를 foldRight 함수를 사용해서 재작성 해보자.
+ * reverse 함수를 foldLeft 함수를 사용해서 재작성 해보자.
  *
  * 힌트: 함수의 선언 타입은 아래와 같다.
  *
@@ -15,7 +15,7 @@ import fp.kotlin.example.chapter05.funListOf
 
 fun main(args: Array<String>) {
     val list = funListOf(1, 2, 3, 4, 5)
-    require(list.filterByFoldRight { it % 2 == 0 } == funListOf(2, 4))
+    require(list.reverseByFoldRight() == funListOf(5, 4, 3, 2, 1))
 }
 
-fun <T> FunList<T>.filterByFoldRight(f: (T) -> Boolean): FunList<T> = TODO()
+fun <T> FunList<T>.reverseByFoldRight(): FunList<T> = TODO()

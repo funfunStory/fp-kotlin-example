@@ -8,7 +8,7 @@ import fp.kotlin.example.chapter05.funListOf
 
 /**
  *
- * 연습문제 5-14
+ * 연습문제 5-11
  *
  * 3장에서 작성한 reverse() 함수를 foldRight 함수를 사용해서 재작성 해보자.
  *

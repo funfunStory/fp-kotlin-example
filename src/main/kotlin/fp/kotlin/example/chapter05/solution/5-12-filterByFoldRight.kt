@@ -2,14 +2,12 @@ package fp.kotlin.example.chapter05.solution
 
 import fp.kotlin.example.chapter05.FunList
 import fp.kotlin.example.chapter05.addHead
-import fp.kotlin.example.chapter05.foldLeft
 import fp.kotlin.example.chapter05.foldRight
 import fp.kotlin.example.chapter05.funListOf
-import fp.kotlin.example.chapter05.toFunList
 
 /**
  *
- * 연습문제 5-14
+ * 연습문제 5-12
  *
  * filter 함수를 foldRight 함수를 사용해서 재작성 해보자.
  *
@@ -20,16 +18,6 @@ import fp.kotlin.example.chapter05.toFunList
 fun main(args: Array<String>) {
     val list = funListOf(1, 2, 3, 4, 5)
     require(list.filterByFoldRight { it % 2 == 0 } == funListOf(2, 4))
-
-
-    var start = System.currentTimeMillis()
-    println((1..1000).toFunList().foldLeft(0) { acc, x -> acc + x })
-    println("foldLeft : ${System.currentTimeMillis() - start}")     //12
-
-     start = System.currentTimeMillis()
-    println((1..1000).toFunList().foldRight(0) { x, acc -> x + acc })
-    println("foldRight : ${System.currentTimeMillis() - start}")    //2
-
 }
 
 fun <T> FunList<T>.filterByFoldRight(f: (T) -> Boolean): FunList<T> = this

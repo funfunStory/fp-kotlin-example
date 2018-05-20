@@ -9,24 +9,24 @@ fun main(args: Array<String>) {
     funListWay(bigIntList)
     println("${System.currentTimeMillis() - start} ms")    // 16071 ms
 
-    val bigIntStream= (1..10000000).toFunStream()
+    val bigIntStream = (1..10000000).toFunStream()
     start = System.currentTimeMillis()
     funStreamWay(bigIntStream)
     println("${System.currentTimeMillis() - start} ms")    // 5 ms
 }
 
 private fun funListWay(intList: FunList<Int>): Int = intList
-    .mapViaTailrec { n -> n * n }
-    .filterViaTailrec { n -> n < 1000000 }
-    .mapViaTailrec { n -> n -2 }
-    .filterViaTailrec { n -> n < 1000 }
-    .mapViaTailrec { n -> n * 10 }
+    .map { n -> n * n }
+    .filter { n -> n < 1000000 }
+    .map { n -> n - 2 }
+    .filter { n -> n < 1000 }
+    .map { n -> n * 10 }
     .getHead()
 
 private fun funStreamWay(intList: FunStream<Int>): Int = intList
     .map { n -> n * n }
     .filter { n -> n < 1000000 }
-    .map { n -> n -2 }
+    .map { n -> n - 2 }
     .filter { n -> n < 1000 }
     .map { n -> n * 10 }
     .getHead()

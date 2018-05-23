@@ -7,7 +7,7 @@ import fp.kotlin.example.chapter05.funListOf
 
 /**
  *
- * 연습문제 5-17
+ * 연습문제 5-15
  *
  * FunList의 값들을 입력받은 키 생성 함수를 기준으로 맵을 생성하는 groupBy 함수를 작성해보자.
  *

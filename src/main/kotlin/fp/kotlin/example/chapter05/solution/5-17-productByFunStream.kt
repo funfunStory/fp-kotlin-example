@@ -1,11 +1,12 @@
-package fp.kotlin.example.chapter05.exercise
+package fp.kotlin.example.chapter05.solution
 
 import fp.kotlin.example.chapter05.FunStream
+import fp.kotlin.example.chapter05.foldLeft
 import fp.kotlin.example.chapter05.funStreamOf
 
 /**
  *
- * 연습문제 5-19
+ * 연습문제 5-17
  *
  * FunList에서 작성했던 product 함수를 FunStream에도 추가하자.
  *
@@ -17,4 +18,7 @@ fun main(args: Array<String>) {
     require(funStreamOf(1, 2, 3, 4, 5).product() == 1 * 2 * 3 * 4 * 5)
 }
 
-fun FunStream<Int>.product(): Int = TODO()
+fun FunStream<Int>.product(): Int = when (this) {
+    FunStream.Nil -> 1
+    is FunStream.Cons -> foldLeft(1) { acc, value -> acc * value }
+}

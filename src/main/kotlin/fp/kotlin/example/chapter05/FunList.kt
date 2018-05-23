@@ -70,9 +70,10 @@ fun <T, R> FunList<T>.mapByFoldRight(f: (T) -> R): FunList<R> =
         acc.addHead(f(x))
     }
 
-fun <T1, T2, R> FunList<T1>.zipWith(f: (T1, T2) -> R, list: FunList<T2>): FunList<R> = when {
-    this === FunList.Nil || list === FunList.Nil -> FunList.Nil
-    else -> FunList.Cons(f(getHead(), list.getHead()), getTail().zipWith(f, list.getTail()))
+tailrec fun <T1, T2, R> FunList<T1>.zipWith(f: (T1, T2) -> R, list: FunList<T2>,
+    acc: FunList<R> = FunList.Nil): FunList<R> = when {
+    this === FunList.Nil || list === FunList.Nil -> acc.reverse()
+    else -> getTail().zipWith(f, list.getTail(), acc.addHead(f(getHead(), list.getHead())))
 }
 
 tailrec fun <T> FunList<T>.reverse(acc: FunList<T> = FunList.Nil): FunList<T> = when (this) {
@@ -86,6 +87,24 @@ tailrec fun <T, R> FunList<T>.foldLeft(acc: R, f: (R, T) -> R): R = when (this) 
 }
 
 tailrec fun IntProgression.toFunList(acc: FunList<Int> = FunList.Nil): FunList<Int> = when {
-    first > last -> acc
-    else -> ((first + step)..last step step).toFunList(acc.addHead(first))
+    step > 0 -> when {
+        first > last -> acc.reverse()
+        else -> ((first + step)..last step step).toFunList(acc.addHead(first))
+    }
+    else -> when {
+        first >= last -> {
+            IntProgression.fromClosedRange(first + step, last, step).toFunList(acc.addHead(first))
+        }
+        else -> {
+            acc.reverse()
+        }
+    }
+}
+
+tailrec fun <T> FunList<T>.forEach(f: (T) -> Unit): Unit = when (this) {
+    FunList.Nil -> Unit
+    is FunList.Cons -> {
+        f(head)
+        tail.forEach(f)
+    }
 }

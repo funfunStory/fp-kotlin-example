@@ -1,7 +1,5 @@
 package fp.kotlin.example.chapter05
 
-import fp.kotlin.example.chapter05.solution.appendTail
-
 sealed class FunStream<out T> {
     object Nil : FunStream<Nothing>()
     data class Cons<out T>(val head: () -> T, val tail: () -> FunStream<T>) : FunStream<T>() {
@@ -26,9 +24,9 @@ sealed class FunStream<out T> {
 
 fun <T> funStreamOf(vararg elements: T): FunStream<T> = elements.toFunStream()
 
-private tailrec fun <T> Array<out T>.toFunStream(acc: FunStream<T> = FunStream.Nil): FunStream<T> = when {
-    this.isEmpty() -> acc
-    else -> this.copyOfRange(1, this.size).toFunStream(acc.appendTail(this[0]))
+fun <T> Array<out T>.toFunStream(acc: FunStream<T> = FunStream.Nil): FunStream<T> = when {
+    this.isEmpty() -> FunStream.Nil
+    else -> FunStream.Cons({ this[0] }, { this.copyOfRange(1, this.size).toFunStream() })
 }
 
 fun <T> generateFunStream(seed: T, generate: (T) -> T): FunStream<T> =
@@ -40,13 +38,19 @@ fun <T> FunStream<T>.toFunList(): FunList<T> = when (this) {
 }
 
 fun IntProgression.toFunStream(): FunStream<Int> = when {
-    first > last -> FunStream.Nil
-    else -> FunStream.Cons({ first }, { ((first + step)..last step step).toFunStream() })
-}
-
-fun FunStream<Double>.product(): Double = when (this) {
-    FunStream.Nil -> 1.0
-    is FunStream.Cons -> if (head() == 0.0) 0.0 else head() * tail().product()
+    step > 0 -> when {
+        first > last -> FunStream.Nil
+        else -> FunStream.Cons({ first }, { ((first + step)..last step step).toFunStream() })
+    }
+    else -> when {
+        first >= last -> {
+            FunStream.Cons({ first },
+                { IntProgression.fromClosedRange(first + step, last, step).toFunStream() })
+        }
+        else -> {
+            FunStream.Nil
+        }
+    }
 }
 
 tailrec fun <T> FunStream<T>.last(): T = when (this) {
@@ -68,10 +72,7 @@ fun <T> FunStream<T>.getTail(): FunStream<T> = when (this) {
     is FunStream.Cons -> tail()
 }
 
-fun <T> FunStream<T>.addHead(value: T): FunStream<T> = when (this) {
-    FunStream.Nil -> FunStream.Cons({ value }, { FunStream.Nil })
-    is FunStream.Cons -> FunStream.Cons(head, { this })
-}
+fun <T> FunStream<T>.addHead(value: T): FunStream<T> = FunStream.Cons({ value }, { this })
 
 tailrec fun <T> FunStream<T>.drop(n: Int): FunStream<T> = when {
     n <= 0 || this === FunStream.Nil -> FunStream.Nil
@@ -85,6 +86,11 @@ tailrec fun <T> FunStream<T>.dropWhile(f: (T) -> Boolean): FunStream<T> = when (
     } else {
         tail().dropWhile(f)
     }
+}
+
+tailrec fun <T, R> FunStream<T>.foldLeft(acc: R, f: (R, T) -> R): R = when (this) {
+    FunStream.Nil -> acc
+    is FunStream.Cons -> tail().foldLeft(f(acc, head()), f)
 }
 
 tailrec fun <T> FunStream<T>.forEach(f: (T) -> Unit): Unit = when (this) {

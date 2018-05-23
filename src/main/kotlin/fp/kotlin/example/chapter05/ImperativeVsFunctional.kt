@@ -30,16 +30,14 @@ private fun imperativeWay(intList: List<Int>): Int {
     throw NoSuchElementException("There is no value")
 }
 
-private fun functionalWay(intList: List<Int>): Int {
-    return intList
+private fun functionalWay(intList: List<Int>): Int =
+    intList
         .map { n -> n * n }
         .filter { n -> n < 10 }
         .first()
-}
 
-private fun realFunctionalWay(intList: List<Int>): Int {
-    return intList.asSequence()
+private fun realFunctionalWay(intList: List<Int>): Int =
+    intList.asSequence()
         .map { n -> n * n }
         .filter { n -> n < 10 }
         .first()
-}

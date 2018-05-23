@@ -1,4 +1,4 @@
-package fp.kotlin.example.chapter05.exercise
+package fp.kotlin.example.chapter05.solution
 
 import fp.kotlin.example.chapter05.FunStream
 import fp.kotlin.example.chapter05.funStreamOf
@@ -7,7 +7,7 @@ import fp.kotlin.example.chapter05.toFunStream
 
 /**
  *
- * 연습문제 5-22
+ * 연습문제 5-20
  *
  * FunList에서 작성했던 map 함수를 FunStream에도 추가하자.
  *
@@ -25,4 +25,7 @@ fun main(args: Array<String>) {
         .getHead() == 121)
 }
 
-fun <T, R> FunStream<T>.map(f: (T) -> R): FunStream<R> = TODO()
+fun <T, R> FunStream<T>.map(f: (T) -> R): FunStream<R> = when (this) {
+    FunStream.Nil -> FunStream.Nil
+    is FunStream.Cons -> FunStream.Cons({ f(head()) }, { tail().map(f) })
+}

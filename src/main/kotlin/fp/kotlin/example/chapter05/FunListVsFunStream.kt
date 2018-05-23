@@ -7,12 +7,20 @@ fun main(args: Array<String>) {
     val bigIntList = (1..10000000).toFunList()
     var start = System.currentTimeMillis()
     funListWay(bigIntList)
-    println("${System.currentTimeMillis() - start} ms")    // 16071 ms
+    println("${System.currentTimeMillis() - start} ms")    // 9467 ms
 
     val bigIntStream = (1..10000000).toFunStream()
     start = System.currentTimeMillis()
     funStreamWay(bigIntStream)
-    println("${System.currentTimeMillis() - start} ms")    // 5 ms
+    println("${System.currentTimeMillis() - start} ms")    // 7 ms
+
+    start = System.currentTimeMillis()
+    bigIntList.forEach { it * it }
+    println("${System.currentTimeMillis() - start} ms")    // 75 ms
+
+    start = System.currentTimeMillis()
+    bigIntStream.forEach { it * it }
+    println("${System.currentTimeMillis() - start} ms")    // 370 ms
 }
 
 private fun funListWay(intList: FunList<Int>): Int = intList

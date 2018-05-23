@@ -4,11 +4,12 @@ import fp.kotlin.example.chapter05.FunStream
 import fp.kotlin.example.chapter05.dropWhile
 import fp.kotlin.example.chapter05.funStreamOf
 import fp.kotlin.example.chapter05.getHead
+import fp.kotlin.example.chapter05.getTail
 import fp.kotlin.example.chapter05.toFunStream
 
 /**
  *
- * 연습문제 5-21
+ * 연습문제 5-19
  *
  * FunList에서 작성했던 filter 함수를 FunStream에도 추가하자.
  *
@@ -29,10 +30,12 @@ fun main(args: Array<String>) {
 
 fun <T> FunStream<T>.filter(f: (T) -> Boolean): FunStream<T> = when (this) {
     FunStream.Nil -> FunStream.Nil
-    is FunStream.Cons ->
-        if (f(head())) {
-            FunStream.Cons(head, { tail().filter(f) })
+    is FunStream.Cons -> {
+        val first = dropWhile(f)
+        if (first != FunStream.Nil) {
+            FunStream.Cons({ first.getHead() }, { first.getTail().filter(f) })
         } else {
-            this.dropWhile(f).filter(f)
+            FunStream.Nil
         }
+    }
 }

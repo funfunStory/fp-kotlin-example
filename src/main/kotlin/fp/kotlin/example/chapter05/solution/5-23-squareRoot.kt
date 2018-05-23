@@ -1,8 +1,8 @@
-package fp.kotlin.example.chapter05.exercise
+package fp.kotlin.example.chapter05.solution
 
 /**
  *
- * 연습문제 5-25
+ * 연습문제 5-23
  *
  * 모든 자연수의 제곱근의 합이 1000을 넘으려면 몇개의 자연수가 필요한지 계산하는 함수를 작성해보자.
  *
@@ -11,7 +11,12 @@ package fp.kotlin.example.chapter05.exercise
  */
 
 fun main(args: Array<String>) {
-    require(squareRoot() == 10)
+    require(squareRoot() == 14)
 }
 
-tailrec fun squareRoot(): Int = TODO()
+tailrec fun squareRoot(num: Int = 1, acc: Int = 0): Int = when {
+    acc > 1000 -> num - 1
+    else -> {
+        squareRoot(num + 1, num * num + acc)
+    }
+}

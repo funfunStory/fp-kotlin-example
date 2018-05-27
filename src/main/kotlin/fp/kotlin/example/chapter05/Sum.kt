@@ -8,6 +8,8 @@ fun main(args: Array<String>) {
                 Game(-1, "diablo", "blizzard", "RPG", 15000),
                 Game(4, "overwatch", "", "fps", 0))
 
-        games.filter { it.isValid() }
-                .foldRight(0){game, acc -> acc + game.price }
+        games.asSequence()
+                .filter { it.isValid() }
+                .filter { it.genre == "RPG" }
+                .fold(0){acc, game -> acc + game.price }
 }

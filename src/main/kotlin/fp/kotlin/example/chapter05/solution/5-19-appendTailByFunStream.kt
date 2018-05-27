@@ -6,7 +6,7 @@ import fp.kotlin.example.chapter05.toFunStream
 
 /**
  *
- * 연습문제 5-18
+ * 연습문제 5-19
  *
  * FunList에서 작성했던 appendTail 함수를 FunStream에도 추가하자.
  *

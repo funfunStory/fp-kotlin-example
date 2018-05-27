@@ -8,7 +8,7 @@ import fp.kotlin.example.chapter05.toFunStream
 
 /**
  *
- * 연습문제 5-21
+ * 연습문제 5-22
  *
  * 무한대에 담은 값에서 필요한 값을 가져오기 위해서 필요한 take 함수를 추가하자.
  * Take 함수를 사용하여 무한 컬렉션에서 5개만 가져와서 합계를 구해보자.

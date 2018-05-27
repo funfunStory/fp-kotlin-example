@@ -7,9 +7,9 @@ import fp.kotlin.example.chapter05.toFunStream
 
 /**
  *
- * 연습문제 5-19
+ * 연습문제 5-21
  *
- * FunList에서 작성했던 filter 함수를 FunStream에도 추가하자.
+ * FunList에서 작성했던 map 함수를 FunStream에도 추가하자.
  *
  * 힌트: 함수의 선언 타입은 아래와 같다.
  *
@@ -17,13 +17,12 @@ import fp.kotlin.example.chapter05.toFunStream
 
 fun main(args: Array<String>) {
     require(funStreamOf(1, 2, 3, 4, 5)
-        .filter { it % 2 == 0 } == funStreamOf(2, 4))
-    require(funStreamOf(1, 2, 3, 4, 5)
-        .filter { it > 6 } == FunStream.Nil)
+        .map { it * 2 } == funStreamOf(2, 4, 6, 8, 10))
     require((1..100000000)
         .toFunStream()
+        .map { it * it }
         .filter { it > 100 }
-        .getHead() == 101)
+        .getHead() == 121)
 }
 
-fun <T> FunStream<T>.filter(f: (T) -> Boolean): FunStream<T> = TODO()
+fun <T, R> FunStream<T>.map(f: (T) -> R): FunStream<R> = TODO()

@@ -1,4 +1,4 @@
-package fp.kotlin.example.chapter05.solution
+package fp.kotlin.example.chapter05.exercise
 
 import fp.kotlin.example.chapter05.FunStream
 import fp.kotlin.example.chapter05.funStreamOf
@@ -9,7 +9,7 @@ import fp.kotlin.example.chapter05.toFunStream
  *
  * 연습문제 5-20
  *
- * FunList에서 작성했던 map 함수를 FunStream에도 추가하자.
+ * FunList에서 작성했던 filter 함수를 FunStream에도 추가하자.
  *
  * 힌트: 함수의 선언 타입은 아래와 같다.
  *
@@ -17,15 +17,13 @@ import fp.kotlin.example.chapter05.toFunStream
 
 fun main(args: Array<String>) {
     require(funStreamOf(1, 2, 3, 4, 5)
-        .map { it * 2 } == funStreamOf(2, 4, 6, 8, 10))
+        .filter { it % 2 == 0 } == funStreamOf(2, 4))
+    require(funStreamOf(1, 2, 3, 4, 5)
+        .filter { it > 6 } == FunStream.Nil)
     require((1..100000000)
         .toFunStream()
-        .map { it * it }
         .filter { it > 100 }
-        .getHead() == 121)
+        .getHead() == 101)
 }
 
-fun <T, R> FunStream<T>.map(f: (T) -> R): FunStream<R> = when (this) {
-    FunStream.Nil -> FunStream.Nil
-    is FunStream.Cons -> FunStream.Cons({ f(head()) }, { tail().map(f) })
-}
+fun <T> FunStream<T>.filter(f: (T) -> Boolean): FunStream<T> = TODO()

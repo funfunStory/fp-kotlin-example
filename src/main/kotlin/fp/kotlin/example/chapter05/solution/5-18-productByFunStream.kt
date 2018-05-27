@@ -6,7 +6,7 @@ import fp.kotlin.example.chapter05.funStreamOf
 
 /**
  *
- * 연습문제 5-17
+ * 연습문제 5-18
  *
  * FunList에서 작성했던 product 함수를 FunStream에도 추가하자.
  *

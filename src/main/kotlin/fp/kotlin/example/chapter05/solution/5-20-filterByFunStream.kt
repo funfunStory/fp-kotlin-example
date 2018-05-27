@@ -9,7 +9,7 @@ import fp.kotlin.example.chapter05.toFunStream
 
 /**
  *
- * 연습문제 5-19
+ * 연습문제 5-20
  *
  * FunList에서 작성했던 filter 함수를 FunStream에도 추가하자.
  *

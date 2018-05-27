@@ -5,7 +5,7 @@ import fp.kotlin.example.chapter05.funListOf
 
 /**
  *
- * 연습문제 5-22
+ * 연습문제 5-23
  *
  * FunList에 toString 함수를 추가해보자.
  *

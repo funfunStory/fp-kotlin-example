@@ -6,7 +6,7 @@ fun main(args: Array<String>) {
 }
 
 private fun <T> maybeOf(value: T): Maybe<T> = when (value) {
-    null -> Nothing()
+    null -> Nothing
     else -> Just(value)
 }
 
@@ -14,18 +14,18 @@ interface Functor<out A> {
     fun <B> fmap(transform: (A) -> B): Functor<B>
 }
 
-interface Maybe<out A>: Functor<A> {
+sealed class Maybe<out A> : Functor<A> {
+    
+    abstract fun get(): A
 
-    fun get(): A
+    abstract fun isEmpty(): Boolean
 
-    fun isEmpty(): Boolean
+    abstract override fun toString(): String
 
-    override fun toString(): String
-
-    override fun <B> fmap(transform: (A) -> B): Maybe<B>
+    abstract override fun <B> fmap(transform: (A) -> B): Maybe<B>
 }
 
-class Just<out A>(val value: A): Maybe<A> {
+data class Just<out A>(val value: A) : Maybe<A>() {
 
     override fun get(): A = value
 
@@ -36,13 +36,13 @@ class Just<out A>(val value: A): Maybe<A> {
     override fun <B> fmap(transform: (A) -> B): Maybe<B> = Just(transform(value))
 }
 
-class Nothing<out A>: Maybe<A> {
+object Nothing : Maybe<kotlin.Nothing>() {
 
-    override fun get(): A = throw NoSuchElementException("Has no value")
+    override fun get(): kotlin.Nothing = throw NoSuchElementException("Has no value")
 
     override fun isEmpty(): Boolean = true
 
     override fun toString(): String = "Nothing"
 
-    override fun <B> fmap(transform: (A) -> B): Maybe<B> = Nothing()
+    override fun <B> fmap(transform: (kotlin.Nothing) -> B): Maybe<B> = Nothing
 }

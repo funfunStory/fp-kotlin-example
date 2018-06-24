@@ -15,7 +15,7 @@ interface Functor<out A> {
 }
 
 sealed class Maybe<out A> : Functor<A> {
-    
+
     abstract fun get(): A
 
     abstract fun isEmpty(): Boolean

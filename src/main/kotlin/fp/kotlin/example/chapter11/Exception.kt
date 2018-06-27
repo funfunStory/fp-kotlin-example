@@ -48,12 +48,12 @@ fun main(args: Array<String>) {
     val resultC = getValidResult(listA).size
     val resultD = getInValidResult(listA)?.size ?: 0
 
-    val eitherResult = eitherOf { 10 / valueB }
-        .map { it + 10 }
-        .map { it * 2 }
-
-    println(when (eitherResult) {
-        is Either.Left -> "left is ${eitherResult.left().get()}"
-        is Either.Right -> "right is ${eitherResult.right().get()}"
-    })  // left is java.lang.ArithmeticException: / by zero
+//    val eitherResult = eitherOf { 10 / valueB }
+//        .map { it + 10 }
+//        .map { it * 2 }
+//
+//    println(when (eitherResult) {
+//        is Either.Left -> "left is ${eitherResult.left().get()}"
+//        is Either.Right -> "right is ${eitherResult.right().get()}"
+//    })  // left is java.lang.ArithmeticException: / by zero
 }

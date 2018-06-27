@@ -14,4 +14,4 @@ fun main(args: Array<String>) {
     require(!elem(5, listOf(1, 3, 7)))
 }
 
-private fun elem(n: Int, list: List<Int>): Boolean = TODO()
+private fun elem(num: Int, list: List<Int>): Boolean = TODO()

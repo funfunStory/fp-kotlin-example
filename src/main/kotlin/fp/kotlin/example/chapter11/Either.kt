@@ -1,12 +1,19 @@
-package chapter11
+package fp.kotlin.example.chapter11
 
 fun main(args: Array<String>) {
 
-    val right: Either<Error, Int> = Either.Right(3)
-    val result = eitherOf {
-        right.map { it * 10 }
-            .map { it / 5 }
-    }
+    val valueA = 10
+    val valueB = 0
+
+    val add10: (Int) -> Int = { it + 10 }
+    val product3: (Int) -> Int = { it * 3 }
+
+    val either = eitherOf { 10 / valueB }
+        .map { add10(it) }
+        .map { product3(it) }
+        .getOrElse(100)
+
+    println(either) //100
 }
 
 sealed class Either<out L, out R> {
@@ -38,8 +45,11 @@ sealed class Either<out L, out R> {
     }
 }
 
-fun <L> leftOf(value: L): Either<L, Nothing> = Either.Left(value)
-fun <R> rightOf(value: R): Either<Nothing, R> = Either.Right(value)
+fun <L> leftOf(value: L): Either<L, Nothing> = Either.Left(
+    value)
+
+fun <R> rightOf(value: R): Either<Nothing, R> = Either.Right(
+    value)
 
 fun <V> eitherOf(action: () -> V): Either<Exception, V> =
     try {
@@ -47,6 +57,11 @@ fun <V> eitherOf(action: () -> V): Either<Exception, V> =
     } catch (e: Exception) {
         leftOf(e)
     }
+
+fun <L, R> Either<L, R>.getOrElse(defaultValue: R): R = when (this) {
+    is Either.Left -> defaultValue
+    is Either.Right -> value
+}
 
 inline fun <L, R, R2> Either<L, R>.map(f: (R) -> R2): Either<L, R2> =
     when (this) {
@@ -73,3 +88,7 @@ inline fun <L, L2, R> Either<L, R>.flatMapLeft(f: (L) -> Either.Left<L2>): Eithe
         is Either.Right -> this
     }
 
+inline fun <L, R, X> Either<L, R>.fold(fLeft: (L) -> X, fRight: (R) -> X): X = when (this) {
+    is Either.Left -> fLeft(value)
+    is Either.Right -> fRight(value)
+}

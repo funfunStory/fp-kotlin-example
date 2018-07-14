@@ -7,13 +7,13 @@ package fp.kotlin.example.chapter04.exercise
  */
 
 fun main(args: Array<String>) {
-    val curriedWithAdd = curriedCalculator({ x, y -> x + y })
+    val curriedWithAdd = curriedCalculator { x, y -> x + y }
     require(curriedWithAdd(10)(5) == 15)
 
-    val curriedWithAddWith10 = curriedCalculator({ x, y -> x + y })(10)
+    val curriedWithAddWith10 = curriedCalculator { x, y -> x + y }(10)
     require(curriedWithAddWith10(5) == 15)
 
-    require(curriedCalculator({ x, y -> x + y })(10)(5) == 15)
+    require(curriedCalculator { x, y -> x + y }(10)(5) == 15)
 }
 
 val curriedCalculator: ((Int, Int) -> Int) -> (Int) -> (Int) -> Int = TODO()

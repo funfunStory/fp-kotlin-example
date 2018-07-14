@@ -7,13 +7,13 @@ package fp.kotlin.example.chapter04.solution
  */
 
 fun main(args: Array<String>) {
-    val curriedWithAdd = curriedCalculator({ x, y -> x + y })
+    val curriedWithAdd = curriedCalculator { x, y -> x + y }
     println(curriedWithAdd(10)(5))                          // 15
 
-    val curriedWithAddWith10 = curriedCalculator({ x, y -> x + y })(10)
+    val curriedWithAddWith10 = curriedCalculator { x, y -> x + y }(10)
     println(curriedWithAddWith10(5))                        // 15
 
-    println(curriedCalculator({ x, y -> x + y })(10)(5))    // 15
+    println(curriedCalculator { x, y -> x + y }(10)(5))    // 15
 }
 
 val curriedCalculator: ((Int, Int) -> Int) -> (Int) -> (Int) -> Int = { calc ->

@@ -17,8 +17,8 @@ fun main(args: Array<String>) {
     println(elem(5, listOf(1, 3, 7)))   // false
 }
 
-private fun elem(n: Int, list: List<Int>): Boolean = when {
+private fun elem(num: Int, list: List<Int>): Boolean = when {
     list.isEmpty() -> false
-    list.head() == n -> true
-    else -> elem(n, list.tail())
+    list.head() == num -> true
+    else -> elem(num, list.tail())
 }

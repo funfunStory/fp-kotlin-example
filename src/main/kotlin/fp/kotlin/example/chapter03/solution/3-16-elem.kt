@@ -14,8 +14,8 @@ fun main(args: Array<String>) {
     println(elem(5, listOf(1, 3, 7)))   // false
 }
 
-private tailrec fun elem(n: Int, list: List<Int>): Boolean = when {
+private tailrec fun elem(element: Int, list: List<Int>): Boolean = when {
     list.isEmpty() -> false
-    n == list.head() -> true
-    else -> elem(n, list.tail())
+    element == list.head() -> true
+    else -> elem(element, list.tail())
 }

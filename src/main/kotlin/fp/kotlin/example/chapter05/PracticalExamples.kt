@@ -20,6 +20,6 @@ tailrec fun <T> FunList<T>.toString2(acc: String = ""): String = when (this) {
     is FunList.Cons -> tail.toString2("$acc, $head")
 }
 
-fun<T> printFunList(list: FunList<T>) = list.toStringByFoldLeft()
+fun<T> printFunList(list: FunList<T>) = println(list.toStringByFoldLeft())
 
 private fun <T> FunList<T>.toStringByFoldLeft(): String = "[${foldLeft("") { acc, x -> "$acc, $x" }.drop(2)}]"

@@ -27,7 +27,19 @@ interface Frontend : Developer {
         get() = "JavaScript"
 }
 
-class FullStack(val frontend: Frontend, val backend: Backend) : Frontend by frontend, Backend by backend {
+class FullStack() : Frontend , Backend {
+
+    override val language: String
+        get() = super<Backend>.language + super<Frontend>.language
+
+    override fun writeCode() {
+        super<Backend>.writeCode()
+        super<Frontend>.writeCode()
+    }
+}
+
+
+class FullStack2(val frontend: Frontend, val backend: Backend) : Frontend by frontend, Backend by backend {
 
     override val language: String
         get() = frontend.language + backend.language
@@ -35,16 +47,6 @@ class FullStack(val frontend: Frontend, val backend: Backend) : Frontend by fron
     override fun writeCode() {
         backend.writeCode()
         frontend.writeCode()
-    }
-}
-
-class FullStack2() : Frontend , Backend {
-
-    override val language: String
-        get() = super<Backend>.language
-
-    override fun writeCode() {
-        super<Backend>.writeCode()
     }
 }
 

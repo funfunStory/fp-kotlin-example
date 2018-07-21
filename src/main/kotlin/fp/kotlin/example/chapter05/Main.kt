@@ -40,6 +40,9 @@ fun main(args: Array<String>) {
 
     val infiniteVal = generateFunStream(0) { it + 5 }
     //    infiniteVal.forEach { print(it) }   // 0부터 계속 5씩 증가하는 값을 출력
+
+    println(funListOf(1,2,3).append(funListOf(4,5,6)))
+
 }
 
 fun add2(list: FunList<Int>): FunList<Int> = when (list) {

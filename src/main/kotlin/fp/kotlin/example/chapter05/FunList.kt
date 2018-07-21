@@ -34,6 +34,13 @@ fun <T> FunList<T>.getHead(): T = when (this) {
 
 fun <T> FunList<T>.addHead(head: T): FunList<T> = FunList.Cons(head, this)
 
+fun <T> FunList<T>.append(value: FunList<T>): FunList<T> {
+    tailrec fun innerAppend(listA: FunList<T>, listB: FunList<T>): FunList<T> = when(listA){
+        FunList.Nil -> listB
+        is FunList.Cons -> innerAppend(listA.tail, listB.addHead(listA.head))
+    }
+    return innerAppend(this.reverse(), value)
+}
 tailrec fun <T> FunList<T>.appendTail(value: T, acc: FunList<T> = FunList.Nil): FunList<T> = when (this) {
     FunList.Nil -> FunList.Cons(value, acc).reverse()
     is FunList.Cons -> tail.appendTail(value, acc.addHead(head))

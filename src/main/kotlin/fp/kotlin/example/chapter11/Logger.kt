@@ -107,13 +107,13 @@ interface Monoid<A> {
 
 data class Logger<out T>(private val log: LOGS, private val value: T) : Functor<T>, Monoid<LOGS> {
 
-    override fun <B> fmap(transform: (T) -> B): Logger<B> = Logger(log, transform(value))
+    override infix fun <B> fmap(transform: (T) -> B): Logger<B> = Logger(log, transform(value))
 
-    override fun append(a1: LOGS, a2: LOGS): LOGS = a1 append (a2)
+    override fun append(a1: LOGS, a2: LOGS): LOGS = a1 concat (a2)
 
     override fun empty(): LOGS = FunList.Nil
 
-    fun <R> flatMap(f: (T) -> Logger<R>): Logger<R> {
+    infix fun <R> flatMap(f: (T) -> Logger<R>): Logger<R> {
         val x = f(value)
         return Logger(append(log, x.log), x.value)
     }

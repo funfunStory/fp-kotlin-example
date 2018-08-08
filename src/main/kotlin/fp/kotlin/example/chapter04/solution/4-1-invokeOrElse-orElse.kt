@@ -18,15 +18,17 @@ fun main(args: Array<String>) {
     val body: (Int) -> String = { "$it is even" }
 
     val isEven = body.toPartialFunction(condition)
-    val isOdd = { i: Int -> "$i is odd" }.toPartialFunction{ !condition(it) }
+    val isOdd = { i: Int -> "$i is odd" }.toPartialFunction { !condition(it) }
 
-    println(listOf(1, 2, 3).map( isEven orElse isOdd ))    // [1 is odd, 2 is even, 3 is odd]
-    println(listOf(1, 2, 3).map { isEven.invokeOrElse(it, "$it is odd") })    // [1 is odd, 2 is even, 3 is odd]
+    println(listOf(1, 2, 3).map(isEven.orElse(isOdd)))    // [1 is odd, 2 is even, 3 is odd]
+    println(listOf(1, 2, 3).map {
+        isEven.invokeOrElse(it, "$it is odd")
+    })    // [1 is odd, 2 is even, 3 is odd]
 }
 
 class PartialFunction<P, R>(
-        private val condition: (P) -> Boolean,
-        private val f: (P) -> R) :(P) -> R {
+    private val condition: (P) -> Boolean,
+    private val f: (P) -> R) : (P) -> R {
 
     override fun invoke(p: P): R {
         if (condition(p)) {
@@ -40,15 +42,15 @@ class PartialFunction<P, R>(
 
     fun invokeOrElse(p: P, default: R): R = if (isDefinedAt(p)) invoke(p) else default
 
-    infix fun orElse(that: PartialFunction<P, R>): PartialFunction<P, R> =
-            PartialFunction({ this.isDefinedAt(it) || that.isDefinedAt(it) }) {
-                when {
-                    this.isDefinedAt(it) -> this(it)
-                    that.isDefinedAt(it) -> that(it)
-                    else -> throw IllegalArgumentException("$it isn't defined")
-                }
+    fun orElse(that: PartialFunction<P, R>): PartialFunction<P, R> =
+        PartialFunction({ this.isDefinedAt(it) || that.isDefinedAt(it) }) {
+            when {
+                this.isDefinedAt(it) -> this(it)
+                that.isDefinedAt(it) -> that(it)
+                else -> throw IllegalArgumentException("$it isn't defined")
             }
+        }
 }
 
 fun <P, R> ((P) -> R).toPartialFunction(definedAt: (P) -> Boolean)
-        : PartialFunction<P, R> = PartialFunction(definedAt, this)
+    : PartialFunction<P, R> = PartialFunction(definedAt, this)

@@ -18,16 +18,19 @@ fun main(args: Array<String>) {
     val body: (Int) -> String = { "$it is even" }
 
     val isEven = body.toPartialFunction(condition)
-    val isOdd = { i: Int -> "$i is odd" }.toPartialFunction{ !condition(it) }
+    val isOdd = { i: Int -> "$i is odd" }.toPartialFunction { !condition(it) }
 
     val expected = listOf("1 is odd", "2 is even", "3 is odd")
-    require(expected == listOf(1, 2, 3).map( isEven orElse isOdd ))
+    require(expected == listOf(1, 2, 3).map(isEven.orElse(isOdd)))
     require(expected == listOf(1, 2, 3).map { isEven.invokeOrElse(it, "$it is odd") })
 }
 
+fun <P, R> ((P) -> R).toPartialFunction(definedAt: (P) -> Boolean)
+    : PartialFunction<P, R> = PartialFunction(definedAt, this)
+
 class PartialFunction<P, R>(
-        private val condition: (P) -> Boolean,
-        private val f: (P) -> R) :(P) -> R {
+    private val condition: (P) -> Boolean,
+    private val f: (P) -> R) : (P) -> R {
 
     override fun invoke(p: P): R {
         if (condition(p)) {
@@ -41,8 +44,5 @@ class PartialFunction<P, R>(
 
     fun invokeOrElse(p: P, default: R): R = TODO()
 
-    infix fun orElse(that: PartialFunction<P, R>): PartialFunction<P, R> = TODO()
+    fun orElse(that: PartialFunction<P, R>): PartialFunction<P, R> = TODO()
 }
-
-fun <P, R> ((P) -> R).toPartialFunction(definedAt: (P) -> Boolean)
-        : PartialFunction<P, R> = PartialFunction(definedAt, this)

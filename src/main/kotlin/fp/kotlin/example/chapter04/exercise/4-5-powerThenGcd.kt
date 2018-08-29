@@ -1,10 +1,5 @@
 package fp.kotlin.example.chapter04.exercise
 
-import fp.kotlin.example.chapter03.solution.gcd
-import fp.kotlin.example.chapter03.solution.power
-import fp.kotlin.example.chapter04.compose
-import fp.kotlin.example.chapter04.solution.curried
-
 /**
  * 연습문제 4-5
  *

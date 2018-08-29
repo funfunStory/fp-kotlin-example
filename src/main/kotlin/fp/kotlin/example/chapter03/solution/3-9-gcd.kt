@@ -15,7 +15,7 @@ fun main(args: Array<String>) {
     println(gcd(366, 60))   // 6
 }
 
-fun gcd(m: Int, n: Int): Int = when (n) {
+private fun gcd(m: Int, n: Int): Int = when (n) {
     0 -> m
     else -> gcd(n, m % n)
 }

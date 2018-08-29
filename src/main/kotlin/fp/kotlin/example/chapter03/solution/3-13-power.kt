@@ -13,7 +13,7 @@ fun main(args: Array<String>) {
     println(power(2.0, 10))  // 1024.0
 }
 
-tailrec fun power(x: Double, n: Int, acc: Double = 1.0): Double = when (n) {
+private tailrec fun power(x: Double, n: Int, acc: Double = 1.0): Double = when (n) {
     0 -> acc
     else -> power(x, n - 1, x * acc)
 }

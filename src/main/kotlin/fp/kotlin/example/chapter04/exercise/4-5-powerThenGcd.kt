@@ -9,6 +9,3 @@ package fp.kotlin.example.chapter04.exercise
 fun main(args: Array<String>) {
     TODO()
 }
-
-
-

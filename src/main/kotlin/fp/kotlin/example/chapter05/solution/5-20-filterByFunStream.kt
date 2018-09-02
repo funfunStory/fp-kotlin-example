@@ -28,12 +28,12 @@ fun main(args: Array<String>) {
         .getHead() == 101)
 }
 
-fun <T> FunStream<T>.filter(f: (T) -> Boolean): FunStream<T> = when (this) {
+fun <T> FunStream<T>.filter(p: (T) -> Boolean): FunStream<T> = when (this) {
     FunStream.Nil -> FunStream.Nil
     is FunStream.Cons -> {
-        val first = dropWhile(f)
+        val first = dropWhile(p)
         if (first != FunStream.Nil) {
-            FunStream.Cons({ first.getHead() }, { first.getTail().filter(f) })
+            FunStream.Cons({ first.getHead() }, { first.getTail().filter(p) })
         } else {
             FunStream.Nil
         }

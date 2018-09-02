@@ -22,9 +22,9 @@ fun main(args: Array<String>) {
     require(list.filterByFoldRight { it < 6 } == funListOf(1, 2, 3, 4, 5))
 }
 
-fun <T> FunList<T>.filterByFoldRight(f: (T) -> Boolean): FunList<T> = this
+fun <T> FunList<T>.filterByFoldRight(p: (T) -> Boolean): FunList<T> = this
     .foldRight(FunList.Nil as FunList<T>) { value, acc ->
-        if (f(value)) {
+        if (p(value)) {
             acc.addHead(value)
         } else {
             acc

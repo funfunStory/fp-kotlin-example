@@ -26,4 +26,4 @@ fun main(args: Array<String>) {
         .getHead() == 101)
 }
 
-fun <T> FunStream<T>.filter(f: (T) -> Boolean): FunStream<T> = TODO()
+fun <T> FunStream<T>.filter(p: (T) -> Boolean): FunStream<T> = TODO()

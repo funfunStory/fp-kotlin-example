@@ -16,11 +16,11 @@ fun main(args: Array<String>) {
 
 data class UnaryFunction<in T, out R>(val g: (T) -> R) : Functor<R> {
 
-//    override fun <R2> fmap(transform: (R) -> R2): UnaryFunction<T, R2> {
-//        return UnaryFunction { x: T -> transform(g(x)) }
+//    override fun <R2> fmap(f: (R) -> R2): UnaryFunction<T, R2> {
+//        return UnaryFunction { x: T -> f(g(x)) }
 //    }
-//    override fun <R2> fmap(transform: (R) -> R2) = UnaryFunction { x: T -> transform(g(x)) }
-    override fun <R2> fmap(transform: (R) -> R2) = UnaryFunction { x: T -> (transform compose g)(x) }
+//    override fun <R2> fmap(f: (R) -> R2) = UnaryFunction { x: T -> f(g(x)) }
+    override fun <R2> fmap(f: (R) -> R2) = UnaryFunction { x: T -> (f compose g)(x) }
 
     fun invoke(input: T): R = g(input)
 }

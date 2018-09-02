@@ -29,19 +29,19 @@ sealed class MaybeCounter<out A> : Functor<A> {
 
     abstract override fun toString(): String
 
-    abstract override fun <B> fmap(transform: (A) -> B): MaybeCounter<B>
+    abstract override fun <B> fmap(f: (A) -> B): MaybeCounter<B>
 }
 
 data class JustCounter<out A>(val value: A, val count: Int): MaybeCounter<A>() {
 
     override fun toString(): String = "JustCounter($value, $count)"
 
-    override fun <B> fmap(transform: (A) -> B): MaybeCounter<B> = JustCounter(transform(value), count + 1)
+    override fun <B> fmap(f: (A) -> B): MaybeCounter<B> = JustCounter(f(value), count + 1)
 }
 
 object NothingCounter: MaybeCounter<kotlin.Nothing>() {
 
     override fun toString(): String = "NothingCounter"
 
-    override fun <B> fmap(transform: (kotlin.Nothing) -> B): MaybeCounter<B> = NothingCounter
+    override fun <B> fmap(f: (kotlin.Nothing) -> B): MaybeCounter<B> = NothingCounter
 }

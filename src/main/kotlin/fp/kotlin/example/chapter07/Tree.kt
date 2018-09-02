@@ -23,20 +23,20 @@ sealed class Tree<out A> : Functor<A> {
 
     abstract override fun toString(): String
 
-    abstract override fun <B> fmap(transform: (A) -> B): Tree<B>
+    abstract override fun <B> fmap(f: (A) -> B): Tree<B>
 }
 
 data class Node<out A>(val value: A, val leftTree: Tree<A>, val rightTree: Tree<A>) : Tree<A>() {
 
     override fun toString(): String = "(N $value $leftTree $rightTree)"
 
-    override fun <B> fmap(transform: (A) -> B): Tree<B> =
-            Node(transform(value), leftTree.fmap(transform), rightTree.fmap(transform))
+    override fun <B> fmap(f: (A) -> B): Tree<B> =
+            Node(f(value), leftTree.fmap(f), rightTree.fmap(f))
 }
 
 object EmptyTree : Tree<kotlin.Nothing>() {
 
     override fun toString(): String = "E"
 
-    override fun <B> fmap(transform: (Nothing) -> B): Tree<B> = EmptyTree
+    override fun <B> fmap(f: (Nothing) -> B): Tree<B> = EmptyTree
 }

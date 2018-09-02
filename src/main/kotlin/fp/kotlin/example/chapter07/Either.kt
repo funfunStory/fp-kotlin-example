@@ -23,7 +23,7 @@ sealed class Either<out L, out R> : Functor<R> {
     abstract fun left(): Left<L>
     abstract fun right(): Right<R>
 
-    abstract override fun <R2> fmap(transform: (R) -> R2): Either<L, R2>
+    abstract override fun <R2> fmap(f: (R) -> R2): Either<L, R2>
 }
 
 data class Left<out L>(val value: L): Either<L, Nothing>() {
@@ -35,7 +35,7 @@ data class Left<out L>(val value: L): Either<L, Nothing>() {
 
     fun get() = value
 
-    override fun <R2> fmap(transform: (kotlin.Nothing) -> R2): Either<L, R2> = this
+    override fun <R2> fmap(f: (kotlin.Nothing) -> R2): Either<L, R2> = this
 }
 
 data class Right<out R>(val value: R): Either<Nothing, R>() {
@@ -47,5 +47,5 @@ data class Right<out R>(val value: R): Either<Nothing, R>() {
 
     fun get() = value
 
-    override fun <R2> fmap(transform: (R) -> R2): Either<Nothing, R2> = Right(transform(value))
+    override fun <R2> fmap(f: (R) -> R2): Either<Nothing, R2> = Right(f(value))
 }

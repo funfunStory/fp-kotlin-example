@@ -48,12 +48,12 @@ tailrec fun <T> FunList<T>.appendTail(value: T, acc: FunList<T> = FunList.Nil): 
 
 fun FunList<Int>.sum(): Int = foldLeft(0) { acc, x -> acc + x }
 
-tailrec fun <T> FunList<T>.filter(acc: FunList<T> = FunList.Nil, f: (T) -> Boolean): FunList<T> = when (this) {
+tailrec fun <T> FunList<T>.filter(acc: FunList<T> = FunList.Nil, p: (T) -> Boolean): FunList<T> = when (this) {
     FunList.Nil -> acc.reverse()
-    is FunList.Cons -> if (f(head)) {
-        tail.filter(acc.addHead(head), f)
+    is FunList.Cons -> if (p(head)) {
+        tail.filter(acc.addHead(head), p)
     } else {
-        tail.filter(acc, f)
+        tail.filter(acc, p)
     }
 }
 

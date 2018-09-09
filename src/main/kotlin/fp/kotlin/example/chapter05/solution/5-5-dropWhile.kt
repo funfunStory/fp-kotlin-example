@@ -9,7 +9,7 @@ import fp.kotlin.example.chapter05.funListOf
  *
  * 연습문제 5-5
  *
- * 타입 T를 입력받아 Boolean을 반환하는 함수 f 를 입력받고, 리스트의 앞에서부터 함수 f를 만족 하기 전까지 drop을 하고, 나머지 값들의 리스트를
+ * 타입 T를 입력받아 Boolean을 반환하는 함수 p 를 입력받고, 리스트의 앞에서부터 함수 p를 만족 하기 전까지 drop을 하고, 나머지 값들의 리스트를
  * 반환는 dropWhile 함수를 구현하자. 이때 원본 리스트가 바뀌지 않고, 새로운 리스트를 반환할때 매번 리스트를 생성하지 않아야 한다.
  *
  * 힌트: 함수의 선언 타입은 아래와 같다.
@@ -24,11 +24,11 @@ fun main(args: Array<String>) {
     require(intList.dropWhile { it > 5 } == Nil)
 }
 
-tailrec fun <T> FunList<T>.dropWhile(f: (T) -> Boolean): FunList<T> = when (this) {
+tailrec fun <T> FunList<T>.dropWhile(p: (T) -> Boolean): FunList<T> = when (this) {
     FunList.Nil -> this
-    is FunList.Cons -> if (f(head)) {
+    is FunList.Cons -> if (p(head)) {
         this
     } else {
-        tail.dropWhile(f)
+        tail.dropWhile(p)
     }
 }

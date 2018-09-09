@@ -1,10 +1,6 @@
 package fp.kotlin.example.chapter05.solution
 
-import fp.kotlin.example.chapter05.FunStream
-import fp.kotlin.example.chapter05.funStreamOf
-import fp.kotlin.example.chapter05.generateFunStream
-import fp.kotlin.example.chapter05.getHead
-import fp.kotlin.example.chapter05.toFunStream
+import fp.kotlin.example.chapter05.*
 
 /**
  *
@@ -20,8 +16,10 @@ import fp.kotlin.example.chapter05.toFunStream
 fun main(args: Array<String>) {
     require((1..100000000)
         .toFunStream()
-        .take(1).getHead() == 1)
-    require(generateFunStream(0) { it + 5 }.take(5) == funStreamOf(0, 5, 10, 15, 20))
+        .take(1)
+        .getHead() == 1)
+    require(generateFunStream(0) { it + 5 }
+        .take(5) == funStreamOf(0, 5, 10, 15, 20))
 }
 
 fun <T> FunStream<T>.take(n: Int): FunStream<T> = when {
@@ -29,6 +27,6 @@ fun <T> FunStream<T>.take(n: Int): FunStream<T> = when {
     n == 0 -> FunStream.Nil
     else -> when (this) {
         FunStream.Nil -> FunStream.Nil
-        is FunStream.Cons -> FunStream.Cons(head, { tail().take(n - 1) })
+        is FunStream.Cons -> FunStream.Cons(head) { tail().take(n - 1) }
     }
 }

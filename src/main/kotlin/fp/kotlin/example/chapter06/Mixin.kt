@@ -32,16 +32,15 @@ class FullStack : Frontend, Backend {
 }
 
 fun main(args: Array<String>) {
-    val frontend = object : Frontend {
-    }
-    val backend = object : Backend {
-    }
+    val frontend = object : Frontend {}
+    val backend = object : Backend {}
 
     frontend.writeCode()    // write Elm
     backend.writeCode()     // write Haskell
 
-    FullStack().writeCode() // write ElmHaskell
+    val fullStack = FullStack()
 
-    println(frontend.drawUI())  // drawUI
-    println(backend.operateEnvironment()) // operateEnvironment
+    fullStack.writeCode()  // write ElmHaskell
+    println(fullStack.drawUI())     // drawUI
+    println(fullStack.operateEnvironment()) // operateEnvironment
 }

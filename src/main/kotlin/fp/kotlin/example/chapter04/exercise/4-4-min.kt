@@ -14,4 +14,4 @@ fun main(args: Array<String>) {
 //    println(curriedMin(10)(30))    // 30
 }
 
-fun <P1, P2, R> ((P1, P2) -> R).curried(): (P1) -> (P2) -> R = TODO()
+private fun <P1, P2, R> ((P1, P2) -> R).curried(): (P1) -> (P2) -> R = TODO()

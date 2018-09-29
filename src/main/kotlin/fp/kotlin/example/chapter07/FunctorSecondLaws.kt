@@ -3,18 +3,18 @@ package fp.kotlin.example.chapter07
 import fp.kotlin.example.chapter04.compose
 
 fun main(args: Array<String>) {
-    val f = { it: Int -> it + 1 }
-    val g = { it: Int -> it * 2 }
+    val f = { a: Int -> a + 1 }
+    val g = { b: Int -> b * 2 }
 
     // Maybe 2 laws
     val nothingLeft = Nothing.fmap(f compose g)
     // throws NoSuchElementException
-//    val nothingRight = Nothing.fmap(Nothing.fmap { g }.invoke() compose Nothing.fmap { f }.invoke())
+//    val nothingRight = Nothing.fmap(Nothing.fmap { g }.get() compose Nothing.fmap { f }.get())
     val nothingRight = Nothing.fmap(g).fmap(f)
     println(nothingLeft == nothingRight)  // true
 
     val justLeft = Just(5).fmap(f compose g)
-//    val justRight = Just(5).fmap(Just(0).fmap { f }.invoke() compose Just(0).fmap { g }.invoke())
+//    val justRight = Just(5).fmap(Just(0).fmap { f }.get() compose Just(0).fmap { g }.get())
     val justRight = Just(5).fmap(g).fmap(f)
     println(justLeft == justRight)  // true
 

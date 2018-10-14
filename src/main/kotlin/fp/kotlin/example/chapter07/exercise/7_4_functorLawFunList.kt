@@ -5,5 +5,16 @@ package fp.kotlin.example.chapter07.exercise
  */
 
 fun main(args: Array<String>) {
+    val funList: FunList<Int> = FunList.Cons(1, FunList.Cons(2, FunList.Cons(3, FunList.Nil)))
 
+    // functor 1lows
+    require(funList == TODO())
+
+    // functor 2lows
+    val left = funList.fmap { TODO() }
+    val right = funList.fmap { TODO() }.fmap { TODO() }
+
+    require(left == right)
 }
+
+fun <T> identy(value: T): T = value

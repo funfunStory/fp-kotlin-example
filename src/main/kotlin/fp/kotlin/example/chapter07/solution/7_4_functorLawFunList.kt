@@ -16,8 +16,8 @@ fun main(args: Array<String>) {
     val add5: (Int) -> Int = { it + 5 }
     val twice: (Int) -> Int = { it * 2 }
 
-    val left = funList.fmap { (add5 compose twice)(it) }
-    val right = funList.fmap { twice(it) }.fmap { add5(it) }
+    val left = funList.fmap(add5 compose twice)
+    val right = funList.fmap(twice).fmap(add5)
 
     require(left == right)
 }

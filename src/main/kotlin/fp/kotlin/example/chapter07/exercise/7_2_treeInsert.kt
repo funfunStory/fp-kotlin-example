@@ -5,16 +5,14 @@ import fp.kotlin.example.chapter07.Tree
 import fp.kotlin.example.chapter07.treeOf
 
 /**
- * Tree에 새로운 노드를 삽입하는 insert 함수를 추가하자.
- * insert 함수는 트리의 왼쪽 하위 부터 비어있는 노드에 하나씩 추가된다.
- * (왼쪽 노드가 비어 있다면 왼쪽노드에 insert, 오른쪽 노드가 비어 있다면 오른쪽 노드에 insert, 왼쪽 오른쪽 모두 비어 있지 않다면, 왼쪽노드를 다시 탐색 한다.)
+ * 4장에서 작성한 Tree에 새로운 노드를 삽입하는 insert 함수를 확장 함수로 추가하라. 균형 트리(balanced tree)는 고려하지 않고, insert 함수는 트리의
+ * 왼쪽 하위 부터 비어있는 노드에 하나씩 추가된다. 하위 노드가 없다면 왼쪽에 노드를 추가하고, 왼쪽에 노드가 있다면 오른쪽에 노드를 추가한다. 예를들어 1부터
+ * 7까지 차례로 넣는다면 아래 그림 7-2와 같은 트리가 생성된다.
  *
- * 힌트 :
- * Tree의 생성자 패턴매칭을 이용한 재귀로 구현하라. 그리고 Tree안에 함수를 추가하지 않고, 확장 함수로 작성하라.
- * 밸런스 트리는 고려하지 않는다. 순차적으로 (1, 2, 3, 4, 5, 6, 7)을 차례로 인서트 한다면  아래 그림 처럼 트리가 작성된다.(책 참조)
+ * 힌트: Tree의 생성자 패턴매칭을 이용한 재귀를 활용할 수 있다.
  */
 
-fun <A> Tree<out A>.insert(value: Tree<A>): Tree<A> = TODO()
+fun <A> Tree<A>.insert(value: Tree<A>): Tree<A> = TODO()
 
 fun main(args: Array<String>) {
 

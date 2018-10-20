@@ -16,36 +16,13 @@ private fun divideTenByN(n: Int): Either<String, Int> = try {
 }
 
 sealed class Either<out L, out R> : Functor<R> {
-
-    abstract fun isLeft(): Boolean
-    abstract fun isRight(): Boolean
-
-    abstract fun left(): Left<L>
-    abstract fun right(): Right<R>
-
     abstract override fun <R2> fmap(f: (R) -> R2): Either<L, R2>
 }
 
 data class Left<out L>(val value: L): Either<L, Nothing>() {
-    override fun isLeft(): Boolean = true
-    override fun isRight(): Boolean = false
-
-    override fun left(): Left<L> = this
-    override fun right(): Right<Nothing> = throw NoSuchElementException()
-
-    fun get() = value
-
     override fun <R2> fmap(f: (kotlin.Nothing) -> R2): Either<L, R2> = this
 }
 
 data class Right<out R>(val value: R): Either<Nothing, R>() {
-    override fun isLeft(): Boolean = false
-    override fun isRight(): Boolean = true
-
-    override fun left(): Left<Nothing> = throw NoSuchElementException()
-    override fun right(): Right<R> = this
-
-    fun get() = value
-
     override fun <R2> fmap(f: (R) -> R2): Either<Nothing, R2> = Right(f(value))
 }

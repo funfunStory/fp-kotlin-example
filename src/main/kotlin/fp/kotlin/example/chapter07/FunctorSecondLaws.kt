@@ -8,13 +8,14 @@ fun main(args: Array<String>) {
 
     // Maybe 2 laws
     val nothingLeft = Nothing.fmap(f compose g)
-    // throws NoSuchElementException
-//    val nothingRight = Nothing.fmap(Nothing.fmap { g }.get() compose Nothing.fmap { f }.get())
+    // compile error
+    // val nothingRight = Nothing.fmap(f) compose Nothing.fmap(g)
     val nothingRight = Nothing.fmap(g).fmap(f)
     println(nothingLeft == nothingRight)  // true
 
     val justLeft = Just(5).fmap(f compose g)
-//    val justRight = Just(5).fmap(Just(0).fmap { f }.get() compose Just(0).fmap { g }.get())
+    // compile error
+    // val justRight = Just(5).fmap(f) compose Just(0).fmap(g)
     val justRight = Just(5).fmap(g).fmap(f)
     println(justLeft == justRight)  // true
 

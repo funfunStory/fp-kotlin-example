@@ -7,7 +7,7 @@ import fp.kotlin.example.chapter04.compose
  */
 
 fun main(args: Array<String>) {
-    val funList: FunList<Int> = FunList.Cons(1, FunList.Cons(2, FunList.Cons(3, FunList.Nil)))
+    val funList: FunList<Int> = Cons(1, Cons(2, Cons(3, Nil)))
 
     // functor 1 lows
     require(funList == funList.fmap { identy(it) })

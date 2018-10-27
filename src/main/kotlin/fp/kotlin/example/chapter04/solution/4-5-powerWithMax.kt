@@ -7,8 +7,14 @@ package fp.kotlin.example.chapter04.solution
  */
 
 fun main(args: Array<String>) {
-    TODO()  // 명인님 풀이 추가 및 파일명 변경
+    val list = listOf(1, 2, 3, 4, 5, 6, 7)
+    val list2 = listOf(10, 2, 13, 4, 0, 6, 1)
+
+    require(power(max(list)) == 49)
+    require(power(max(list2)) == 169)
+
 }
 
+val max: (List<Int>) -> Int = { list: List<Int> -> list.max()!! }
 
-
+val power: (Int) -> Int = { value: Int -> value * value }

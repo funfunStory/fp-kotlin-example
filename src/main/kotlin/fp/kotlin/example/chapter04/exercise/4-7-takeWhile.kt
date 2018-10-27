@@ -6,11 +6,14 @@ import fp.kotlin.example.tail
 /**
  * 연습문제 4-7
  *
- * 연습문제 4-6에서 작성한 ``takeWhile``를 수정하여, 무한대를 입력받을 수 있는 ``takeWhile``을 tailrec으로 작성해보자.
+ * ``takeWhile`` 함수는 조건 함수와 리스트를 입력받아서 조건 함수에 리스트의 구성값을 매개변수로 호출했을때, 결과가 false 일때까지의 모든 값들의
+ * 리스트를 반환한다. 예를들어, 입력 리스트가 1, 2, 3, 4, 5로 구성되어 있을때, 조건 함수가 3보다 작은 값이라면 1과 2를 구성 값으로 가지는 리스트를
+ * 반환한다. ``takeWhile`` 함수를 작성해보자.
  */
 
 fun main(args: Array<String>) {
-    require(listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10) == takeWhile({ p -> 10 < p }, generateSequence(1) { it + 1 }))
+    require(listOf(1, 2) == takeWhile({ p -> p < 3 }, listOf(1, 2, 3, 4, 5)))
+    require(listOf('h', 'e', 'l', 'l', 'o') == takeWhile({ p -> ' ' != p }, "hello world".toList()))
 }
 
-private tailrec fun <P> takeWhile(predicate: (P) -> Boolean, sequence: Sequence<P>, acc: List<P> = listOf()): List<P> = TODO()
+private tailrec fun <P> takeWhile(predicate: (P) -> Boolean, list: List<P>, acc: List<P> = listOf()): List<P> = TODO()

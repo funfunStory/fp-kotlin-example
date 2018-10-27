@@ -27,7 +27,7 @@ fun main(args: Array<String>) {
 
     println(gcdPowerOfTwo(25, 5))   // 25
 
-    val curriedGcd1 = :: gcd.curried()
+    val curriedGcd1 = ::gcd.curried()
     // 잘못된 합성의 예
     val composedGcdPowerOfTwo1 = curriedGcd1 compose powerOfTwo
 
@@ -46,7 +46,7 @@ private fun addThree(i: Int) = i + 3
 
 private fun twice(i: Int) = i * 2
 
-private fun gcd(m: Int, n: Int): Int = when (n) {
+private tailrec fun gcd(m: Int, n: Int): Int = when (n) {
     0 -> m
     else -> gcd(n, m % n)
 }

@@ -10,6 +10,8 @@ sealed class Maybe<out A> : Functor<A> {
     abstract override fun toString(): String
 
     abstract override fun <B> fmap(f: (A) -> B): Maybe<B>
+
+    companion object
 }
 
 data class Just<out A>(val value: A) : Maybe<A>() {

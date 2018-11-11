@@ -1,8 +1,8 @@
 package fp.kotlin.example.chapter07.exercise
 
 import fp.kotlin.example.chapter07.EmptyTree
+import fp.kotlin.example.chapter07.Node
 import fp.kotlin.example.chapter07.Tree
-import fp.kotlin.example.chapter07.treeOf
 
 /**
  * 4장에서 작성한 Tree에 새로운 노드를 삽입하는 insert 함수를 확장 함수로 추가하라. 균형 트리(balanced tree)는 고려하지 않고, insert 함수는 트리의
@@ -18,25 +18,48 @@ fun main(args: Array<String>) {
 
     val emptyTree = EmptyTree
 
-    val tree1 = emptyTree.insert(treeOf(1))
-    require(tree1 == treeOf(1))
+    val tree1 = emptyTree.insert(Node(1, EmptyTree, EmptyTree))
+    require(tree1 == Node(1, EmptyTree, EmptyTree))
 
-    val tree2 = tree1.insert(treeOf(2))
-    require(tree2 == treeOf(1, treeOf(2)))
+    val tree2 = tree1.insert(Node(2, EmptyTree, EmptyTree))
+    require(tree2 ==
+        Node(1,
+            Node(2, EmptyTree, EmptyTree), EmptyTree))
 
-    val tree3 = tree2.insert(treeOf(3))
-    require(tree3 == treeOf(1, treeOf(2), treeOf(3)))
+    val tree3 = tree2.insert(Node(3, EmptyTree, EmptyTree))
+    require(tree3 ==
+        Node(1,
+            Node(2, EmptyTree, EmptyTree), Node(3, EmptyTree, EmptyTree)))
 
-    val tree4 = tree3.insert(treeOf(4))
-    require(tree4 == treeOf(1, treeOf(2, treeOf(4)), treeOf(3)))
+    val tree4 = tree3.insert(Node(4, EmptyTree, EmptyTree))
+    require(tree4 ==
+        Node(1,
+            Node(2,
+                Node(4, EmptyTree, EmptyTree), EmptyTree),
+            Node(3, EmptyTree, EmptyTree)))
 
-    val tree5 = tree4.insert(treeOf(5))
-    require(tree5 == treeOf(1, treeOf(2, treeOf(4), treeOf(5)), treeOf(3)))
+    val tree5 = tree4.insert(Node(5, EmptyTree, EmptyTree))
+    require(tree5 ==
+        Node(1,
+            Node(2,
+                Node(4, EmptyTree, EmptyTree), Node(5, EmptyTree, EmptyTree)),
+            Node(3, EmptyTree, EmptyTree)))
 
-    val tree6 = tree5.insert(treeOf(6))
-    require(tree6 == treeOf(1, treeOf(2, treeOf(4, treeOf(6)), treeOf(5)), treeOf(3)))
+    val tree6 = tree5.insert(Node(6, EmptyTree, EmptyTree))
+    require(tree6 ==
+        Node(1,
+            Node(2,
+                Node(4,
+                    Node(6, EmptyTree, EmptyTree), EmptyTree),
+                Node(5, EmptyTree, EmptyTree)),
+            Node(3, EmptyTree, EmptyTree)))
 
-    val tree7 = tree6.insert(treeOf(7))
-    require(tree7 == treeOf(1, treeOf(2, treeOf(4, treeOf(6), treeOf(7)), treeOf(5)), treeOf(3)))
+    val tree7 = tree6.insert(Node(7, EmptyTree, EmptyTree))
+    require(tree7 == Node(1,
+        Node(2,
+            Node(4,
+                Node(6, EmptyTree, EmptyTree), Node(7, EmptyTree, EmptyTree)),
+            Node(5, EmptyTree, EmptyTree)),
+        Node(3, EmptyTree, EmptyTree)))
 
 }

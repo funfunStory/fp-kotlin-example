@@ -1,6 +1,7 @@
 package fp.kotlin.example.chapter07.solution
 
 /**
+ *
  * 연습문제 7-1
  *
  * 5장에서 만든 FunList를 Functor의 인스턴스로 만들어 보자. FunList에 이미 map 함수 등이 존재하지만, fmap, first, size와 같은 기본적인 기능만

@@ -23,3 +23,8 @@ fun invalidMinus5(x: Int): Int {
     y += 10
     return result
 }
+
+fun init() {
+    z = 0
+    y = 0
+}

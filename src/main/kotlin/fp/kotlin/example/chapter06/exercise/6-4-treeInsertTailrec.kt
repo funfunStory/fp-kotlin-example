@@ -1,30 +1,31 @@
-package fp.kotlin.example.chapter06.solution
+package fp.kotlin.example.chapter06.exercise
 
 /**
  *
- * 연습문제 6-2
+ * 연습문제 6-4
  *
- * 6-1에서 만든 이진 트리에 노드를 추가하는 insert 함수를 Tree의 확장 함수로 만들어보자.
- * 이때 노드의 왼쪽 하위  노드의 값은 오른쪽 하위 노드의 값보다 항상 작아야 한다.
+ * SOP가 일어나지 않도록 insertTailrec을 작성해보자.
  *
- * 주의사항 : 값 비교를 위해서는 T가 항상 Comparable 속성을 가지고 있어야 한다.
- * 하지만 문제의 복잡도를 낮추기 위해 입력 타입을 Int로 제한한다.
+ * 힌트 : 함수의 선언 타입은 아래와 같다.
+ *       필요하다면 내부 함수를 별도로 생성하자.
  *
- * 힌트: 함수의 선언 타입은 아래와 같다.
  */
 
 fun main(args: Array<String>) {
-    val tree1 = EmptyTree.insert(5)
+    /*
+    주석을 해제하고 insert()를 구현해보세요.
+
+    val tree1 = EmptyTree.insertTailrec(5)
     require(tree1 == Node(5, EmptyTree, EmptyTree))
 
-    val tree2 = tree1.insert(3)
+    val tree2 = tree1.insertTailrec(3)
     require(tree2 ==
         Node(5,
             Node(3, EmptyTree, EmptyTree),
             EmptyTree)
     )
 
-    val tree3 = tree2.insert(10)
+    val tree3 = tree2.insertTailrec(10)
     require(tree3 ==
         Node(5,
             Node(3, EmptyTree, EmptyTree),
@@ -32,7 +33,7 @@ fun main(args: Array<String>) {
         )
     )
 
-    val tree4 = tree3.insert(20)
+    val tree4 = tree3.insertTailrec(20)
     require(tree4 ==
         Node(5,
             Node(3, EmptyTree, EmptyTree),
@@ -43,7 +44,7 @@ fun main(args: Array<String>) {
         )
     )
 
-    val tree5 = tree4.insert(4)
+    val tree5 = tree4.insertTailrec(4)
     require(tree5 ==
         Node(5,
             Node(3,
@@ -56,7 +57,7 @@ fun main(args: Array<String>) {
         )
     )
 
-    val tree6 = tree5.insert(2)
+    val tree6 = tree5.insertTailrec(2)
     require(tree6 ==
         Node(5,
             Node(3,
@@ -70,7 +71,7 @@ fun main(args: Array<String>) {
         )
     )
 
-    val tree7 = tree6.insert(8)
+    val tree7 = tree6.insertTailrec(8)
     require(tree7 ==
         Node(5,
             Node(3,
@@ -83,13 +84,7 @@ fun main(args: Array<String>) {
             )
         )
     )
+     */
 }
 
-fun Tree<Int>.insert(elem: Int): Tree<Int> =
-    when (this) {
-        EmptyTree -> Node(elem, EmptyTree, EmptyTree)
-        is Node -> when {
-            elem <= value -> Node(value, leftTree.insert(elem), rightTree)
-            else -> Node(value, leftTree, rightTree.insert(elem))
-        }
-    }
+tailrec fun Tree<Int>.insertTailrec(elem: Int): Tree<Int> = TODO()

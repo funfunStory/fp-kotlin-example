@@ -11,6 +11,7 @@ import fp.kotlin.example.chapter05.funListOf
  * maximum 함수를 foldLeft 함수를 사용해서 재작성 해보자.
  *
  * 힌트: 함수의 선언 타입은 아래와 같다.
+ *      리스트의 모든 값은 0보다 크고, size 는 1보다 크다.
  */
 
 fun main(args: Array<String>) {

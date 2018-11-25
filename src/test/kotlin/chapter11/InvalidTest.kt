@@ -1,6 +1,7 @@
 package chapter11
 
 import fp.kotlin.example.chapter11.composedInvalidFunctions
+import fp.kotlin.example.chapter11.init
 import fp.kotlin.example.chapter11.invalidAdd10
 import fp.kotlin.example.chapter11.invalidMinus5
 import kotlin.test.Test
@@ -17,12 +18,14 @@ class InvalidTest {
 
     @Test
     fun invalidAdd10Test() {
+        init()
         assertEquals(10, invalidAdd10(0))
         assertNotEquals(10, invalidAdd10(0))   // error
     }
 
     @Test
     fun invalidMinus5Test() {
+        init()
         assertEquals(-5, invalidMinus5(0))
         assertNotEquals(-5, invalidMinus5(0))   // error
     }

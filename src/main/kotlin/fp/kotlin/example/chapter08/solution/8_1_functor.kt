@@ -20,7 +20,8 @@ fun main(args: Array<String>) {
     val list = listOf(1, 2, 3, 4)
 
     val productWithList: (Int) -> List<Int> = { x ->
-        list.map(curriedProduct).map { it(x) }
+        list.map(curriedProduct)
+            .map { it(x) }
     }
 
     require(productWithList(5) == listOf(5, 10, 15, 20))

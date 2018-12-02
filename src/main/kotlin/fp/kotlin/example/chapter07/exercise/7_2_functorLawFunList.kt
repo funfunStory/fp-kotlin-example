@@ -20,4 +20,4 @@ fun main(args: Array<String>) {
     require(left == right)
 }
 
-fun <T> identy(value: T): T = value
+fun <T> identity(value: T): T = value

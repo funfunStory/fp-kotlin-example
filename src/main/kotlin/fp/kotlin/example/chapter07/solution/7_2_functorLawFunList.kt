@@ -13,7 +13,7 @@ fun main(args: Array<String>) {
     val funList: FunList<Int> = Cons(1, Cons(2, Cons(3, Nil)))
 
     // functor 1 lows
-    require(funList == funList.fmap { identy(it) })
+    require(funList == funList.fmap { identity(it) })
 
     // functor 2 lows
     val add5: (Int) -> Int = { it + 5 }
@@ -25,4 +25,4 @@ fun main(args: Array<String>) {
     require(left == right)
 }
 
-fun <T> identy(value: T): T = value
+fun <T> identity(value: T): T = value

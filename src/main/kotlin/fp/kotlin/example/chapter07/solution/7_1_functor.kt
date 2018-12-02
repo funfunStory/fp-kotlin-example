@@ -1,5 +1,7 @@
 package fp.kotlin.example.chapter07.solution
 
+import fp.kotlin.example.chapter07.Functor
+
 /**
  *
  * 연습문제 7-1
@@ -10,8 +12,8 @@ package fp.kotlin.example.chapter07.solution
  * 힌트 : 펑터의 의미에 집중하기 위해 꼬리 재귀나, 효율은 생각하지 않고 작성한다.
  */
 
-sealed class FunList<out A> {
-    abstract fun <B> fmap(f: (A) -> B): FunList<B>
+sealed class FunList<out A> : Functor<A> {
+    abstract override fun <B> fmap(f: (A) -> B): FunList<B>
     abstract fun first(): A
     abstract fun size(): Int
 }

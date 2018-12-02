@@ -4,7 +4,7 @@ import fp.kotlin.example.chapter05.FunList
 import fp.kotlin.example.chapter05.FunList.Cons
 import fp.kotlin.example.chapter05.FunList.Nil
 import fp.kotlin.example.chapter05.addHead
-import fp.kotlin.example.chapter05.funListOf
+import fp.kotlin.example.chapter05. funListOf
 import fp.kotlin.example.chapter05.reverse
 
 /**

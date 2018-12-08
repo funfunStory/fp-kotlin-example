@@ -1,5 +1,6 @@
 package fp.kotlin.example.chapter08.solution
 
+import fp.kotlin.example.chapter04.solution.curried
 import fp.kotlin.example.chapter07.Functor
 
 /**
@@ -45,7 +46,8 @@ infix fun <A, B> AFunList<(A) -> B>.apply(f: AFunList<A>): AFunList<B> = when (t
 fun main(args: Array<String>) {
 
     val funList: AFunList<(Int) -> Int> = AFunList.pure { x -> x * 3 }
-    require(funList apply ACons(1, ACons(2, ACons(3, ACons(4, ANil)))) ==
+    require(funList apply ACons(1, ACons(2, ACons(3, ACons(4, ANil))))
+        ==
         ACons(3, ACons(6, ACons(9, ACons(12, ANil)))))
 
     val funList2: AFunList<(Int) -> Int> =
@@ -53,12 +55,24 @@ fun main(args: Array<String>) {
             ACons({ it * 10 },
                 ACons<(Int) -> Int>({ it - 2 }, ANil)))
 
-    require(funList2 apply ACons(1, ACons(2, ACons(3, ANil))) ==
+    require(funList2 apply ACons(1, ACons(2, ACons(3, ANil)))
+        ==
         ACons(3, ACons(6, ACons(9,
             ACons(10, ACons(20, ACons(30,
                 ACons(-1, ACons(0, ACons(1, ANil))))))))))
 
     val funList3: AFunList<(Int) -> Int> = ANil
     require(funList3 apply ACons(1, ACons(2, ACons(3, ACons(4, ANil)))) == ANil)
+
+    val funList4: AFunList<(Int) -> (Int) -> Int> = AFunList.pure(
+        { x: Int, y: Int -> x + y }.curried())
+    require(
+        funList4
+            apply ACons(1, ACons(2, ACons(3, ANil)))
+            apply ACons(1, ACons(2, ACons(3, ANil)))
+            ==
+            ACons(2, ACons(3, ACons(4,
+                ACons(3, ACons(4, ACons(5,
+                    ACons(4, ACons(5, ACons(6, ANil))))))))))
 }
 

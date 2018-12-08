@@ -1,5 +1,6 @@
 package fp.kotlin.example.chapter08.exercise
 
+import fp.kotlin.example.chapter04.solution.curried
 import fp.kotlin.example.chapter07.Functor
 
 /**
@@ -51,5 +52,16 @@ fun main(args: Array<String>) {
 
     val funList3: AFunList<(Int) -> Int> = ANil
     require(funList3 apply ACons(1, ACons(2, ACons(3, ACons(4, ANil)))) == ANil)
+
+    val funList4: AFunList<(Int) -> (Int) -> Int> = AFunList.pure(
+        { x: Int, y: Int -> x + y }.curried())
+    require(
+        funList4
+            apply ACons(1, ACons(2, ACons(3, ANil)))
+            apply ACons(1, ACons(2, ACons(3, ANil)))
+            ==
+            ACons(2, ACons(3, ACons(4,
+                ACons(3, ACons(4, ACons(5,
+                    ACons(4, ACons(5, ACons(6, ANil))))))))))
 }
 

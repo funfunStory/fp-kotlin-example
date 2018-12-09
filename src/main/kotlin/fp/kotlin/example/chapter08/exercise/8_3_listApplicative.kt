@@ -28,7 +28,7 @@ data class ACons<A>(val head: A, val tail: AFunList<A>) : AFunList<A>() {
     override fun <B> fmap(f: (A) -> B): AFunList<B> = ACons(f(head), tail.fmap(f))
 }
 
-fun <A, B> AFunList.Companion.pure(value: (A) -> B): AFunList<(A) -> B> = TODO()
+fun <A> AFunList.Companion.pure(value: A): AFunList<A> = TODO()
 
 infix fun <A> AFunList<A>.append(other: AFunList<A>): AFunList<A> = TODO()
 

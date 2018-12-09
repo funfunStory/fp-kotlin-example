@@ -1,0 +1,30 @@
+package fp.kotlin.example.chapter08.solution
+
+import fp.kotlin.example.chapter04.solution.curried
+
+/**
+ *
+ * 연습문제 8-11
+ *
+ * 리스트 에도 동작하는 ``liftA2`` 함수를 추가해보자.
+ *
+ */
+fun main(args: Array<String>) {
+
+    val lifted = liftA2 { x: Int, y: Int -> x + y }
+    require(lifted(ACons(1, ANil), ACons(2, ANil)) == ACons(3, ANil))
+
+    val lifted2 = liftA2 { x: String, y: String -> x + y }
+    require(lifted2(ACons("Hello, ", ANil), ACons("Kotlin", ANil)) == ACons("Hello, Kotlin", ANil))
+
+    val lifted3 = liftA2 { x: Int, y: String -> x.toString() + y }
+    require(lifted3(ACons(10, ANil), ACons("Kotlin", ANil)) == ACons("10Kotlin", ANil))
+
+    require(lifted3(ACons(10, ACons(20, ANil)), ACons("Hello, ", ACons("Kotlin", ANil))) ==
+        ACons("10Hello, ", ACons("10Kotlin", ACons("20Hello, ", ACons("20Kotlin", ANil)))))
+
+}
+
+fun <A, B, R> liftA2(binaryFunction: (A, B) -> R) = { f1: AFunList<A>, f2: AFunList<B> ->
+    AFunList.pure(binaryFunction.curried()) apply f1 apply f2
+}

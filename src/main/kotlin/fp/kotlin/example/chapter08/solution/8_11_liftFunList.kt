@@ -6,7 +6,7 @@ import fp.kotlin.example.chapter04.solution.curried
  *
  * 연습문제 8-11
  *
- * 리스트 에도 동작하는 ``liftA2`` 함수를 추가해보자.
+ * AFunList 에도 동작하는 ``liftA2`` 함수를 추가해보자.
  *
  */
 fun main(args: Array<String>) {
@@ -25,6 +25,6 @@ fun main(args: Array<String>) {
 
 }
 
-fun <A, B, R> liftA2(binaryFunction: (A, B) -> R) = { f1: AFunList<A>, f2: AFunList<B> ->
+private fun <A, B, R> liftA2(binaryFunction: (A, B) -> R): (AFunList<A>, AFunList<B>)-> AFunList<R>  = { f1: AFunList<A>, f2: AFunList<B> ->
     AFunList.pure(binaryFunction.curried()) apply f1 apply f2
 }

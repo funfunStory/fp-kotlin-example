@@ -6,7 +6,7 @@ import fp.kotlin.example.chapter04.solution.curried
  *
  * 연습문제 8-11
  *
- * 리스트 에도 동작하는 ``liftA2`` 함수를 추가해보자.
+ * AFunList 에도 동작하는 ``liftA2`` 함수를 추가해보자.
  *
  */
 fun main(args: Array<String>) {
@@ -24,4 +24,4 @@ fun main(args: Array<String>) {
         ACons("10Hello, ", ACons("10Kotlin", ACons("20Hello, ", ACons("20Kotlin", ANil)))))
 }
 
-fun <A, B, R> liftA2(binaryFunction: (A, B) -> R): (AFunList<A>, AFunList<B>) -> AFunList<R> = TODO()
+private fun <A, B, R> liftA2(binaryFunction: (A, B) -> R): (AFunList<A>, AFunList<B>) -> AFunList<R> = TODO()

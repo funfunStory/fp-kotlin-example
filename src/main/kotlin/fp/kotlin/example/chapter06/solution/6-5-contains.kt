@@ -1,6 +1,9 @@
 package fp.kotlin.example.chapter06.solution
 
 /**
+ *
+ * 연습문제 6-5
+ *
  * 6-1에서 만든 이진 트리에 어떤 노드가 존재하는지 확인하는 contains 함수를 추가해보자.
  *
  * 주의사항 : 문제의 복잡도를 낮추기 위해 입력 타입을 Int로 제한한다.
@@ -33,9 +36,9 @@ fun Tree<Int>.contains(elem: Int): Boolean = when (this) {
         true
     } else {
         if (elem <= value) {
-            left.contains(elem)
+            leftTree.contains(elem)
         } else {
-            right.contains(elem)
+            rightTree.contains(elem)
         }
     }
 }

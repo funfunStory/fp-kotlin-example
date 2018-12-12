@@ -4,17 +4,12 @@ fun main(args: Array<String>) {
     val ints: List<Int> = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
     // 명령형 프로그래밍 예
-    val twiceInts: ArrayList<Int> = ArrayList()
-
-    for (i in 0 until ints.size) {
-        twiceInts.add(ints[i] * 2)
-    }
-
     val over10Values: ArrayList<Int> = ArrayList()
 
-    for (i in 0 until twiceInts.size){
-        if(twiceInts[i] > 10){
-            over10Values.add(twiceInts[i])
+    for (i in 0 until ints.size) {
+        val twiceInt = ints[i] * 2
+        if(twiceInt > 10){
+            over10Values.add(twiceInt)
         }
     }
 

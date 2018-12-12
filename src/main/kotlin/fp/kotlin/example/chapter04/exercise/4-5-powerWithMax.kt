@@ -7,8 +7,14 @@ package fp.kotlin.example.chapter04.exercise
  */
 
 fun main(args: Array<String>) {
-    TODO()
+    val list = listOf(1, 2, 3, 4, 5, 6, 7)
+    val list2 = listOf(10, 2, 13, 4, 0, 6, 1)
+
+    require(power(max(list)) == 49)
+    require(power(max(list2)) == 169)
+
 }
 
+val max: (List<Int>) -> Int = { list: List<Int> -> TODO() }
 
-
+val power: (Int) -> Int = { value -> TODO() }

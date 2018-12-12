@@ -14,42 +14,33 @@ interface Backend : Developer {
     }
 
     override val language: String
-        get() = "Java"
+        get() = "Haskell"
 }
 
 interface Frontend : Developer {
-
     fun drawUI(): String {
         return "drawUI"
     }
 
     override val language: String
-        get() = "JavaScript"
+        get() = "Elm"
 }
 
-class FullStack() : Frontend , Backend {
-
+class FullStack : Frontend, Backend {
     override val language: String
-        get() = super<Backend>.language + super<Frontend>.language
-
-    override fun writeCode() {
-        super<Backend>.writeCode()
-        super<Frontend>.writeCode()
-    }
+        get() = super<Frontend>.language + super<Backend>.language
 }
 
+fun main(args: Array<String>) {
+    val frontend = object : Frontend {}
+    val backend = object : Backend {}
 
-class FullStack2(val frontend: Frontend, val backend: Backend) : Frontend by frontend, Backend by backend {
+    frontend.writeCode()    // write Elm
+    backend.writeCode()     // write Haskell
 
-    override val language: String
-        get() = frontend.language + backend.language
+    val fullStack = FullStack()
 
-    override fun writeCode() {
-        backend.writeCode()
-        frontend.writeCode()
-    }
+    fullStack.writeCode()  // write ElmHaskell
+    println(fullStack.drawUI())     // drawUI
+    println(fullStack.operateEnvironment()) // operateEnvironment
 }
-
-
-
-

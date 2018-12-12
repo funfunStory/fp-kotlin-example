@@ -1,28 +1,32 @@
 package chapter11
 
 import fp.kotlin.example.chapter11.composedInvalidFunctions
+import fp.kotlin.example.chapter11.init
 import fp.kotlin.example.chapter11.invalidAdd10
 import fp.kotlin.example.chapter11.invalidMinus5
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNotEquals
 
 class InvalidTest {
     val list = listOf(1, 2, 3, 4, 5)
 
     @Test
     fun composedInvalidFunctionsTest() {
-        assertEquals(composedInvalidFunctions(list), listOf(6, 7, 8, 9, 10))    // error
+        assertNotEquals(composedInvalidFunctions(list), listOf(6, 7, 8, 9, 10))    // error
     }
 
     @Test
     fun invalidAdd10Test() {
+        init()
         assertEquals(10, invalidAdd10(0))
-        assertEquals(10, invalidAdd10(0))   // error
+        assertNotEquals(10, invalidAdd10(0))   // error
     }
 
     @Test
     fun invalidMinus5Test() {
+        init()
         assertEquals(-5, invalidMinus5(0))
-        assertEquals(-5, invalidMinus5(0))   // error
+        assertNotEquals(-5, invalidMinus5(0))   // error
     }
 }

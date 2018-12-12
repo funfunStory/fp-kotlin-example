@@ -52,7 +52,7 @@ fun add2(list: FunList<Int>): FunList<Int> = when (list) {
 
 fun product2(list: FunList<Double>): FunList<Double> = when (list) {
     FunList.Nil -> Nil
-    is FunList.Cons -> FunList.Cons(list.head, product2(list.tail))
+    is FunList.Cons -> FunList.Cons(list.head * 2, product2(list.tail))
 }
 
 fun sum(list: FunList<Int>): Int = when (list) {

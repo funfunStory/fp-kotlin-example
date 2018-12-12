@@ -20,6 +20,9 @@ fun main(args: Array<String>) {
 
     val intList = Cons(1, Cons(2, Cons(3, Nil)))
     require(intList.drop(1) == funListOf(2, 3))
+    require(intList.drop(2) == funListOf(3))
+    require(intList.drop(3) == Nil)
+    require(intList.drop(4) == Nil)
 }
 
 tailrec fun <T> FunList<T>.drop(n: Int): FunList<T> = TODO()

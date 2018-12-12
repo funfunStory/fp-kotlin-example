@@ -18,4 +18,4 @@ fun main(args: Array<String>) {
     require(list.filterByFoldLeft { it % 2 == 0 } == funListOf(2, 4))
 }
 
-fun <T> FunList<T>.filterByFoldLeft(f: (T) -> Boolean): FunList<T> = TODO()
+fun <T> FunList<T>.filterByFoldLeft(p: (T) -> Boolean): FunList<T> = TODO()

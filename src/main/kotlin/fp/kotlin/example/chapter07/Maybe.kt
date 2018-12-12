@@ -7,33 +7,23 @@ fun main(args: Array<String>) {
 
 sealed class Maybe<out A> : Functor<A> {
 
-    abstract fun get(): A
-
-    abstract fun isEmpty(): Boolean
-
     abstract override fun toString(): String
 
-    abstract override fun <B> fmap(transform: (A) -> B): Maybe<B>
+    abstract override fun <B> fmap(f: (A) -> B): Maybe<B>
+
+    companion object
 }
 
 data class Just<out A>(val value: A) : Maybe<A>() {
 
-    override fun get(): A = value
-
-    override fun isEmpty(): Boolean = false
-
     override fun toString(): String = "Just($value)"
 
-    override fun <B> fmap(transform: (A) -> B): Maybe<B> = Just(transform(value))
+    override fun <B> fmap(f: (A) -> B): Maybe<B> = Just(f(value))
 }
 
 object Nothing : Maybe<kotlin.Nothing>() {
 
-    override fun get(): kotlin.Nothing = throw NoSuchElementException("Has no value")
-
-    override fun isEmpty(): Boolean = true
-
     override fun toString(): String = "Nothing"
 
-    override fun <B> fmap(transform: (kotlin.Nothing) -> B): Maybe<B> = Nothing
+    override fun <B> fmap(f: (kotlin.Nothing) -> B): Maybe<B> = Nothing
 }

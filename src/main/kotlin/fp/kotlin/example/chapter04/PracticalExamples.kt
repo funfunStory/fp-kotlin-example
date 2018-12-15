@@ -22,7 +22,7 @@ fun main(args: Array<String>) {
     println(result3)    // [ac, bd]
 
     val product = { p1: Int, p2: Int -> p1 * p2 }
-    val result4 = zipWith(product, replicate(3, 5), listOf(1..5).flatten())
+    val result4 = zipWith(product, replicate(3, 5), (1..5).toList())
     println(result4)    // [5, 10, 15]
 }
 

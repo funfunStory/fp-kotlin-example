@@ -13,8 +13,8 @@ fun main(args: Array<String>) {
     val function: (Int) -> Int = { x: Int -> x * 10 }
     val value = 10
 
-    val left = AFunList.pure(function) apply AFunList.pure(value)
-    val right = AFunList.pure(of<Int, Int>(value)) apply AFunList.pure(function)
+    val left = FunList.pure(function) apply FunList.pure(value)
+    val right = FunList.pure(of<Int, Int>(value)) apply FunList.pure(function)
 
     require(left == right)
 }

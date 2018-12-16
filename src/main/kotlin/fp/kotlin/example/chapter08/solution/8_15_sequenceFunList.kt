@@ -6,30 +6,30 @@ import fp.kotlin.example.chapter04.solution.curried
  *
  * 연습문제 8-15
  *
- * AFunList 에도 동작하는 ``sequenceA`` 함수를 추가하고 테스트 해보자.
+ * FunList 에도 동작하는 ``sequenceA`` 함수를 추가하고 테스트 해보자.
  *
  */
 fun main(args: Array<String>) {
 
-    val listOfList = ACons(ACons(1, ACons(2, ACons(3, ANil))), ANil)
+    val listOfList = Cons(Cons(1, Cons(2, Cons(3, Nil))), Nil)
     require(sequenceAByFoldRight(listOfList) ==
-        ACons(
-            ACons(1, ANil),
-            ACons(
-                ACons(2, ANil),
-                ACons(
-                    ACons(3, ANil),
-                    ANil)
+        Cons(
+            Cons(1, Nil),
+            Cons(
+                Cons(2, Nil),
+                Cons(
+                    Cons(3, Nil),
+                    Nil)
             )
         )
     )
 }
 
-private fun <T> cons() = { x: T, xs: AFunList<T> -> ACons(x, xs) }
+private fun <T> cons() = { x: T, xs: FunList<T> -> Cons(x, xs) }
 
-private fun <T> sequenceAByFoldRight(listOfList: AFunList<AFunList<T>>): AFunList<AFunList<T>> =
+private fun <T> sequenceAByFoldRight(listOfList: FunList<FunList<T>>): FunList<FunList<T>> =
     when (listOfList) {
-        ANil -> ACons(ANil, ANil)
-        is ACons -> AFunList.pure(
+        Nil -> Cons(Nil, Nil)
+        is Cons -> FunList.pure(
             cons<T>().curried()) apply listOfList.head apply sequenceAByFoldRight(listOfList.tail)
     }

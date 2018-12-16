@@ -1,7 +1,7 @@
 package fp.kotlin.example.chapter08.solution
 
 import fp.kotlin.example.chapter08.Applicative
-import fp.kotlin.example.chapter08.solution.FunList.Companion.pure
+import fp.kotlin.example.chapter08.solution.AFunList.Companion.pure
 
 
 /**
@@ -12,37 +12,37 @@ import fp.kotlin.example.chapter08.solution.FunList.Companion.pure
  *
  */
 
-sealed class FunList<out A> : Applicative<A> {
+sealed class AFunList<out A> : Applicative<A> {
 
     companion object {
-        fun <V> pure(value: V): Cons<V> = Nil.pure(value)
+        fun <V> pure(value: V): ACons<V> = ANil.pure(value)
     }
 
-    abstract override fun <B> fmap(f: (A) -> B): FunList<B>
-    override fun <V> pure(value: V): Cons<V> = Cons(value, Nil)
-    abstract override fun <B> apply(ff: Applicative<(A) -> B>): FunList<B>
+    abstract override fun <B> fmap(f: (A) -> B): AFunList<B>
+    override fun <V> pure(value: V): ACons<V> = ACons(value, ANil)
+    abstract override fun <B> apply(ff: Applicative<(A) -> B>): AFunList<B>
     abstract fun first(): A
     abstract fun size(): Int
 }
 
-object Nil : FunList<Nothing>() {
+object ANil : AFunList<Nothing>() {
 
-    override fun <B> fmap(f: (Nothing) -> B): FunList<B> = Nil
+    override fun <B> fmap(f: (Nothing) -> B): AFunList<B> = ANil
 
-    override fun <B> apply(ff: Applicative<(Nothing) -> B>): FunList<B> = Nil
+    override fun <B> apply(ff: Applicative<(Nothing) -> B>): AFunList<B> = ANil
 
     override fun first(): Nothing = throw NoSuchElementException()
 
     override fun size(): Int = 0
 }
 
-data class Cons<A>(val head: A, val tail: FunList<A>) : FunList<A>() {
+data class ACons<A>(val head: A, val tail: AFunList<A>) : AFunList<A>() {
 
-    override fun <B> fmap(f: (A) -> B): FunList<B> = Cons(f(head), tail.fmap(f))
+    override fun <B> fmap(f: (A) -> B): AFunList<B> = ACons(f(head), tail.fmap(f))
 
-    override fun <B> apply(ff: Applicative<(A) -> B>): FunList<B> = when (ff) {
-        is Cons -> Cons(ff.head(head), tail.apply(ff))
-        else -> Nil
+    override fun <B> apply(ff: Applicative<(A) -> B>): AFunList<B> = when (ff) {
+        is ACons -> ACons(ff.head(head), tail.apply(ff))
+        else -> ANil
     }
 
     override fun first() = head
@@ -53,17 +53,17 @@ data class Cons<A>(val head: A, val tail: FunList<A>) : FunList<A>() {
 
 fun main(args: Array<String>) {
 
-    require(pure(1) == Cons(1, Nil))
+    require(pure(1) == ACons(1, ANil))
 
-    require(pure(1).fmap { it * 10 } == Cons(10, Nil))
-    require(Nil.fmap { a: Int -> a * 10 } == Nil)
+    require(pure(1).fmap { it * 10 } == ACons(10, ANil))
+    require(ANil.fmap { a: Int -> a * 10 } == ANil)
 
-    require(pure(1).fmap { it * 10 } == Cons(10, Nil))
-    require(Nil.fmap { a: Int -> a * 10 } == Nil)
+    require(pure(1).fmap { it * 10 } == ACons(10, ANil))
+    require(ANil.fmap { a: Int -> a * 10 } == ANil)
 
-    require(pure(1) apply pure { x: Int -> x * 10 } == Cons(10, Nil))
-    require(Nil apply pure({ x: Int -> x * 10 }) == Nil)
+    require(pure(1) apply pure { x: Int -> x * 10 } == ACons(10, ANil))
+    require(ANil apply pure({ x: Int -> x * 10 }) == ANil)
 
-    require(Cons(1, Cons(2, Cons(3, Cons(4, Nil)))) apply pure { x: Int -> x * 10 } ==
-        Cons(10, Cons(20, Cons(30, Cons(40, Nil)))))
+    require(ACons(1, ACons(2, ACons(3, ACons(4, ANil)))) apply pure { x: Int -> x * 10 } ==
+        ACons(10, ACons(20, ACons(30, ACons(40, ANil)))))
 }

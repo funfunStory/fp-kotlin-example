@@ -15,25 +15,25 @@ import fp.kotlin.example.chapter08.pure
  */
 fun main(args: Array<String>) {
 
-    val treeList: ACons<Node<Int>> = ACons(Node(1), ACons(Node(2), ACons(Node(3), ANil)))
-    require(sequenceAByFoldRight(treeList) == Node(ACons(1, ACons(2, ACons(3, ANil)))))
+    val treeList: Cons<Node<Int>> = Cons(Node(1), Cons(Node(2), Cons(Node(3), Nil)))
+    require(sequenceAByFoldRight(treeList) == Node(Cons(1, Cons(2, Cons(3, Nil)))))
 
-    val treeList2: ACons<Node<Int>> = ACons(Node(1, listOf(Node(2), Node(3))), ACons(Node(2), ACons(Node(3), ANil)))
+    val treeList2: Cons<Node<Int>> = Cons(Node(1, listOf(Node(2), Node(3))), Cons(Node(2), Cons(Node(3), Nil)))
     require(sequenceAByFoldRight(treeList2) ==
-        Node(ACons(1, ACons(2, ACons(3, ANil))),
+        Node(Cons(1, Cons(2, Cons(3, Nil))),
             listOf(
-                Node(ACons(2, ACons(2, ACons(3, ANil)))),
-                Node(ACons(3, ACons(2, ACons(3, ANil))))
+                Node(Cons(2, Cons(2, Cons(3, Nil)))),
+                Node(Cons(3, Cons(2, Cons(3, Nil))))
             )
         )
     )
 }
 
-private fun <T> cons() = { x: T, xs: AFunList<T> -> ACons(x, xs) }
+private fun <T> cons() = { x: T, xs: FunList<T> -> Cons(x, xs) }
 
-private fun <T> sequenceAByFoldRight(treeList: AFunList<Node<T>>): Node<AFunList<T>> =
+private fun <T> sequenceAByFoldRight(treeList: FunList<Node<T>>): Node<FunList<T>> =
     when (treeList) {
-        ANil -> Node(ANil)
-        is ACons -> Tree.pure(cons<T>().curried()) apply treeList.head apply sequenceAByFoldRight(
+        Nil -> Node(Nil)
+        is Cons -> Tree.pure(cons<T>().curried()) apply treeList.head apply sequenceAByFoldRight(
             treeList.tail)
     }

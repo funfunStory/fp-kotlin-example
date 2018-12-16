@@ -2,7 +2,6 @@ package fp.kotlin.example.chapter08.solution
 
 import fp.kotlin.example.chapter04.solution.curried
 
-
 /**
  *
  * 연습문제 8-1
@@ -11,7 +10,6 @@ import fp.kotlin.example.chapter04.solution.curried
  * 만들어진 리스트에 여러가지 값을 넣어서 테스트해보자. 예를들어 5를 넣으면 [5, 10, 15, 20]이 되어야 한다.
  *
  */
-
 
 fun main(args: Array<String>) {
 

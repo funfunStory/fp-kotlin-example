@@ -11,7 +11,7 @@ package fp.kotlin.example.chapter08.exercise
 fun main(args: Array<String>) {
 
     require(TODO() ==
-        ACons(1, ACons(2, ANil)))
+        Cons(1, Cons(2, Nil)))
     
 }
 

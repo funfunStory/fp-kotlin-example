@@ -4,6 +4,14 @@ import fp.kotlin.example.chapter05.FunList
 import fp.kotlin.example.chapter05.funListOf
 import fp.kotlin.example.chapter09.Monoid
 
+/**
+ *
+ * 연습문제 9-7
+ *
+ * FunList 모노이드를 만들어보자.
+ *
+ */
+
 fun main(args: Array<String>) {
 
     val x = funListOf(1, 2, 3)

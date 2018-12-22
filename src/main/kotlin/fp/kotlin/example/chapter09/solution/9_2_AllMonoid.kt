@@ -12,13 +12,13 @@ import fp.kotlin.example.chapter09.Monoid
 
 
 fun main(args: Array<String>) {
-    val allMonoid : AallMonoid = AallMonoid()
+    val allMonoid : AllMonoid = AllMonoid()
 
     require(allMonoid.mappend(true, allMonoid.mempty()) == true)
     require(allMonoid.mappend(false, allMonoid.mempty()) == false)
 }
 
-class AallMonoid : Monoid<Boolean> {
+class AllMonoid : Monoid<Boolean> {
     override fun mempty(): Boolean = true
 
     override fun mappend(m1: Boolean, m2: Boolean): Boolean = m1 && m2

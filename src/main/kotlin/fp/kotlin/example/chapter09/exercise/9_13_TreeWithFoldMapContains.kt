@@ -1,9 +1,9 @@
 package fp.kotlin.example.chapter09.exercise
 
 /**
- * 연습문제 9-12
+ * 연습문제 9-13
  *
- * ``foldMap`` 함수를 사용하여 Foldable 리스트에 ``contains`` 함수를 구현해보자.
+ * ``foldMap`` 함수를 사용하여 Foldable 트리에 ``contains`` 함수를 구현해보자.
  *
  */
 

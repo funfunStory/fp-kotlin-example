@@ -1,6 +1,7 @@
 package fp.kotlin.example.chapter09.solution
 
 import fp.kotlin.example.chapter05.FunList
+import fp.kotlin.example.chapter05.concat
 import fp.kotlin.example.chapter05.funListOf
 import fp.kotlin.example.chapter09.Monoid
 
@@ -31,6 +32,6 @@ class FunListMonoid<T> : Monoid<FunList<T>> {
 
     override fun mappend(m1: FunList<T>, m2: FunList<T>): FunList<T> = when (m1) {
         FunList.Nil -> m2
-        is FunList.Cons -> FunList.Cons(m1.head, FunListMonoid<T>().mappend(m1.tail, m2))
+        is FunList.Cons -> m1 concat m2
     }
 }

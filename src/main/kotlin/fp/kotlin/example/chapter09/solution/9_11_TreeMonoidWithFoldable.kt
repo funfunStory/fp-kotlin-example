@@ -58,12 +58,7 @@ data class Node<out T>(val value: T, val forest: FunList<Node<T>> = Nil) : Tree<
 
     override fun <B> foldLeft(acc: B, f: (B, T) -> B): B = when (forest) {
         Nil -> f(acc, value)
-        is Cons -> {
-            val rights = forest.tail
-            val left = forest.head.foldLeft(acc, f)
-            val root = f(left, value)
-            loop(rights, f, root)
-        }
+        is Cons -> f(loop(forest, f, acc), value)
     }
 
     private tailrec fun <B> loop(list: FunList<Node<T>>, f: (B, T) -> B, acc: B): B = when (list) {

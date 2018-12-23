@@ -1,14 +1,12 @@
 package fp.kotlin.example.chapter09.solution
 
-
 /**
  *
  * 연습문제 9-3
  *
  * Any 모노이드가 모노이드의 법칙을 만족하는지 테스트해보자.
- *®
+ *
  */
-
 
 fun main(args: Array<String>) {
     val x = true

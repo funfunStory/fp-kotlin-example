@@ -4,12 +4,14 @@ import fp.kotlin.example.chapter09.Foldable
 import fp.kotlin.example.chapter09.SumMonoid
 
 /**
+ *
  * 연습문제 9-11
  *
  * 일반 트리를 Foldable 타입클래스의 인스턴스로 만들고, ``foldLeft``, ``foldMap`` 함수의 동작을 테스트해보자.
  * 이때 트리의 노드는 값 ``val value: A``와 하위 트리의 리스트인 ``val forest: FunList<Node<A>>``를 프로퍼티로 가진다.
  *
- * 힌트 : 힌트 : 후위 탐색(post-order) 로 트리를 순회한다.
+ * 힌트 : 후위 탐색(post-order) 로 트리를 순회한다.
+ *
  */
 
 fun main(args: Array<String>) {

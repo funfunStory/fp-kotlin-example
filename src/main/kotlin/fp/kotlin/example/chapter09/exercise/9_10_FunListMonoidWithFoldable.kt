@@ -4,6 +4,7 @@ import fp.kotlin.example.chapter09.Foldable
 import fp.kotlin.example.chapter09.SumMonoid
 
 /**
+ *
  * 연습문제 9-10
  *
  * FunList 모노이드를 Foldable 타입클래스의 인스턴스로 만들어서 ``foldLeft`` 함수를 작성하고, ``foldMap`` 함수를 테스트해보자.

@@ -7,15 +7,14 @@ import fp.kotlin.example.chapter09.Monoid
  * 연습문제 9-2
  *
  * ``&&`` 연산을 All 모노이드로 만들어보자.
- *®
+ *
  */
 
-
 fun main(args: Array<String>) {
-    val allMonoid : AllMonoid = AllMonoid()
-
-    require(allMonoid.mappend(true, allMonoid.mempty()) == true)
-    require(allMonoid.mappend(false, allMonoid.mempty()) == false)
+    AllMonoid().run {
+        require(mappend(true, mempty()))
+        require(!mappend(false, mempty()))
+    }
 }
 
 class AllMonoid : Monoid<Boolean> {

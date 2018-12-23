@@ -4,6 +4,7 @@ import fp.kotlin.example.chapter05.FunList
 import fp.kotlin.example.chapter05.funListOf
 
 /**
+ *
  * 연습문제 9-14
  *
  * ``foldMap`` 함수를 활용해서 Tree를 FunList를  변환하는 함수 ``toFunList``를 작성해보자.

@@ -1,6 +1,7 @@
 package fp.kotlin.example.chapter09.exercise
 
 import fp.kotlin.example.chapter09.Monoid
+import fp.kotlin.example.chapter09.solution.AnyMonoid
 
 /**
  *
@@ -10,12 +11,11 @@ import fp.kotlin.example.chapter09.Monoid
  *
  */
 
-
 fun main(args: Array<String>) {
-    val anyMonoid: AnyMonoid = AnyMonoid()
-
-    require(anyMonoid.mappend(true, anyMonoid.mempty()) == true)
-    require(anyMonoid.mappend(false, anyMonoid.mempty()) == false)
+    AnyMonoid().apply {
+        require(mappend(true, mempty()))
+        require(!mappend(false, mempty()))
+    }
 }
 
 class AnyMonoid : Monoid<Boolean> {

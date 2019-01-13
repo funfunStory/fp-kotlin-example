@@ -40,6 +40,8 @@ sealed class Maybe<out A> : Monad<A> {
         fun <V> pure(value: V) : Maybe<V> = Just(0).pure(value)
     }
 
+    override fun <B> fmap(f: (A) -> B): Maybe<B> = super.fmap(f) as Maybe<B>
+
     override fun <V> pure(value: V): Maybe<V> = Just(value)
 
     override infix fun <B> flatMap(f: (A) -> Monad<B>): Maybe<B> = when (this) {
@@ -59,7 +61,7 @@ object Nothing : Maybe<kotlin.Nothing>() {
 }
 
 infix fun <A, B> Maybe<(A) -> B>.apply(f: Maybe<A>): Maybe<B> = when (this) {
-    is Just -> f.fmap(value) as Maybe<B>
+    is Just -> f.fmap(value)
     Nothing -> Nothing
 }
 

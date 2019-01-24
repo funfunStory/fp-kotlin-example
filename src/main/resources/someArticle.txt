@@ -1,0 +1,5 @@
+Why Kotlin?
+Drastically reduce the amount of boilerplate code.
+Avoid entire classes of errors such as null pointer exceptions.
+Leverage existing libraries for the JVM, Android, and the browser.
+Choose any Java IDE or build from the command line.

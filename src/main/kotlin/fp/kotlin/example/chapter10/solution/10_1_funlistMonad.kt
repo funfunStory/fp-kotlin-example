@@ -16,6 +16,11 @@ fun main() {
     val result = funlist.flatMap { Cons(it, Cons(it*2, Cons(it*3, Nil))) }
 
     require(result == Cons(1, Cons(2, Cons(3, Cons(2, Cons(4, Cons(6, Cons(3, Cons(6, Cons(9, Nil))))))))))
+
+    val nilList = Nil
+    val nilResult = nilList.flatMap { x: Int -> Cons(x, Cons(x*2, Cons(x*3, Nil))) }
+
+    require(nilResult == Nil)
 }
 
 sealed class FunList <out A>: Monad<A> {

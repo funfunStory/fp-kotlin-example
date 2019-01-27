@@ -12,8 +12,8 @@ import fp.kotlin.example.chapter10.Monad
  */
 
 fun main() {
-    val funlist = Cons(1,Cons(2, Cons(3, Nil)))
-    val result = funlist.flatMap { Cons(it, Cons(it*2, Cons(it*3, Nil))) }
+    val funList = Cons(1,Cons(2, Cons(3, Nil)))
+    val result = funList.flatMap { Cons(it, Cons(it*2, Cons(it*3, Nil))) }
 
     require(result == Cons(1, Cons(2, Cons(3, Cons(2, Cons(4, Cons(6, Cons(3, Cons(6, Cons(9, Nil))))))))))
 
@@ -38,6 +38,13 @@ sealed class FunList <out A>: Monad<A> {
         this is Cons && other is Cons -> Cons(this.head, this.tail.mappend(other))
         else -> Nil
     }
+
+    infix fun <A, B> FunList<(A) -> B>.apply(f: FunList<A>): FunList<B> = when (this) {
+        Nil -> Nil
+        is Cons -> Cons(f.fmap(head) as B, tail.apply(f))
+    }
+
+    infix fun <B> leadTo(m: FunList<B>): FunList<B> = flatMap { m } as FunList
 }
 
 data class Cons<out A>(val head: A, val tail: FunList<A>) : FunList<A>()

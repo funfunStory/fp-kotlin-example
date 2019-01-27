@@ -37,10 +37,7 @@ infix fun <A> FunList<A>.append(other: FunList<A>): FunList<A> = when (this) {
 
 infix fun <A, B> FunList<(A) -> B>.apply(f: FunList<A>): FunList<B> = when (this) {
     Nil -> Nil
-    is Cons -> when (f) {
-        Nil -> Nil
-        is Cons -> f.fmap(head) append (tail apply f)
-    }
+    is Cons -> f.fmap(head) append (tail apply f)
 }
 
 fun main(args: Array<String>) {

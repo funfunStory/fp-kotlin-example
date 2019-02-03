@@ -26,7 +26,7 @@ fun main() {
 sealed class FunList<out A> : Monad<A> {
 
     companion object {
-        fun <V> pure(value: V): FunList<V> = TODO()
+        infix fun <V> pure(value: V): FunList<V> = TODO()
     }
 
     override infix fun <V> pure(value: V): Monad<V> = TODO()

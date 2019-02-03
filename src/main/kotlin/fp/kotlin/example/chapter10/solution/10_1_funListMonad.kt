@@ -26,7 +26,7 @@ fun main() {
 sealed class FunList<out A> : Monad<A> {
 
     companion object {
-        fun <V> pure(value: V): FunList<V> = Cons(0, Nil).pure(value) as FunList<V>
+        infix fun <V> pure(value: V): FunList<V> = Cons(0, Nil).pure(value) as FunList<V>
     }
 
     override infix fun <V> pure(value: V): Monad<V> = when (this) {

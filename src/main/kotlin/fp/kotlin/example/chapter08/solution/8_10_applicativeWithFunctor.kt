@@ -13,8 +13,8 @@ fun main(args: Array<String>) {
     val function: (Int) -> Int = { x: Int -> x * 10 }
     val value = 10
 
-    val applicative = AFunList.pure(function) apply AFunList.pure(value)
-    val functor = AFunList.pure(value).fmap(function)
+    val applicative = FunList.pure(function) apply FunList.pure(value)
+    val functor = FunList.pure(value).fmap(function)
 
     require(applicative == functor)
 }

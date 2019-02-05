@@ -11,7 +11,7 @@ package fp.kotlin.example.chapter08.exercise
 fun main(args: Array<String>) {
 
     val function: (Int) -> Int = { x: Int -> x * 10 }
-    val value: AFunList<Int> = ACons(10, ACons(20, ANil))
+    val value: FunList<Int> = Cons(10, Cons(20, Nil))
 
     val left = TODO()
     val right = TODO()

@@ -7,61 +7,61 @@ import fp.kotlin.example.chapter07.Functor
  *
  * 연습문제 8-3
  *
- * 리스트만들고 펑터를 상속받고, ``pure``와 ``apply ``를 확장 함수로 작성해서 리스트 애플리케이티브 펑터를 만들고 테스트해보자.
+ * 펑터를 상속받은 리스트를 만들고, ``pure``와 ``apply``를 확장 함수로 작성해서 리스트 애플리케이티브 펑터를 만들고 테스트해보자.
  *
- * 힌트 : list 2개를 합치는 확장함수 append 를만들어서 활용해도 된다.
- *       기본코드는 다음과 같다.
+ * 힌트 : list 2개를 합치는 확장함수 append 를 만들어서 활용해도 된다.
+ * 기본코드는 다음과 같다.
  *
  */
 
-sealed class AFunList<out A> : Functor<A> {
-    abstract override fun <B> fmap(f: (A) -> B): AFunList<B>
+sealed class FunList<out A> : Functor<A> {
+    abstract override fun <B> fmap(f: (A) -> B): FunList<B>
 
     companion object
 }
 
-object ANil : AFunList<Nothing>() {
-    override fun <B> fmap(f: (Nothing) -> B): AFunList<B> = ANil
+object Nil : FunList<Nothing>() {
+    override fun <B> fmap(f: (Nothing) -> B): FunList<B> = Nil
 }
 
-data class ACons<A>(val head: A, val tail: AFunList<A>) : AFunList<A>() {
-    override fun <B> fmap(f: (A) -> B): AFunList<B> = ACons(f(head), tail.fmap(f))
+data class Cons<A>(val head: A, val tail: FunList<A>) : FunList<A>() {
+    override fun <B> fmap(f: (A) -> B): FunList<B> = Cons(f(head), tail.fmap(f))
 }
 
-fun <A> AFunList.Companion.pure(value: A): AFunList<A> = TODO()
+fun <A> FunList.Companion.pure(value: A): FunList<A> = TODO()
 
-infix fun <A> AFunList<A>.append(other: AFunList<A>): AFunList<A> = TODO()
+infix fun <A> FunList<A>.append(other: FunList<A>): FunList<A> = TODO()
 
-infix fun <A, B> AFunList<(A) -> B>.apply(f: AFunList<A>): AFunList<B> = TODO()
+infix fun <A, B> FunList<(A) -> B>.apply(f: FunList<A>): FunList<B> = TODO()
 
 fun main(args: Array<String>) {
 
-    val funList: AFunList<(Int) -> Int> = AFunList.pure { x -> x * 3 }
-    require(funList apply ACons(1, ACons(2, ACons(3, ACons(4, ANil)))) ==
-        ACons(3, ACons(6, ACons(9, ACons(12, ANil)))))
+    val funList: FunList<(Int) -> Int> = FunList.pure { x -> x * 3 }
+    require(funList apply Cons(1, Cons(2, Cons(3, Cons(4, Nil)))) ==
+        Cons(3, Cons(6, Cons(9, Cons(12, Nil)))))
 
-    val funList2: AFunList<(Int) -> Int> =
-        ACons({ it * 3 },
-            ACons({ it * 10 },
-                ACons<(Int) -> Int>({ it - 2 }, ANil)))
+    val funList2: FunList<(Int) -> Int> =
+        Cons({ it * 3 },
+            Cons({ it * 10 },
+                Cons<(Int) -> Int>({ it - 2 }, Nil)))
 
-    require(funList2 apply ACons(1, ACons(2, ACons(3, ANil))) ==
-        ACons(3, ACons(6, ACons(9,
-            ACons(10, ACons(20, ACons(30,
-                ACons(-1, ACons(0, ACons(1, ANil))))))))))
+    require(funList2 apply Cons(1, Cons(2, Cons(3, Nil))) ==
+        Cons(3, Cons(6, Cons(9,
+            Cons(10, Cons(20, Cons(30,
+                Cons(-1, Cons(0, Cons(1, Nil))))))))))
 
-    val funList3: AFunList<(Int) -> Int> = ANil
-    require(funList3 apply ACons(1, ACons(2, ACons(3, ACons(4, ANil)))) == ANil)
+    val funList3: FunList<(Int) -> Int> = Nil
+    require(funList3 apply Cons(1, Cons(2, Cons(3, Cons(4, Nil)))) == Nil)
 
-    val funList4: AFunList<(Int) -> (Int) -> Int> = AFunList.pure(
+    val funList4: FunList<(Int) -> (Int) -> Int> = FunList.pure(
         { x: Int, y: Int -> x + y }.curried())
     require(
         funList4
-            apply ACons(1, ACons(2, ACons(3, ANil)))
-            apply ACons(1, ACons(2, ACons(3, ANil)))
+            apply Cons(1, Cons(2, Cons(3, Nil)))
+            apply Cons(1, Cons(2, Cons(3, Nil)))
             ==
-            ACons(2, ACons(3, ACons(4,
-                ACons(3, ACons(4, ACons(5,
-                    ACons(4, ACons(5, ACons(6, ANil))))))))))
+            Cons(2, Cons(3, Cons(4,
+                Cons(3, Cons(4, Cons(5,
+                    Cons(4, Cons(5, Cons(6, Nil))))))))))
 }
 

@@ -6,22 +6,22 @@ import fp.kotlin.example.chapter04.solution.curried
  *
  * 연습문제 8-11
  *
- * AFunList 에도 동작하는 ``liftA2`` 함수를 추가해보자.
+ * FunList 에도 동작하는 ``liftA2`` 함수를 추가해보자.
  *
  */
 fun main(args: Array<String>) {
 
     val lifted = liftA2 { x: Int, y: Int -> x + y }
-    require(lifted(ACons(1, ANil), ACons(2, ANil)) == ACons(3, ANil))
+    require(lifted(Cons(1, Nil), Cons(2, Nil)) == Cons(3, Nil))
 
     val lifted2 = liftA2 { x: String, y: String -> x + y }
-    require(lifted2(ACons("Hello, ", ANil), ACons("Kotlin", ANil)) == ACons("Hello, Kotlin", ANil))
+    require(lifted2(Cons("Hello, ", Nil), Cons("Kotlin", Nil)) == Cons("Hello, Kotlin", Nil))
 
     val lifted3 = liftA2 { x: Int, y: String -> x.toString() + y }
-    require(lifted3(ACons(10, ANil), ACons("Kotlin", ANil)) == ACons("10Kotlin", ANil))
+    require(lifted3(Cons(10, Nil), Cons("Kotlin", Nil)) == Cons("10Kotlin", Nil))
 
-    require(lifted3(ACons(10, ACons(20, ANil)), ACons("Hello, ", ACons("Kotlin", ANil))) ==
-        ACons("10Hello, ", ACons("10Kotlin", ACons("20Hello, ", ACons("20Kotlin", ANil)))))
+    require(lifted3(Cons(10, Cons(20, Nil)), Cons("Hello, ", Cons("Kotlin", Nil))) ==
+        Cons("10Hello, ", Cons("10Kotlin", Cons("20Hello, ", Cons("20Kotlin", Nil)))))
 }
 
-private fun <A, B, R> liftA2(binaryFunction: (A, B) -> R): (AFunList<A>, AFunList<B>) -> AFunList<R> = TODO()
+private fun <A, B, R> liftA2(binaryFunction: (A, B) -> R): (FunList<A>, FunList<B>) -> FunList<R> = TODO()

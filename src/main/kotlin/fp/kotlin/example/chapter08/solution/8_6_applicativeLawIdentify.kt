@@ -10,8 +10,8 @@ package fp.kotlin.example.chapter08.solution
 
 fun main(args: Array<String>) {
 
-    require(AFunList.pure(identity()) apply ACons(1, ACons(2, ANil)) ==
-        ACons(1, ACons(2, ANil)))
+    require(FunList.pure(identity()) apply Cons(1, Cons(2, Nil)) ==
+        Cons(1, Cons(2, Nil)))
 
 }
 

@@ -10,11 +10,11 @@ package fp.kotlin.example.chapter08.solution
 
 fun main(args: Array<String>) {
 
-    val af1: AFunList<(Int) -> Int> = ACons<(Int) -> Int>({ x: Int -> x * 2 }, ANil)
-    val af2: AFunList<(Int) -> Int> = ACons<(Int) -> Int>({ x: Int -> x + 10 }, ANil)
-    val af3: AFunList<Int> = ACons(1, ACons(2, ANil))
+    val af1: FunList<(Int) -> Int> = Cons<(Int) -> Int>({ x: Int -> x * 2 }, Nil)
+    val af2: FunList<(Int) -> Int> = Cons<(Int) -> Int>({ x: Int -> x + 10 }, Nil)
+    val af3: FunList<Int> = Cons(1, Cons(2, Nil))
 
-    val leftApply = AFunList.pure(compose<Int, Int, Int>().curried()) apply af1 apply af2 apply af3
+    val leftApply = FunList.pure(compose<Int, Int, Int>().curried()) apply af1 apply af2 apply af3
     val rightApply = af1 apply (af2 apply af3)
 
     require(leftApply == rightApply)

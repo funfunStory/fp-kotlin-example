@@ -18,6 +18,15 @@ fun main(args: Array<String>) {
     println(Nil flatMap { x -> funListOf(x) })  // []
     println(list1 flatMap { x -> funListOf(x, -x) })    // [1, -1, 2, -2, 3, -3]
     println(funListOf(list1, list2).flatten())  // [1, 2, 3, 5, 10, 15, 20]
+
+    println(funListOf(1, 2)
+            .flatMap { x -> funListOf(x to 'a', x to 'c') }     // [(1, a), (1, c), (2, a), (2, c)]
+            .fmap { x -> x.first to x.second.toUpperCase() }     // [(1, A), (1, C), (2, A), (2, C)]
+            ._apply(funListOf<(Pair<Int, Char>) -> Char>({ x -> x.second }, { x -> x.second + x.first }))   // [A, B, C, D, A, C, C, E]
+//            .foldLeft(Nil as FunList<Char>) { acc, x -> if (acc.contains(x)) acc else Cons(x, acc) }    // [E, D, C, B, A]
+            .distinct()   // [E, D, C, B, A]
+            .reverse()  // [A, B, C, D, E]
+    )
 }
 
 sealed class FunList<out T> {
@@ -88,6 +97,9 @@ tailrec fun <T> FunList<T>.contains(element: T): Boolean = when (this) {
     is Nil -> false
     is Cons -> if (element == head) true else tail.contains(element)
 }
+
+fun <T> FunList<T>.distinct(): FunList<T> =
+        foldLeft(Nil as FunList<T>) { acc, x -> if (acc.contains(x)) acc else Cons(x, acc) }
 
 tailrec fun <T> FunList<T>.reverse(acc: FunList<T> = Nil): FunList<T> = when (this) {
     is Nil -> acc

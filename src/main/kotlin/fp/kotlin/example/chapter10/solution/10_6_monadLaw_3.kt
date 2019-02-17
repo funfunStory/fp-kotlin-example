@@ -10,9 +10,9 @@ package fp.kotlin.example.chapter10.solution
 
 fun main() {
 
-    val f = {x : Int -> Cons(x * 10, Nil) }
-    val g = {x : Int -> Cons("value : $x", Nil) }
-    val m = Cons(3, Nil)
+    val f = {x : Int -> FunList.Cons(x * 10, FunList.Nil) }
+    val g = {x : Int -> FunList.Cons("value : $x", FunList.Nil) }
+    val m = FunList.Cons(3, FunList.Nil)
 
     require((m flatMap f) flatMap g == m flatMap { x :Int -> f(x) flatMap g })
 }

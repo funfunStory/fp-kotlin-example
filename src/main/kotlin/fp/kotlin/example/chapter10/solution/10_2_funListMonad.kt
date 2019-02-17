@@ -9,30 +9,30 @@ package fp.kotlin.example.chapter10.solution
  */
 
 fun main() {
-    val funList = Cons(1, Cons(2, Cons(3, Nil)))
-    val funlist2 = Cons({ x: Int -> x + 1 }, Cons({ x: Int -> x * 10 } as (Int) -> Int, Nil))
+    val funList = FunList.Cons(1, FunList.Cons(2, FunList.Cons(3, FunList.Nil)))
+    val funlist2 = FunList.Cons({ x: Int -> x + 1 }, FunList.Cons({ x: Int -> x * 10 } as (Int) -> Int, FunList.Nil))
 
     val fmapResult = funList.fmap { it * 3 }
-    val applypResult = funlist2 ap Cons(1, Cons(2, Nil))
-    val flatmapResult = funList.flatMap { Cons(it, Cons(it * 2, Cons(it * 3, Nil))) }
-    val leadToResult = funList.leadTo(Cons('a', Cons('b', Cons('c', Nil))))
+    val applypResult = funlist2 ap FunList.Cons(1, FunList.Cons(2, FunList.Nil))
+    val flatmapResult = funList.flatMap { FunList.Cons(it, FunList.Cons(it * 2, FunList.Cons(it * 3, FunList.Nil))) }
+    val leadToResult = funList.leadTo(FunList.Cons('a', FunList.Cons('b', FunList.Cons('c', FunList.Nil))))
 
-    require(Cons(1, Nil) == FunList.pure(1))
-    require(fmapResult == Cons(3, Cons(6, Cons(9, Nil))))
-    require(applypResult == Cons(2, Cons(3, Cons(10, Cons(20, Nil)))))
-    require(flatmapResult == Cons(1, Cons(2, Cons(3, Cons(2, Cons(4, Cons(6, Cons(3, Cons(6, Cons(9, Nil))))))))))
-    require(leadToResult == Cons('a', Cons('b', Cons('c', Cons('a', Cons('b', Cons('c', Cons('a', Cons('b', Cons('c', Nil))))))))))
+    require(FunList.Cons(1, FunList.Nil) == FunList.pure(1))
+    require(fmapResult == FunList.Cons(3, FunList.Cons(6, FunList.Cons(9, FunList.Nil))))
+    require(applypResult == FunList.Cons(2, FunList.Cons(3, FunList.Cons(10, FunList.Cons(20, FunList.Nil)))))
+    require(flatmapResult == FunList.Cons(1, FunList.Cons(2, FunList.Cons(3, FunList.Cons(2, FunList.Cons(4, FunList.Cons(6, FunList.Cons(3, FunList.Cons(6, FunList.Cons(9, FunList.Nil))))))))))
+    require(leadToResult == FunList.Cons('a', FunList.Cons('b', FunList.Cons('c', FunList.Cons('a', FunList.Cons('b', FunList.Cons('c', FunList.Cons('a', FunList.Cons('b', FunList.Cons('c', FunList.Nil))))))))))
 
 
-    val nilList = Nil
+    val nilList = FunList.Nil
     val nilFmapResult = nilList.fmap { x: Int -> x * 3 }
-    val nilApplypResult = nilList as FunList<(Int) -> Int> ap Cons(1, Cons(2, Nil))
-    val nilFlatmapResult = nilList.flatMap { x: Int -> Cons(x, Cons(x * 2, Cons(x * 3, Nil))) }
-    val nilLeadToResult = nilList.leadTo(Cons('a', Cons('b', Cons('c', Nil))))
+    val nilApplypResult = nilList as FunList<(Int) -> Int> ap FunList.Cons(1, FunList.Cons(2, FunList.Nil))
+    val nilFlatmapResult = nilList.flatMap { x: Int -> FunList.Cons(x, FunList.Cons(x * 2, FunList.Cons(x * 3, FunList.Nil))) }
+    val nilLeadToResult = nilList.leadTo(FunList.Cons('a', FunList.Cons('b', FunList.Cons('c', FunList.Nil))))
 
-    require(Nil.pure(1) == Nil)
-    require(nilFmapResult == Nil)
-    require(nilApplypResult == Nil)
-    require(nilFlatmapResult == Nil)
-    require(nilLeadToResult == Nil)
+    require(FunList.Nil.pure(1) == FunList.Nil)
+    require(nilFmapResult == FunList.Nil)
+    require(nilApplypResult == FunList.Nil)
+    require(nilFlatmapResult == FunList.Nil)
+    require(nilLeadToResult == FunList.Nil)
 }

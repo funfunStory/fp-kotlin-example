@@ -99,10 +99,18 @@ tailrec fun <T> FunList<T>.contains(element: T): Boolean = when (this) {
 }
 
 fun <T> FunList<T>.distinct(): FunList<T> =
-        foldLeft(Nil as FunList<T>) { acc, x -> if (acc.contains(x)) acc else Cons(x, acc) }
+    foldLeft(Nil as FunList<T>) { acc, x -> if (acc.contains(x)) acc else Cons(x, acc) }
 
 tailrec fun <T> FunList<T>.reverse(acc: FunList<T> = Nil): FunList<T> = when (this) {
     is Nil -> acc
     is Cons -> tail.reverse(Cons(head, acc))
 }
 
+fun <T> FunList<T>.filter(acc: FunList<T> = Nil, f: (T) -> Boolean): FunList<T> = when (this) {
+    Nil -> acc.reverse()
+    is Cons -> if (f(head)) {
+        tail.filter(Cons(head, acc), f)
+    } else {
+        tail.filter(acc, f)
+    }
+}

@@ -12,9 +12,9 @@ import fp.kotlin.example.chapter10.Monad
 
 fun main() {
 
-    val f = {x : Int -> Cons(x * 10, Nil) }
-    val g = {x : Int -> Cons(x + 1, Nil) }
-    val h = {x : Int -> Cons(x - 5, Nil) }
+    val f = {x : Int -> FunList.Cons(x * 10, FunList.Nil) }
+    val g = {x : Int -> FunList.Cons(x + 1, FunList.Nil) }
+    val h = {x : Int -> FunList.Cons(x - 5, FunList.Nil) }
     val pure = { x : Int -> FunList.pure(x) }
 
     require((pure compose f)(10) == f(10))

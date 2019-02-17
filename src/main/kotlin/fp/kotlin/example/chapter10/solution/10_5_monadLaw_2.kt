@@ -10,7 +10,7 @@ package fp.kotlin.example.chapter10.solution
 
 fun main() {
 
-    val m = Cons(3, Nil)
+    val m = FunList.Cons(3, FunList.Nil)
 
     require(m flatMap { FunList.pure(it) } == m)
 }

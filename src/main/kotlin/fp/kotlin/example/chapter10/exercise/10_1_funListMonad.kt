@@ -29,9 +29,9 @@ sealed class FunList<out A> : Monad<A> {
         infix fun <V> pure(value: V): FunList<V> = TODO()
     }
 
-    override infix fun <V> pure(value: V): Monad<V> = TODO()
+    override infix fun <V> pure(value: V): FunList<V> = TODO()
 
-    override infix fun <B> flatMap(f: (A) -> Monad<B>): Monad<B> = TODO()
+    override infix fun <B> flatMap(f: (A) -> Monad<B>): FunList<B> = TODO()
 
     infix fun <A> FunList<A>.mappend(other: FunList<A>): FunList<A> = TODO()
 

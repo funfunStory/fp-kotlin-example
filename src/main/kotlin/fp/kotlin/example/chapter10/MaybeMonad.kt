@@ -37,15 +37,13 @@ fun main(args: Array<String>) {
 sealed class Maybe<out A> : Monad<A> {
 
     companion object {
-        fun <V> pure(value: V) : Maybe<V> = Just(0).pure(value)
+        fun <V> pure(value: V) : Maybe<V> = Just(0).pure(value) as Maybe<V>
     }
 
-    override fun <B> fmap(f: (A) -> B): Maybe<B> = super.fmap(f) as Maybe<B>
+    override fun <V> pure(value: V): Monad<V> = Just(value)
 
-    override fun <V> pure(value: V): Maybe<V> = Just(value)
-
-    override infix fun <B> flatMap(f: (A) -> Monad<B>): Maybe<B> = when (this) {
-        is Just -> f(value) as Maybe<B>
+    override infix fun <B> flatMap(f: (A) -> Monad<B>): Monad<B> = when (this) {
+        is Just -> f(value)
         Nothing -> Nothing
     }
 }
@@ -61,7 +59,7 @@ object Nothing : Maybe<kotlin.Nothing>() {
 }
 
 infix fun <A, B> Maybe<(A) -> B>.apply(f: Maybe<A>): Maybe<B> = when (this) {
-    is Just -> f.fmap(value)
+    is Just -> f.fmap(value) as Maybe<B>
     Nothing -> Nothing
 }
 

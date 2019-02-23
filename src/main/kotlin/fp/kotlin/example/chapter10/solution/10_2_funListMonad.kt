@@ -13,7 +13,7 @@ fun main() {
     val funlist2 = FunList.Cons({ x: Int -> x + 1 }, FunList.Cons({ x: Int -> x * 10 } as (Int) -> Int, FunList.Nil))
 
     val fmapResult = funList.fmap { it * 3 }
-    val applypResult = funlist2 ap FunList.Cons(1, FunList.Cons(2, FunList.Nil))
+    val applypResult = funlist2 apply FunList.Cons(1, FunList.Cons(2, FunList.Nil))
     val flatmapResult = funList.flatMap { FunList.Cons(it, FunList.Cons(it * 2, FunList.Cons(it * 3, FunList.Nil))) }
     val leadToResult = funList.leadTo(FunList.Cons('a', FunList.Cons('b', FunList.Cons('c', FunList.Nil))))
 
@@ -26,7 +26,7 @@ fun main() {
 
     val nilList = FunList.Nil
     val nilFmapResult = nilList.fmap { x: Int -> x * 3 }
-    val nilApplypResult = nilList as FunList<(Int) -> Int> ap FunList.Cons(1, FunList.Cons(2, FunList.Nil))
+    val nilApplypResult = nilList as FunList<(Int) -> Int> apply FunList.Cons(1, FunList.Cons(2, FunList.Nil))
     val nilFlatmapResult = nilList.flatMap { x: Int -> FunList.Cons(x, FunList.Cons(x * 2, FunList.Cons(x * 3, FunList.Nil))) }
     val nilLeadToResult = nilList.leadTo(FunList.Cons('a', FunList.Cons('b', FunList.Cons('c', FunList.Nil))))
 

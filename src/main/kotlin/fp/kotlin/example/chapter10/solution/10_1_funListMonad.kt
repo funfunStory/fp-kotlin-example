@@ -53,7 +53,7 @@ sealed class FunList<out A> : Monad<A> {
     infix fun <B> leadTo(m: FunList<B>): FunList<B> = flatMap { m } as FunList
 }
 
-infix fun <A, B> FunList<(A) -> B>.ap(f: FunList<A>): FunList<B> = when (this) {
-    FunList.Nil -> this as FunList<B>
-    is FunList.Cons -> f.fmap(head) as FunList<B> mappend tail.ap(f)
+infix fun <A, B> FunList<(A) -> B>.apply(f: FunList<A>): FunList<B> = when (this) {
+    is FunList.Nil -> FunList.Nil
+    is FunList.Cons -> f.fmap(head) as FunList<B> mappend tail.apply(f)
 }

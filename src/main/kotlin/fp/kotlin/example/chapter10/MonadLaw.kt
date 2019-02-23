@@ -1,8 +1,5 @@
 package fp.kotlin.example.chapter10
 
-import fp.kotlin.example.chapter04.compose
-
-
 fun main(args: Array<String>) {
     val x = 10
     val f = { a: Int -> Just(a * 2) }

@@ -41,9 +41,9 @@ class D4(val value: Maybe<String>)
 
 fun getValueOfD4(a: A4): Maybe<String> = a.b
         .flatMap { it.c }
-        .flatMap { it.d.value }
+        .flatMap { it.d.value } as Maybe<String>
 
 fun getValueOfD4_2(a: A4): Maybe<String> = a.b
         .flatMap { it.c }
         .fmap { it.d }
-        .flatMap { it.value }
+        .flatMap { it.value } as Maybe<String>

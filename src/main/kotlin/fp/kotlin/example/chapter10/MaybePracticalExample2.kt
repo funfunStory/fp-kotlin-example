@@ -15,4 +15,7 @@ fun main(args: Array<String>) {
     println(result)     // someValue
 }
 
-private fun getValueOfD2(a: A2): Maybe<String> = a.b.flatMap { it.c }.flatMap { it.d }.flatMap { it.value }
+private fun getValueOfD2(a: A2): Maybe<String> = a.b
+        .flatMap { it.c }
+        .flatMap { it.d }
+        .flatMap { it.value }  as Maybe<String>

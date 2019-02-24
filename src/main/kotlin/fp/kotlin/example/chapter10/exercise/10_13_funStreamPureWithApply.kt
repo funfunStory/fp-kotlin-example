@@ -4,7 +4,7 @@ package fp.kotlin.example.chapter10.exercise
  *
  * 연습문제 10-13
  *
- * 5장에서 작성한 FunStream에 ``pure``, ``apply`` 함수를 추가해보자.
+ * FunStream에 ``pure``, ``apply`` 함수를 추가해보자.
  *
  */
 fun main() {

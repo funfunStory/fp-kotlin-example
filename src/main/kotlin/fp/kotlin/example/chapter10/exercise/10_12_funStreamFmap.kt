@@ -4,7 +4,7 @@ package fp.kotlin.example.chapter10.exercise
  *
  * 연습문제 10-12
  *
- * 새로운 FunStream에 ``fmap`` 함수를 구현해보자.
+ * FunStream에 ``fmap`` 함수를 구현해보자.
  *
  */
 fun main() {

@@ -7,11 +7,11 @@ fun main(args: Array<String>) {
     val intList = funListOf(1, 2, 3)
     val doubleList = funListOf(1.0, 2.0, 3.0)
 
-    printFunList(add2(intList))         // [3, 4, 5]
-    printFunList(product2(doubleList))  // [2.0, 4.0, 6.0]
+    printFunList(add3(intList))         // [4, 5, 6]
+    printFunList(product3(doubleList))  // [3.0, 6.0, 9.0]
 
-    printFunList(intList.map { it + 2 })          // [3, 4, 5]
-    printFunList(doubleList.map { it * 2 })       // [2.0, 4.0, 6.0]
+    printFunList(intList.map { it + 3 })          // [4, 5, 6]
+    printFunList(doubleList.map { it * 3 })       // [3.0, 6.0, 9.0]
 
     println(sum(intList))               // 6
     println(sumByFoldLeft(intList))     // 6
@@ -21,13 +21,13 @@ fun main(args: Array<String>) {
     val lowerCharList = funListOf('a', 'b', 'c')
     printFunList(toUpper(lowerCharList))    // [A, B, C]
 
-    printFunList(intList.mapByFoldLeft { it + 2 })  // [3, 4, 5]
+    printFunList(intList.mapByFoldLeft { it + 3 })  // [4, 5, 6]
 
     val intList2 = funListOf(1, 3, 10)
     println(intList2.foldRight(0) { x, y -> x - y })    // 8
     println(intList2.foldLeft(0) { x, y -> y - x })    // 8
 
-    printFunList(intList.mapByFoldRight { it + 2 })  // [3, 4, 5]
+    printFunList(intList.mapByFoldRight { it + 3 })  // [4, 5, 6]
 
     printFunList(intList.zipWith({ x, y -> x + y }, intList2))  // [2, 5, 13]
     printFunList(intList.zipWith({ x, y -> if (x > y) x else y }, intList2))  // [1, 3, 10]
@@ -41,18 +41,18 @@ fun main(args: Array<String>) {
     val infiniteVal = generateFunStream(0) { it + 5 }
     //    infiniteVal.forEach { print(it) }   // 0부터 계속 5씩 증가하는 값을 출력
 
-    println(funListOf(1,2,3).concat(funListOf(4,5,6)))
+    println(funListOf(1, 2, 3).concat(funListOf(4, 5, 6)))
 
 }
 
-fun add2(list: FunList<Int>): FunList<Int> = when (list) {
+fun add3(list: FunList<Int>): FunList<Int> = when (list) {
     FunList.Nil -> Nil
-    is FunList.Cons -> FunList.Cons(list.head + 2, add2(list.tail))
+    is FunList.Cons -> FunList.Cons(list.head + 3, add3(list.tail))
 }
 
-fun product2(list: FunList<Double>): FunList<Double> = when (list) {
+fun product3(list: FunList<Double>): FunList<Double> = when (list) {
     FunList.Nil -> Nil
-    is FunList.Cons -> FunList.Cons(list.head * 2, product2(list.tail))
+    is FunList.Cons -> FunList.Cons(list.head * 3, product3(list.tail))
 }
 
 fun sum(list: FunList<Int>): Int = when (list) {

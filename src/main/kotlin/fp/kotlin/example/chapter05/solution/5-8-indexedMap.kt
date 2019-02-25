@@ -4,7 +4,7 @@ import fp.kotlin.example.chapter05.FunList
 import fp.kotlin.example.chapter05.FunList.Cons
 import fp.kotlin.example.chapter05.FunList.Nil
 import fp.kotlin.example.chapter05.addHead
-import fp.kotlin.example.chapter05. funListOf
+import fp.kotlin.example.chapter05.funListOf
 import fp.kotlin.example.chapter05.reverse
 
 /**
@@ -19,7 +19,7 @@ import fp.kotlin.example.chapter05.reverse
 
 fun main(args: Array<String>) {
 
-    val intList = Cons(1, Cons(2, Cons(3, Nil)))
+    val intList = Cons(1, Cons(5, Cons(3, Cons(2, Nil))))
     require(intList.indexedMap { index, elm -> index * elm } == funListOf(0, 2, 6))
 }
 

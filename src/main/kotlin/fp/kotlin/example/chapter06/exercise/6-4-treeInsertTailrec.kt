@@ -84,6 +84,11 @@ fun main(args: Array<String>) {
             )
         )
     )
+
+    (1..100000).fold(EmptyTree as Tree<Int>) { acc, i ->
+        acc.insertTailrec(i)
+    }
+
      */
 }
 

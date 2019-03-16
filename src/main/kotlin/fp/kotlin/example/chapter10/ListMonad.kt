@@ -114,3 +114,7 @@ fun <T> FunList<T>.filter(acc: FunList<T> = Nil, f: (T) -> Boolean): FunList<T> 
         tail.filter(acc, f)
     }
 }
+
+fun<T> printFunList(list: FunList<T>) = println(list.toStringByFoldLeft())
+
+private fun <T> FunList<T>.toStringByFoldLeft(): String = "[${foldLeft("") { acc, x -> "$acc, $x" }.drop(2)}]"

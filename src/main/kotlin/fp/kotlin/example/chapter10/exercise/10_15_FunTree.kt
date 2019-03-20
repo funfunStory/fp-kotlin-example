@@ -168,8 +168,6 @@ sealed class FunTree<out A> : Monad<A> {
 
     override infix fun <V> pure(value: V): Monad<V> = TODO()
 
-    override infix fun <B> fmap(f: (A) -> B): Monad<B> = TODO()
-
     override infix fun <B> flatMap(f: (A) -> Monad<B>): Monad<B> = TODO()
 
     override fun <B> leadTo(m: Monad<B>): Monad<B> = TODO()

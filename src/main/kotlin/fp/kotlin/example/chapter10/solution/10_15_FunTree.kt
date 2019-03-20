@@ -168,11 +168,6 @@ sealed class FunTree<out A> : Monad<A> {
 
     override infix fun <V> pure(value: V): Monad<V> = Node(value)
 
-    override infix fun <B> fmap(f: (A) -> B): Monad<B> = when (this) {
-        EmptyTree -> EmptyTree
-        is Node -> Node(f(value), leftTree.fmap(f) as FunTree<B>, rightTree.fmap(f) as FunTree<B>)
-    }
-
     override infix fun <B> flatMap(f: (A) -> Monad<B>): Monad<B> = when (this) {
         EmptyTree -> EmptyTree
         is Node -> (f(value) as FunTree) mappend (leftTree.flatMap(f) as FunTree) mappend (rightTree.flatMap(

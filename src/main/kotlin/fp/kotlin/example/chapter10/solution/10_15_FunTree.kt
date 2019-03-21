@@ -174,7 +174,7 @@ sealed class FunTree<out A> : Monad<A> {
             f) as FunTree)
     }
 
-    override fun <B> leadTo(m: Monad<B>): Monad<B> = m as FunTree<B>
+    override fun <B> leadTo(m: Monad<B>): Monad<B> = flatMap { m }
 }
 
 fun <A> FunTree<A>.mempty(): FunTree<A> = FunTree.EmptyTree

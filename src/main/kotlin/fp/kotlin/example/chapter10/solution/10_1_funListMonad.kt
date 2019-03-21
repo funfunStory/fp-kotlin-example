@@ -49,11 +49,12 @@ sealed class FunList<out A> : Monad<A> {
         }
     }
 
-    infix fun <A> FunList<A>.mappend(other: FunList<A>): FunList<A> = when {
-        this is Nil -> other
-        other is Nil -> this
-        this is Cons && other is Cons -> Cons(this.head, this.tail.mappend(other))
-        else -> Nil
+    infix fun <A> FunList<A>.mappend(other: FunList<A>): FunList<A> = when (this) {
+        Nil -> other
+        is Cons -> when (other) {
+            Nil -> this
+            is Cons -> Cons(this.head, this.tail.mappend(other))
+        }
     }
 
     infix fun <B> leadTo(m: FunList<B>): FunList<B> = flatMap { m }

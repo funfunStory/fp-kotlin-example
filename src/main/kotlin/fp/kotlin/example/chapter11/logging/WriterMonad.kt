@@ -26,6 +26,10 @@ private infix fun <T> T.withLog(log: String): WriterMonad<T> = WriterMonad(this,
 
 data class WriterMonad<out T>(val value: T, val logs: FunStream<String>) : Monad<T> {
 
+    companion object {
+        fun <V> pure(value: V) = WriterMonad(0, mempty()).pure(value)
+    }
+
     override fun <V> pure(value: V): WriterMonad<V> = WriterMonad(value, mempty())
 
     override fun <R> flatMap(f: (T) -> Monad<R>): WriterMonad<R> {

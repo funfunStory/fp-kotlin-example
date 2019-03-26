@@ -40,7 +40,6 @@ sealed class FunList<out A> : Monad<A> {
 
 infix fun <A, B> FunList<(A) -> B>.apply(f: FunList<A>): FunList<B> = TODO()
 
-
 data class Cons<out A>(val head: A, val tail: FunList<A>) : FunList<A>()
 
 object Nil : FunList<Nothing>()

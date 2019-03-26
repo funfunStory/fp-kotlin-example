@@ -9,6 +9,7 @@ import fp.kotlin.example.chapter10.Nothing
  *
  * 아래와 같이 중첩된 클래스 구조 중간에 nullable하지 않은 프로퍼티 ``D3``가 있다고 가정했을때, 본문 예제와 동일한 기능의 ``getValueOfD4`` 함수를 작성하고 테스트해보자.
  *
+ * 힌트 : d에 접근할 때  fmap을 사용해 값에 접근 하고, 함수 체이닝을 이어 갈 수 있도록 getValueOfD4_2 함수도 작성하자.
  */
 
 fun main() {

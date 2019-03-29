@@ -22,5 +22,5 @@ fun main() {
 
 infix fun <T, R> FunStream<T>.fmap(f: (T) -> R): FunStream<R> = when (this) {
     FunStream.Nil -> FunStream.Nil
-    is FunStream.Cons -> FunStream.Cons({ f(head()) }, { tail().fmap(f) as FunStream<R> })
+    is FunStream.Cons -> FunStream.Cons({ f(head()) }, { tail().fmap(f) })
 }

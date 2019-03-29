@@ -9,9 +9,9 @@ import fp.kotlin.example.chapter11.exception.Try
 
 /**
  *
- * 연습문제 11-3
+ * 연습문제 11-4
  *
- * Try를 Maybe 로 변환해주는 변환함수 toMaybe 를 확장함수를 만들어보자.
+ * Try를 Maybe 로 변환해주는 변환함수 toMaybe 확장함수를 만들어보자.
  *
  * 힌트 : Tyr가 Success일 경우에는 Just를 Failure인 경우에는 Nothing으로 변환한다.
  *

@@ -4,7 +4,7 @@ package fp.kotlin.example.chapter06.exercise
  *
  * 연습문제 6-4
  *
- * SOP가 일어나지 않도록 insertTailrec을 작성해보자.
+ * SOF가 일어나지 않도록 insertTailrec을 작성해보자.
  *
  * 힌트 : 함수의 선언 타입은 아래와 같다.
  *       필요하다면 내부 함수를 별도로 생성하자.

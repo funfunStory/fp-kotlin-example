@@ -9,9 +9,7 @@ import fp.kotlin.example.chapter07.Functor
  *
  * 펑터를 상속받은 리스트를 만들고, ``pure``와 ``apply``를 확장 함수로 작성해서 리스트 애플리케이티브 펑터를 만들고 테스트해보자.
  *
- * 힌트 : list 2개를 합치는 확장함수 append 를 만들어서 활용해도 된다.
- * 기본코드는 다음과 같다.
- *
+ * 힌트 : list 2개를 합치는 확장함수 append를 만들어서 활용하라. ``FunList``의 기본 틀은 아래와 같다.
  */
 
 sealed class FunList<out A> : Functor<A> {

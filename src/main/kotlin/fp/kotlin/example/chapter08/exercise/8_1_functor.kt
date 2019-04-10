@@ -1,6 +1,9 @@
 package fp.kotlin.example.chapter08.exercise
 
 import fp.kotlin.example.chapter04.solution.curried
+import fp.kotlin.example.chapter07.exercise.Cons
+import fp.kotlin.example.chapter07.exercise.FunList
+import fp.kotlin.example.chapter07.exercise.Nil
 
 /**
  *
@@ -15,10 +18,10 @@ fun main(args: Array<String>) {
 
     val product: (Int, Int) -> Int = { x: Int, y: Int -> x * y }
     val curriedProduct: (Int) -> (Int) -> Int = product.curried()
-    val list = listOf(1, 2, 3, 4)
+    val list = Cons(1, Cons(2, Cons(3, Cons(4, Nil))))
 
-    val productWithList: (Int) -> List<Int> = TODO()
+    val productWithList: (Int) -> FunList<Int> = TODO()
 
-    require(productWithList(5) == listOf(5, 10, 15, 20))
-    require(productWithList(10) == listOf(10, 20, 30, 40))
+    require(productWithList(5) == Cons(5, Cons(10, Cons(15, Cons(20, Nil)))))
+    require(productWithList(10) == Cons(10, Cons(20, Cons(30, Cons(40, Nil)))))
 }

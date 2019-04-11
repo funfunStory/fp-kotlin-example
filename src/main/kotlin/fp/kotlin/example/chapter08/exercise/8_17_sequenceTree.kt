@@ -1,4 +1,4 @@
-package fp.kotlin.example.chapter08.solution
+package fp.kotlin.example.chapter08.exercise
 
 import fp.kotlin.example.chapter04.solution.curried
 import fp.kotlin.example.chapter08.Node
@@ -8,7 +8,7 @@ import fp.kotlin.example.chapter08.pure
 
 /**
  *
- * 연습문제 8-16
+ * 연습문제 8-17
  *
  * Tree 에도 동작하는 ``sequenceA`` 함수를 추가하고 테스트 해보자.
  *
@@ -31,9 +31,4 @@ fun main(args: Array<String>) {
 
 private fun <T> cons() = { x: T, xs: FunList<T> -> Cons(x, xs) }
 
-private fun <T> sequenceAByFoldRight(treeList: FunList<Node<T>>): Node<FunList<T>> =
-    when (treeList) {
-        Nil -> Node(Nil)
-        is Cons -> Tree.pure(cons<T>().curried()) apply treeList.head apply sequenceAByFoldRight(
-            treeList.tail)
-    }
+private fun <T> sequenceAByFoldRight(treeList: FunList<Node<T>>): Node<FunList<T>> = TODO()

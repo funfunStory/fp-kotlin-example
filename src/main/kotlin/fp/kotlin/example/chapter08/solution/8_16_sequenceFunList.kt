@@ -4,7 +4,7 @@ import fp.kotlin.example.chapter04.solution.curried
 
 /**
  *
- * 연습문제 8-15
+ * 연습문제 8-16
  *
  * FunList 에도 동작하는 ``sequenceA`` 함수를 추가하고 테스트 해보자.
  *

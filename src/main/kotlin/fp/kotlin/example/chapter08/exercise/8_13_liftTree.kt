@@ -8,7 +8,7 @@ import fp.kotlin.example.chapter08.pure
 
 /**
  *
- * 연습문제 8-12
+ * 연습문제 8-13
  *
  * Tree 에도 동작하는 ``liftA2`` 함수를 추가해보자.
  *

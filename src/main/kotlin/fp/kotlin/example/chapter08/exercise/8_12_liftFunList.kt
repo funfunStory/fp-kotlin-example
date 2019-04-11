@@ -4,7 +4,7 @@ import fp.kotlin.example.chapter04.solution.curried
 
 /**
  *
- * 연습문제 8-11
+ * 연습문제 8-12
  *
  * FunList 에도 동작하는 ``liftA2`` 함수를 추가해보자.
  *

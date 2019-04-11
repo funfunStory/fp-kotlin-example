@@ -1,4 +1,4 @@
-package fp.kotlin.example.chapter08.solution
+package fp.kotlin.example.chapter08.exercise
 
 import fp.kotlin.example.chapter08.Just
 import fp.kotlin.example.chapter08.Maybe
@@ -7,7 +7,7 @@ import fp.kotlin.example.chapter08.pure
 
 /**
  *
- * 연습문제 8-14
+ * 연습문제 8-15
  *
  * ``listA3`` 함수를 구현해보자. 이 함수는 삼항 함수를 받아서 세개의 애플리케이티브 펑터를 적용하는 승격 함수다.
  *
@@ -29,6 +29,4 @@ private fun <P1, P2, P3, R> ((P1, P2, P3) -> R).curried(): (P1) -> (P2) -> (P3) 
 }
 
 private fun <A, B, C, R> liftA3(
-    tripleFunction: (A, B, C) -> R): (Maybe<A>, Maybe<B>, Maybe<C>) -> Maybe<R> = { f1: Maybe<A>, f2: Maybe<B>, f3: Maybe<C> ->
-    Maybe.pure(tripleFunction.curried()) apply f1 apply f2 apply f3
-}
+    tripleFunction: (A, B, C) -> R): (Maybe<A>, Maybe<B>, Maybe<C>) -> Maybe<R> = TODO()

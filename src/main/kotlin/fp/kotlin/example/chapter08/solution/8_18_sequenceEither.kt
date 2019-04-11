@@ -5,7 +5,7 @@ import fp.kotlin.example.chapter08.*
 
 /**
  *
- * 연습문제 8-17
+ * 연습문제 8-18
  *
  * Either 에도 동작하는 ``sequenceA`` 함수를 추가하고 테스트 해보자.
  *

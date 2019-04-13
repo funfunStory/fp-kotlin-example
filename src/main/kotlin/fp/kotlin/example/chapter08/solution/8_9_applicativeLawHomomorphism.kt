@@ -11,10 +11,10 @@ package fp.kotlin.example.chapter08.solution
 fun main(args: Array<String>) {
 
     val function: (Int) -> Int = { x: Int -> x * 10 }
-    val value: FunList<Int> = Cons(10, Cons(20, Nil))
+    val value: Int = 1
 
-    val left = FunList.pure(function) apply value
-    val right = value.fmap(function)
+    val left = FunList.pure(function) apply FunList.pure(value)
+    val right = FunList.pure(function(value))
 
     require(left == right)
 }

@@ -1,6 +1,6 @@
 package fp.kotlin.example.chapter05
 
-fun main(args: Array<String>) {
+fun main() {
 
         val games = listOf(
                 Game(1, "mario", Genre.ACTION, 10000, 2527429927221),

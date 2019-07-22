@@ -3,7 +3,7 @@ package fp.kotlin.example.chapter05
 import fp.kotlin.example.chapter05.solution.filter
 import fp.kotlin.example.chapter05.solution.map
 
-fun main(args: Array<String>) {
+fun main() {
     val bigIntList = (1..10000000).toFunList()
     var start = System.currentTimeMillis()
     funListWay(bigIntList)

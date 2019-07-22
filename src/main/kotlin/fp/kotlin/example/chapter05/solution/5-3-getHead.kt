@@ -15,7 +15,7 @@ import fp.kotlin.example.chapter05.FunList.Nil
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
 
     val intList = Cons(1, Cons(2, Cons(3, Nil)))
     require(intList.getHead() == 1)

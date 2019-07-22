@@ -15,7 +15,7 @@ import fp.kotlin.example.chapter05.funListOf
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
 
     val intList = Cons(1, Cons(2, Cons(3, Cons(4, Nil))))
     require(intList.takeWhile { it < 4 } == funListOf(1, 2, 3))

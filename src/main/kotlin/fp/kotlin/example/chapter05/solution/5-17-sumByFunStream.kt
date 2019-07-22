@@ -15,7 +15,7 @@ import fp.kotlin.example.chapter05.toFunStream
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
     require(funStreamOf(1, 2, 3, 4, 5).sum() == 1 + 2 + 3 + 4 + 5)
     require((1..10000).toFunStream().sum() == 50005000)
 }

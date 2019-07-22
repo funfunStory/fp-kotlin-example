@@ -15,7 +15,7 @@ import fp.kotlin.example.chapter05.funListOf
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
     val list = funListOf(1, 2, 3, 4, 5)
     require(list.filterByFoldRight { it % 2 == 0 } == funListOf(2, 4))
     require(list.filterByFoldRight { it < 1 } == FunList.Nil)

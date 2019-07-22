@@ -1,6 +1,6 @@
 package fp.kotlin.example.chapter05
 
-fun main(args: Array<String>) {
+fun main() {
     println(imperativeWay(listOf(1, 2, 3, 4, 5)))   // 1
     println(functionalWay(listOf(1, 2, 3, 4, 5)))    // 1
 

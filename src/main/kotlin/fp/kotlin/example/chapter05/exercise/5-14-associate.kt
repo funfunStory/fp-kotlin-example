@@ -14,7 +14,7 @@ import fp.kotlin.example.chapter05.funListOf
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
     require(
         funListOf(1, 2, 3, 4, 5).associate { it to it * 10 } == funListOf(1 to 10, 2 to 20, 3 to 30, 4 to 40, 5 to 50))
 }

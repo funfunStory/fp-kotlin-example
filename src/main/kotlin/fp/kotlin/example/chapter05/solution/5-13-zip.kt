@@ -16,7 +16,7 @@ import fp.kotlin.example.chapter05.reverse
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
     val intList = funListOf(1, 2, 3, 4, 5)
     val charList = funListOf('a', 'b', 'c', 'd', 'e')
     require(intList.zip(charList) == funListOf(1 to 'a', 2 to 'b', 3 to 'c', 4 to 'd', 5 to 'e'))

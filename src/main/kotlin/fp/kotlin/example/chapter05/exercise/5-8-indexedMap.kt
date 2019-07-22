@@ -15,7 +15,7 @@ import fp.kotlin.example.chapter05.funListOf
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
 
     val intList = Cons(1, Cons(2, Cons(3, Nil)))
     require(intList.indexedMap { index, elm -> index * elm } == funListOf(0, 2, 6))

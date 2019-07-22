@@ -1,6 +1,6 @@
 package fp.kotlin.example.chapter05
 
-fun main(args: Array<String>) {
+fun main() {
     println(funListOf(1, 2, 3, 4).toString1())  // [1, 2, 3, 4]
     println(funListOf(1, 2, 3, 4).toString2())  // [1, 2, 3, 4]
     println(funListOf(1, 2, 3, 4).toStringByFoldLeft())    // [1, 2, 3, 4]

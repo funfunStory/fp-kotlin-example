@@ -13,7 +13,7 @@ import fp.kotlin.example.chapter05.*
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
     require((1..100000000)
         .toFunStream()
         .take(1)

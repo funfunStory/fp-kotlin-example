@@ -3,7 +3,7 @@ package fp.kotlin.example.chapter05
 import fp.kotlin.example.chapter05.FunList.Nil
 import fp.kotlin.example.chapter05.solution.filter
 
-fun main(args: Array<String>) {
+fun main() {
     val intList = funListOf(1, 2, 3)
     val doubleList = funListOf(1.0, 2.0, 3.0)
 

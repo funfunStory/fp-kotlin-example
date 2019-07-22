@@ -10,7 +10,7 @@ package fp.kotlin.example.chapter05.exercise
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
 //    require(squareRoot() == 10)
 }
 

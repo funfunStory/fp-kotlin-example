@@ -13,7 +13,7 @@ import fp.kotlin.example.chapter05.funListOf
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
     require(
         funListOf(1, 2, 3).groupBy { it } == mapOf(1 to funListOf(1), 2 to funListOf(2), 3 to funListOf(3)))
     require(funListOf(1, 2, 3, 4, 5, 6).groupBy { it % 2 == 0 } ==

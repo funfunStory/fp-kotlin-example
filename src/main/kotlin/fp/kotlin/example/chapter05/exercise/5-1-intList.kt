@@ -10,6 +10,6 @@ import fp.kotlin.example.chapter05.FunList
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
     val intList: FunList<Int> = TODO()
 }

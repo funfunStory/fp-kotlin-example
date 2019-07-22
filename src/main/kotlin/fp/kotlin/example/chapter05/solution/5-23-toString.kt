@@ -13,7 +13,7 @@ import fp.kotlin.example.chapter05.funListOf
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
     require(funListOf(1, 2, 3, 4, 5).toString("") == "[1, 2, 3, 4, 5]")
 }
 

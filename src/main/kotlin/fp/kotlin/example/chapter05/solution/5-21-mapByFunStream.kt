@@ -15,7 +15,7 @@ import fp.kotlin.example.chapter05.toFunStream
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
     require(funStreamOf(1, 2, 3, 4, 5)
         .map { it * 2 } == funStreamOf(2, 4, 6, 8, 10))
     require((1..100000000)

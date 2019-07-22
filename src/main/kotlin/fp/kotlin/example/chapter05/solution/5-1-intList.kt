@@ -2,6 +2,7 @@ package fp.kotlin.example.chapter05.solution
 
 import fp.kotlin.example.chapter05.FunList
 import fp.kotlin.example.chapter05.FunList.Cons
+import fp.kotlin.example.chapter05.FunList.Nil
 
 /**
  *
@@ -11,6 +12,6 @@ import fp.kotlin.example.chapter05.FunList.Cons
  *
  */
 
-fun main(args: Array<String>) {
-    val intList: FunList<Int> = Cons(1, Cons(2, Cons(3, Cons(4, Cons(5, FunList.Nil)))))
+fun main() {
+    val intList: FunList<Int> = Cons(1, Cons(2, Cons(3, Cons(4, Cons(5, Nil)))))
 }

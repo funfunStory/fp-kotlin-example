@@ -10,7 +10,7 @@ package fp.kotlin.example.chapter05.solution
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
     require(squareRoot() == 14)
 }
 

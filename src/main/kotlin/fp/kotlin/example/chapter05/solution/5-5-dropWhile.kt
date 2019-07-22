@@ -16,7 +16,7 @@ import fp.kotlin.example.chapter05.funListOf
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
 
     val intList = Cons(1, Cons(2, Cons(3, Cons(4, Nil))))
     require(intList.dropWhile { it % 2 == 0 } == funListOf(2, 3, 4))
@@ -25,8 +25,8 @@ fun main(args: Array<String>) {
 }
 
 tailrec fun <T> FunList<T>.dropWhile(p: (T) -> Boolean): FunList<T> = when (this) {
-    FunList.Nil -> this
-    is FunList.Cons -> if (p(head)) {
+    Nil -> this
+    is Cons -> if (p(head)) {
         this
     } else {
         tail.dropWhile(p)

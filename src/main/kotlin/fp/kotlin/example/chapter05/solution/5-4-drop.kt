@@ -17,7 +17,7 @@ import fp.kotlin.example.chapter05.getTail
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
 
     val intList = Cons(1, Cons(2, Cons(3, Nil)))
     require(intList.drop(1) == funListOf(2, 3))
@@ -27,6 +27,7 @@ fun main(args: Array<String>) {
 }
 
 tailrec fun <T> FunList<T>.drop(n: Int): FunList<T> = when {
-    n == 0 || this === FunList.Nil -> this
+    n < 0 -> throw IllegalArgumentException()
+    n == 0 || this === Nil -> this
     else -> getTail().drop(n - 1)
 }

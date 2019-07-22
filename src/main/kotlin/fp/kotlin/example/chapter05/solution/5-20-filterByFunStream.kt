@@ -17,7 +17,7 @@ import fp.kotlin.example.chapter05.toFunStream
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
     require(funStreamOf(1, 2, 3, 4, 5)
         .filter { it % 2 == 0 } == funStreamOf(2, 4))
     require(funStreamOf(1, 2, 3, 4, 5)

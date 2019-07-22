@@ -17,7 +17,7 @@ import fp.kotlin.example.chapter05.reverse
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
 
     val intList = Cons(1, Cons(5, Cons(3, Cons(2, Nil))))
     require(intList.indexedMap { index, elm -> index * elm } == funListOf(0, 2, 6))

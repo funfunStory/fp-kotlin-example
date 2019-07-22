@@ -14,7 +14,7 @@ import fp.kotlin.example.chapter05.funListOf
  *      리스트의 모든 값은 0보다 크고, size 는 1보다 크다.
  */
 
-fun main(args: Array<String>) {
+fun main() {
     val list = funListOf(1, 2, 3, 4, 5)
     require(list.maximumByFoldLeft() == 5)
 }

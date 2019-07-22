@@ -13,7 +13,7 @@ import fp.kotlin.example.chapter05.funStreamOf
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
     require(funStreamOf(1, 2, 3, 4, 5).appendTail(6) == funStreamOf(1, 2, 3, 4, 5, 6))
 }
 

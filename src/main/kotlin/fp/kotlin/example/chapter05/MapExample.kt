@@ -1,6 +1,6 @@
 package fp.kotlin.example.chapter05
 
-fun main(args: Array<String>) {
+fun main() {
     println(imperativeMap(listOf(1, 2, 3, 4, 5, 6, 7, 8)))
     println(functionalMap(listOf(1, 2, 3, 4, 5, 6, 7, 8)))
 }

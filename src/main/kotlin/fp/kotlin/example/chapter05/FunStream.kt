@@ -54,7 +54,7 @@ fun IntProgression.toFunStream(): FunStream<Int> = when {
 }
 
 tailrec fun <T> FunStream<T>.last(): T = when (this) {
-    FunStream.Nil -> throw NullPointerException()
+    FunStream.Nil -> throw NoSuchElementException()
     is FunStream.Cons -> if (tail() === FunStream.Nil) {
         this.getHead()
     } else {
@@ -63,12 +63,12 @@ tailrec fun <T> FunStream<T>.last(): T = when (this) {
 }
 
 fun <T> FunStream<T>.getHead(): T = when (this) {
-    FunStream.Nil -> throw NullPointerException()
+    FunStream.Nil -> throw NoSuchElementException()
     is FunStream.Cons -> head()
 }
 
 fun <T> FunStream<T>.getTail(): FunStream<T> = when (this) {
-    FunStream.Nil -> throw NullPointerException()
+    FunStream.Nil -> throw NoSuchElementException()
     is FunStream.Cons -> tail()
 }
 

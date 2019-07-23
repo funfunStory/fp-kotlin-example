@@ -23,12 +23,12 @@ fun FunList<Double>.product(): Double = when (this) {
 }
 
 fun <T> FunList<T>.getTail(): FunList<T> = when (this) {
-    FunList.Nil -> throw NullPointerException()
+    FunList.Nil -> throw NoSuchElementException()
     is FunList.Cons -> tail
 }
 
 fun <T> FunList<T>.getHead(): T = when (this) {
-    FunList.Nil -> throw NullPointerException()
+    FunList.Nil -> throw NoSuchElementException()
     is FunList.Cons -> head
 }
 

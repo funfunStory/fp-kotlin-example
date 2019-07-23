@@ -25,7 +25,7 @@ fun main() {
 
     val intList2 = funListOf(1, 3, 10)
     println(intList2.foldRight(0) { x, acc -> x - acc })    // 8
-    println(intList2.foldLeft(0) { acc, x -> acc - x })    // -14
+    println(intList2.foldLeft(0) { acc, x -> x - acc })    // 8
 
     printFunList(intList.mapByFoldRight { it + 3 })  // [4, 5, 6]
 

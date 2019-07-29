@@ -1,6 +1,6 @@
 package fp.kotlin.example.chapter06
 
-fun main(args: Array<String>) {
+fun main() {
 
     toggle = true
     toggle = false

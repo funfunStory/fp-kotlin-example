@@ -40,7 +40,7 @@ object Sat: DayOfWeek(5)
 object Sun: DayOfWeek(6)
 
 
-fun main(args: Array<String>) {
+fun main() {
     println(Red.equal(Yellow))     // false
     println(Red.notEqual(Yellow))  // true
 

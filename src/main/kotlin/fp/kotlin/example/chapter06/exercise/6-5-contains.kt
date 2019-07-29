@@ -12,7 +12,7 @@ package fp.kotlin.example.chapter06.exercise
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
 
     /*
      * 주석을 해제하고 insert()를 구현해보세요.

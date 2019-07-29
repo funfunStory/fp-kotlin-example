@@ -6,7 +6,7 @@ data class Circle(val name: String, val x: Float, val y: Float, val radius: Floa
 data class Square(val name: String, val x: Float, val y: Float, val length: Float): Shape()
 data class Line(val name: String, val x1: Float, val y1: Float, val x2: Float, val y2: Float): Shape()
 
-fun main(args: Array<String>) {
+fun main() {
     println(getGirthLength(Circle("원", 1.0f, 1.0f, 1.0f)))         // 6.283185307179586
     println(getGirthLength(Square("정사각형", 1.0f, 1.0f, 1.0f)))     // 4.0
     println(getGirthLength(Line("직선", 1.0f, 1.0f, 4.0f, 5.0f))) // 5.0

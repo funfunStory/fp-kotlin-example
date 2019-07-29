@@ -15,7 +15,7 @@ import fp.kotlin.example.chapter05.funStreamOf
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
     val tree1 = EmptyTree.insertTailrec(5)
     require(tree1 == Node(5, EmptyTree, EmptyTree))
 

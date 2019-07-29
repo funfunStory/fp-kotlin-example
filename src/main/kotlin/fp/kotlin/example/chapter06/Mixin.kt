@@ -31,7 +31,7 @@ class FullStack : Frontend, Backend {
         get() = super<Frontend>.language + super<Backend>.language
 }
 
-fun main(args: Array<String>) {
+fun main() {
     val frontend = object : Frontend {}
     val backend = object : Backend {}
 

@@ -12,7 +12,7 @@ package fp.kotlin.example.chapter06.solution
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
     require(!EmptyTree.contains(5))
 
     val tree1 = EmptyTree.insert(5)

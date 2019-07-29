@@ -13,7 +13,7 @@ package fp.kotlin.example.chapter06.exercise
  * 힌트: 함수의 선언 타입은 아래와 같다.
  */
 
-fun main(args: Array<String>) {
+fun main() {
     /*
      * 주석을 해제하고 insert()를 구현해보세요.
 

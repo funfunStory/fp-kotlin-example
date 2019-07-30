@@ -2,7 +2,7 @@ package fp.kotlin.example.chapter08
 
 import fp.kotlin.example.chapter07.Functor
 
-fun main(args: Array<String>) {
+fun main() {
     // fmap test
     println(Just(10).fmap { it + 10 })   // Just(20)
     println(Nothing.fmap { it: Int -> it + 10 })  // Nothing

@@ -13,7 +13,7 @@ import java.lang.IllegalArgumentException
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
 
 
     val list1: FunList<(Int) -> Int> = Cons({ x :Int-> x * 5 }, Cons<(Int)-> Int>({ x: Int -> x + 10 } , Nil))

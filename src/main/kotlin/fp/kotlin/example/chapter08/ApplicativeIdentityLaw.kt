@@ -3,7 +3,7 @@ package fp.kotlin.example.chapter08
 // Identity
 // pure(identity) apply af = af
 
-fun main(args: Array<String>) {
+fun main() {
     val maybeAf = Just(10)
     val leftMaybe = Maybe.pure(identity()) apply maybeAf
     println(leftMaybe.toString() == maybeAf.toString())   // true

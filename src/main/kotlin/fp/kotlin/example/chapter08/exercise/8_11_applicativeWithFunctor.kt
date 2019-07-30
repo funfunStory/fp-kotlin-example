@@ -8,7 +8,7 @@ package fp.kotlin.example.chapter08.exercise
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
 
     val function: (Int) -> Int = { x: Int -> x * 10 }
     val value = 10

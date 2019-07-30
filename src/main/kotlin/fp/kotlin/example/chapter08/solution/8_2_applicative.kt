@@ -51,7 +51,7 @@ data class ACons<A>(val head: A, val tail: AFunList<A>) : AFunList<A>() {
 }
 
 
-fun main(args: Array<String>) {
+fun main() {
 
     require(pure(1) == ACons(1, ANil))
 

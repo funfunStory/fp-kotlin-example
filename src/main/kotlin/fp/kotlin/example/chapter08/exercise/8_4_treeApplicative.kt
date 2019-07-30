@@ -14,7 +14,7 @@ import fp.kotlin.example.chapter08.pure
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
 
     val tree: Tree<Int> = TODO()
 

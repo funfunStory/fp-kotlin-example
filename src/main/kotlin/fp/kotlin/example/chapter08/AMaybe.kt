@@ -1,6 +1,6 @@
 package fp.kotlin.example.chapter08
 
-fun main(args: Array<String>) {
+fun main() {
     // fmap test
     println(AJust(10).fmap { it + 10 })   // AJust(20)
     println(ANothing.fmap { it: Int -> it + 10 })  // ANothing

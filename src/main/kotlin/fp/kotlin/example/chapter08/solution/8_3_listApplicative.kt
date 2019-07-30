@@ -38,7 +38,7 @@ infix fun <A, B> FunList<(A) -> B>.apply(f: FunList<A>): FunList<B> = when (this
     is Cons -> f.fmap(head) append (tail apply f)
 }
 
-fun main(args: Array<String>) {
+fun main() {
 
     val funList: FunList<(Int) -> Int> = FunList.pure { x -> x * 3 }
     require(funList apply Cons(1, Cons(2, Cons(3, Cons(4, Nil))))

@@ -12,7 +12,7 @@ import fp.kotlin.example.chapter08.pure
  * ``listA3`` 함수를 구현해보자. 이 함수는 삼항 함수를 받아서 세개의 애플리케이티브 펑터를 적용하는 승격 함수다.
  *
  */
-fun main(args: Array<String>) {
+fun main() {
 
     val lifted = liftA3 { x: Int, y: Int, z: Int -> x + y + z }
     require(lifted(Just(1), Just(2), Just(3)) == Just(6))

@@ -3,7 +3,7 @@ package fp.kotlin.example.chapter08
 // Composition
 // pure(compose) apply af1 apply af2 apply af3 = af1 apply (af2 apply af3)
 
-fun main(args: Array<String>) {
+fun main() {
     val maybeAf1 = Just({ x: Int -> x * 2 })
     val maybeAf2 = Just({ x: Int -> x + 1})
     val maybeAf3 = Just(30)

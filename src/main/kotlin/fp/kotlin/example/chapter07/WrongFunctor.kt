@@ -2,7 +2,7 @@ package fp.kotlin.example.chapter07
 
 import fp.kotlin.example.chapter04.compose
 
-fun main(args: Array<String>) {
+fun main() {
     println(JustCounter(10, 3)
             .fmap { it + 10 }
             .fmap { it * 2 }

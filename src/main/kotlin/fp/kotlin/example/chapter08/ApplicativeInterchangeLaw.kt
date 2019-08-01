@@ -3,7 +3,7 @@ package fp.kotlin.example.chapter08
 // Interchange
 // af apply pure(x) = pure(of(x)) apply af
 
-fun main(args: Array<String>) {
+fun main() {
     val x = 10
 
     val maybeAf = Just({ a: Int -> a * 2 })

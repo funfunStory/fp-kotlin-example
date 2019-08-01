@@ -6,8 +6,8 @@ import fp.kotlin.example.chapter07.Functor
  *
  * 연습문제 7-1
  *
- * 5장에서 만든 FunList를 Functor의 인스턴스로 만들어 보자. FunList에 이미 map 함수 등이 존재하지만, fmap, first, size와 같은 기본적인 기능만
- * 제공하는 형태로 재작성하라.
+ * 5장에서 만든 FunList를 Functor의 인스턴스로 만들어 보자.
+ * FunList에 이미 map 함수 등이 존재하지만, fmap, first, size와 같은 기본적인 기능만 제공하는 형태로 재작성하라.
  *
  * 힌트 : 펑터의 의미에 집중하기 위해 꼬리 재귀나, 효율은 생각하지 않고 작성한다.
  */
@@ -36,7 +36,7 @@ data class Cons<A>(val head: A, val tail: FunList<A>) : FunList<A>() {
     override fun size(): Int = 1 + tail.size()
 }
 
-fun main(args: Array<String>) {
+fun main() {
     val funList: FunList<Int> = Cons(1, Cons(2, Cons(3, Nil)))
 
     require(funList.fmap { it * 3 } ==

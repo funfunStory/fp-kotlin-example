@@ -2,7 +2,7 @@ package fp.kotlin.example.chapter08
 
 // pure(function) apply af = af.fmap(function)
 
-fun main(args: Array<String>) {
+fun main() {
     val function = { x: Int -> x * 2 }
 
     val maybeAf = Just(10)

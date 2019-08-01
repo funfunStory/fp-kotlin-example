@@ -2,7 +2,7 @@ package fp.kotlin.example.chapter08
 
 import fp.kotlin.example.chapter07.Functor
 
-fun main(args: Array<String>) {
+fun main() {
     val tree = Node(1, listOf(Node(2), Node(3)))
 
     println(tree.fmap { it * 2 })   // 2 [4 [], 6 []]

@@ -13,7 +13,7 @@ import fp.kotlin.example.chapter08.pure
  * Tree 에도 동작하는 ``liftA2`` 함수를 추가해보자.
  *
  */
-fun main(args: Array<String>) {
+fun main() {
 
     val lifted = liftA2 { x: Int, y: Int -> x + y }
     require(lifted(Node(1), Node(2)) == Node(3))

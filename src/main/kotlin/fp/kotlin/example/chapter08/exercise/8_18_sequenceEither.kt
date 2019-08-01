@@ -11,7 +11,7 @@ import fp.kotlin.example.chapter08.Right
  * Either 에도 동작하는 ``sequenceA`` 함수를 추가하고 테스트 해보자.
  *
  */
-fun main(args: Array<String>) {
+fun main() {
 
     val eitherList: Cons<Right<Int>> = Cons(Right(1), Cons(Right(2), Cons(Right(3), Nil)))
     require(sequenceAByFoldRight(eitherList) == Right(Cons(1, Cons(2, Cons(3, Nil)))))

@@ -3,7 +3,7 @@ package fp.kotlin.example.chapter08
 import fp.kotlin.example.chapter04.solution.curried
 import fp.kotlin.example.chapter05.*
 
-fun main(args: Array<String>) {
+fun main() {
     when (val result = sequenceA(funListOf(Just(10), Just(20)))) {
         is Nothing -> Nothing
         is Just -> printFunList(result.value)   // [10, 20]

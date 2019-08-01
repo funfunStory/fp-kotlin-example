@@ -2,7 +2,7 @@ package fp.kotlin.example.chapter08
 
 import fp.kotlin.example.chapter07.Functor
 
-fun main(args: Array<String>) {
+fun main() {
     // fmap test
     println(Right(10).fmap { it * 2 })  // Right(20)
     println(Left("error").fmap { x: String -> "$x log" })   // Left(error)

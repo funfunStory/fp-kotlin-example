@@ -2,7 +2,7 @@ package fp.kotlin.example.chapter07
 
 import kotlin.Nothing
 
-fun main(args: Array<String>) {
+fun main() {
     println(divideTenByN(5))  // Right(value=2)
     println(divideTenByN(0))  // Left(value=divide by zero)
     println(divideTenByN(5).fmap { r -> r * 2 })  // Right(value=4)
@@ -20,7 +20,7 @@ sealed class Either<out L, out R> : Functor<R> {
 }
 
 data class Left<out L>(val value: L): Either<L, Nothing>() {
-    override fun <R2> fmap(f: (kotlin.Nothing) -> R2): Either<L, R2> = this
+    override fun <R2> fmap(f: (Nothing) -> R2): Either<L, R2> = this
 }
 
 data class Right<out R>(val value: R): Either<Nothing, R>() {

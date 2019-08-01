@@ -3,7 +3,7 @@ package fp.kotlin.example.chapter08
 // Homomorphism
 // pure(function) apply pure(x) = pure(function(x))
 
-fun main(args: Array<String>) {
+fun main() {
     val function = { x: Int -> x * 2 }
     val x = 10
 

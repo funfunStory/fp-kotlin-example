@@ -8,7 +8,7 @@ package fp.kotlin.example.chapter08.exercise
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
 
     require(TODO() ==
         Cons(1, Cons(2, Nil)))

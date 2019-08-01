@@ -15,7 +15,7 @@ import fp.kotlin.example.chapter08.pure
  * Node(5, listOf(Node(6), Node(7, listOf(Node(8), Node(9)))))
  */
 
-fun main(args: Array<String>) {
+fun main() {
 
     val tree: Tree<Int> =
         Node(5, listOf(

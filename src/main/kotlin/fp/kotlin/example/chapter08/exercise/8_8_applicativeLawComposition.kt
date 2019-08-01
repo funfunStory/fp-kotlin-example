@@ -8,7 +8,7 @@ package fp.kotlin.example.chapter08.exercise
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
 
     val af1: FunList<(Int) -> Int> = Cons<(Int) -> Int>({ x: Int -> x * 2 }, Nil)
     val af2: FunList<(Int) -> Int> = Cons<(Int) -> Int>({ x: Int -> x + 10 }, Nil)

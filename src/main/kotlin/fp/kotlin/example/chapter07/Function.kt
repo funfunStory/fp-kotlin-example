@@ -2,7 +2,7 @@ package fp.kotlin.example.chapter07
 
 import fp.kotlin.example.chapter04.compose
 
-fun main(args: Array<String>) {
+fun main() {
     val f = { a: Int -> a + 1 }
     val g = { b: Int -> b * 2 }
 

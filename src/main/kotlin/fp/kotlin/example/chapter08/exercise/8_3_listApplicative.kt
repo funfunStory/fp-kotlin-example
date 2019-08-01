@@ -32,7 +32,7 @@ infix fun <A> FunList<A>.append(other: FunList<A>): FunList<A> = TODO()
 
 infix fun <A, B> FunList<(A) -> B>.apply(f: FunList<A>): FunList<B> = TODO()
 
-fun main(args: Array<String>) {
+fun main() {
 
     val funList: FunList<(Int) -> Int> = FunList.pure { x -> x * 3 }
     require(funList apply Cons(1, Cons(2, Cons(3, Cons(4, Nil)))) ==

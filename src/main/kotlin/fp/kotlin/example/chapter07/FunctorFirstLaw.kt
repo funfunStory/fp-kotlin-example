@@ -1,6 +1,6 @@
 package fp.kotlin.example.chapter07
 
-fun main(args: Array<String>) {
+fun main() {
     // Maybe 1 laws
     println(Nothing.fmap { identity(it) } == identity(Nothing))  // true
     println(Just(5).fmap { identity(it) } == identity(Just(5)))  // true

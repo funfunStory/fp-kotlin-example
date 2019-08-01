@@ -9,7 +9,7 @@ import fp.kotlin.example.chapter04.solution.curried
  * FunList 에도 동작하는 ``sequenceA`` 함수를 추가하고 테스트 해보자.
  *
  */
-fun main(args: Array<String>) {
+fun main() {
 
     val listOfList = Cons(Cons(1, Cons(2, Cons(3, Nil))), Nil)
     require(sequenceAByFoldRight(listOfList) ==

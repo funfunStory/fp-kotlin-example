@@ -1,6 +1,6 @@
 package fp.kotlin.example.chapter07
 
-fun main(args: Array<String>) {
+fun main() {
     val product: (Int, Int) -> Int = { x: Int , y: Int -> x * y}
 //     Just(10).fmap(product)     // compile error
 

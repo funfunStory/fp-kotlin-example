@@ -1,8 +1,8 @@
 package fp.kotlin.example.chapter07
 
-fun main(args: Array<String>) {
+fun main() {
     println(Just(10).fmap { it + 10 })   // Just(20)
-    println(Nothing.fmap { it: Int -> it + 10 })  // Nothing
+    println(Nothing.fmap { x: Int -> x + 10 })  // Nothing
 }
 
 sealed class Maybe<out A> : Functor<A> {

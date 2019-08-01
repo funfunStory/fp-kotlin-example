@@ -14,7 +14,7 @@ import fp.kotlin.example.chapter07.solution.Nil
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
 
     val product: (Int, Int) -> Int = { x: Int, y: Int -> x * y }
     val curriedProduct: (Int) -> (Int) -> Int = product.curried()

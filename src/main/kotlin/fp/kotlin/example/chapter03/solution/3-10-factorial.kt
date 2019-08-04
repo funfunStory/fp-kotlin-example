@@ -3,7 +3,7 @@ package fp.kotlin.example.chapter03.solution
 /**
  * 연습문제 3-10
  *
- * 연습문제 3-3에서 작성한 Factorial 함수를 메모이제이션을 사용해서 개선해보라.
+ * 연습문제 3-3에서 작성한 ``factorial`` 함수를 메모이제이션을 사용해서 개선해 보라.
  */
 
 fun main(args: Array<String>) {

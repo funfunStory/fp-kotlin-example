@@ -3,7 +3,7 @@ package fp.kotlin.example.chapter03.solution
 /**
  * 연습문제 3-11
  *
- * 연습문제 3-10에서 작성한 Factorial 함수를 FP적인 방법으로 성능을 개선해보라.
+ * 연습문제 3-10에서 작성한 ``factorial`` 함수를 함수형 프로그래밍에 적합한 방식으로 성능을 개선해 보라.
  */
 
 fun main(args: Array<String>) {

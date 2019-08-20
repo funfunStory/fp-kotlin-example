@@ -6,10 +6,8 @@ import fp.kotlin.example.chapter05.funListOf
 /**
  * 연습문제 9-8
  *
- * FunList 모노이드가 모노이드의 법칙을 만족하는지 테스트해보자.
- *
+ * 리스트 모노이드가 모노이드의 법칙을 만족하는지 확인해 보자.
  */
-
 fun main(args: Array<String>) {
 
     val x = funListOf(1, 2, 3)

@@ -11,3 +11,11 @@ interface Monoid<T> {
 }
 
 fun <T> Monoid<T>.mconcat(list: FunList<T>): T = list.foldRight(mempty(), ::mappend)
+
+
+//interface Monoid<T> {
+//
+//    fun mempty(): Monoid<T>
+//
+//    fun mappend(m: Monoid<T>): Monoid<T>
+//}

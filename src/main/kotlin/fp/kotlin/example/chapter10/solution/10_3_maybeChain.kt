@@ -7,11 +7,11 @@ import fp.kotlin.example.chapter10.Nothing
 /**
  * 연습문제 10-3
  *
- * 아래와 같이 중첩된 클래스 구조 중간에 nullable하지 않은 프로퍼티 ``D3``가 있다고 가정했을때, 본문 예제와 동일한 기능의 ``getValueOfD4`` 함수를 작성하고 테스트해보자.
+ * 다음과 같이 중첩된 클래스 중간에 널이 될 수 없는 프로퍼티 ``D4``가 있다고 가정해 보자. 이때 ``A4``에서 ``D4``의 값 ``value``를 얻기 위한  함수
+ * ``getValueOfD4``를 작성하고 테스트해 보자.
  *
  * 힌트 : d에 접근할 때  fmap을 사용해 값에 접근 하고, 함수 체이닝을 이어 갈 수 있도록 getValueOfD4_2 함수도 작성하자.
  */
-
 fun main() {
 
     val a1 = A4(Just(B4(Just(C4(D4(Just("FP")))))))

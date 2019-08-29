@@ -4,8 +4,7 @@ package fp.kotlin.example.chapter10.solution
  *
  * 연습문제 10-11
  *
- * FunStream를 모노이드로 작성해보자.
- *
+ * ``FunStream``을 모노이드로 작성해 보자.
  */
 fun main() {
 

@@ -3,11 +3,10 @@ package fp.kotlin.example.chapter11.solution
 import fp.kotlin.example.chapter11.exception.*
 
 /**
- *
  * 연습문제 11-5
  *
- * Try의 값이 Success일 경우에는 value를 가져오고 Failure인 경우에는 지정한 default 값을 가져오는 확장함수 getOrElse(default) 함수를 만들어보자.
- *
+ * 트라이의 상태가 ``Success``일 경우에는 ``value``를 반환하고, ``Failure``인 경우에는 지정한 기본값(default)을 반환하는 확장 함수
+ * ``getOrElse(default)``를 만들어 보자.
  */
 fun main() {
     val result1 = Try.pure(10).fmap { it / 0 }.getOrElse(100)

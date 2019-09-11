@@ -5,7 +5,7 @@ import fp.kotlin.example.chapter11.exception.*
 /**
  * 연습문제 11-4
  *
- * ``Try``를 ``Either``로 변환해 주는 변환함수 ``toEither`` 확장함수를 만들어 보자.
+ * ``Try``를 ``Either``로 변환해 주는 확장함수 ``toEither``를 만들어 보자.
  *
  * 힌트 : 트라이가 ``Success``일 경우에는 ``Right``를, ``Failure``인 경우에는 ``Left``로 변환한다.
  */

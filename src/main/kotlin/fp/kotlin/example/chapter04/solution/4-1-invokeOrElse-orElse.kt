@@ -3,7 +3,7 @@ package fp.kotlin.example.chapter04.solution
 /**
  * 연습문제 4-1
  *
- *  위에서 구현한 ``PartialFunction`` 클래스에 ``invokeOrElse``함수와 ``orElse`` 함수를 추가해보자. 각  함수의 프로토타입은 아래와 같다.
+ * 코드 4-11에서 구현한 ``PartialFunction`` 클래스에 ``invokeOrElse``함수와 ``orElse`` 함수를 추가해보자. 각  함수의 프로토타입은 아래와 같다.
  *
  * fun invokeOrElse(p: P, default: R): R
  * fun orElse(that: PartialFunction<P, R>): PartialFunction<P, R>

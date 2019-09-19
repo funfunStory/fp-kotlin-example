@@ -1,16 +1,11 @@
 package fp.kotlin.example.chapter04.exercise
 
-import fp.kotlin.example.head
-import fp.kotlin.example.tail
-
 /**
  * 연습문제 4-7
  *
- * ``takeWhile`` 함수는 조건 함수와 리스트를 입력받아서 조건 함수에 리스트의 구성값을 매개변수로 호출했을때, 결과가 false 일때까지의 모든 값들의
- * 리스트를 반환한다. 예를들어, 입력 리스트가 1, 2, 3, 4, 5로 구성되어 있을때, 조건 함수가 3보다 작은 값이라면 1과 2를 구성 값으로 가지는 리스트를
- * 반환한다. ``takeWhile`` 함수를 작성해보자.
+ * 리스트의 값을 조건 함수에 적용했을때, 결괏값이 참인 값의 리스트를 반환하는 ``takeWhile`` 함수를 꼬리재귀로 작성해보자. 예를 들어 입력 리스트가 1, 2,
+ * 3, 4, 5로 구성되어 있을 때, 조건 함수가 3보다 작은 값이라면 1과 2를 구성 값으로 가지는 리스트를 반환한다.
  */
-
 fun main(args: Array<String>) {
     require(listOf(1, 2) == takeWhile({ p -> p < 3 }, listOf(1, 2, 3, 4, 5)))
     require(listOf('h', 'e', 'l', 'l', 'o') == takeWhile({ p -> ' ' != p }, "hello world".toList()))

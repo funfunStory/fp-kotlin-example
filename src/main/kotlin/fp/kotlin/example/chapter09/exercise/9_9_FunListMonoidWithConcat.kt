@@ -10,7 +10,7 @@ import fp.kotlin.example.chapter09.solution.FunListMonoid
  *
  * 리스트 모노이드의 ``mconcat`` 함수를 ``[[1, 2], [3, 4], [5]]``와 같은 중첩 리스트를 넣어서 테스트해 보자. 테스트 결과를 확인하고, 동작 원리를 생각해 보자.
  */
-fun main(args: Array<String>) {
+fun main() {
 
     val list1 = funListOf(1, 2)
     val list2 = funListOf(3, 4)

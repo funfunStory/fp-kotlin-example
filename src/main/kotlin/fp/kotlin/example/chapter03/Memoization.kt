@@ -1,6 +1,6 @@
 package fp.kotlin.example.chapter03
 
-fun main(args: Array<String>) {
+fun main() {
     println(fiboRecursion(6))   // 8
     println(fiboMemoization(6)) // 8
     println(fiboFP(6))  // 8
@@ -15,7 +15,7 @@ private fun fiboRecursion(n: Int): Int {
     }
 }
 
-private var memo = Array(100, { -1 })
+private var memo = Array(100) { -1 }
 
 private fun fiboMemoization(n: Int): Int = when {
     n == 0 -> 0

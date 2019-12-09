@@ -10,7 +10,7 @@ import fp.kotlin.example.chapter09.Monoid
  *
  * 앞에서 작성한 ``FunList``를 활용해서 리스트 모노이드를 만들어 보자.
  */
-fun main(args: Array<String>) {
+fun main() {
 
     val x = funListOf(1, 2, 3)
     val y = funListOf(4, 5, 6)

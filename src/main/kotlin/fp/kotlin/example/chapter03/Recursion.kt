@@ -4,7 +4,7 @@ import fp.kotlin.example.head
 import fp.kotlin.example.plus
 import fp.kotlin.example.tail
 
-fun main(args: Array<String>) {
+fun main() {
     println(maximum(listOf(1, 3, 2, 8, 4))) // 8
     println(reverse("abcd"))    // dcba
     println(take(3, listOf(1, 2, 3, 4, 5))) // [1, 2, 3]

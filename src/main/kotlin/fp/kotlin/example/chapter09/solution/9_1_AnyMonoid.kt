@@ -10,7 +10,7 @@ import fp.kotlin.example.chapter09.Monoid
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
     AnyMonoid().apply {
         require(mappend(true, mempty()))
         require(!mappend(false, mempty()))

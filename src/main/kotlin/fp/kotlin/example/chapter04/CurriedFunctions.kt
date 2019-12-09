@@ -1,6 +1,6 @@
 package fp.kotlin.example.chapter04
 
-fun main(args: Array<String>) {
+fun main() {
     println(multiThree(1, 2, 3))    // 6
 
     val partial1 = multiThree(1)

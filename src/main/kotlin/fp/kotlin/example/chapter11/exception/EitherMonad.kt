@@ -2,7 +2,7 @@ package fp.kotlin.example.chapter11.exception
 
 import fp.kotlin.example.chapter10.Monad
 
-fun main(args: Array<String>) {
+fun main() {
     // fmap test
     println(Right(10).fmap { it * 2 })  // Right(20)
     println(Left("error").fmap { x: String -> "$x log" })   // Left(error)
@@ -41,11 +41,11 @@ sealed class Either<out L, out R> : Monad<R> {
 //    }
 }
 
-data class Left<out L>(val value: L) : Either<L, kotlin.Nothing>() {
+data class Left<out L>(val value: L) : Either<L, Nothing>() {
     override fun toString(): String = "Left($value)"
 }
 
-data class Right<out R>(val value: R) : Either<kotlin.Nothing, R>() {
+data class Right<out R>(val value: R) : Either<Nothing, R>() {
     override fun toString(): String = "Right($value)"
 }
 

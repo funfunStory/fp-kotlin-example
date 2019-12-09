@@ -1,6 +1,6 @@
 package fp.kotlin.example.chapter01
 
-fun main(args: Array<String>) {
+fun main() {
     println(impureFunction(1, 2))   // 13
     z = 20
     println(impureFunction(1, 2))   // 23

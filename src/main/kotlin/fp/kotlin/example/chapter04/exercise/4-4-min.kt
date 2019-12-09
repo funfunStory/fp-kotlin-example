@@ -6,7 +6,7 @@ package fp.kotlin.example.chapter04.exercise
  * ``min`` 함수를 ``curried`` 함수를 사용해서 작성하라.
  */
 
-fun main(args: Array<String>) {
+fun main() {
     /*
      주석을 해제하고 아래 조건을 만족하는 curried와 min 함수를 구현해보세요.
      */

@@ -12,7 +12,7 @@ import fp.kotlin.example.plus
  * fun takeSequence(n: Int, sequence: Sequence<Int>): List<Int>
  */
 
-fun main(args: Array<String>) {
+fun main() {
     require(listOf(3, 3, 3, 3, 3) == takeSequence(5, repeat(3)))
 }
 

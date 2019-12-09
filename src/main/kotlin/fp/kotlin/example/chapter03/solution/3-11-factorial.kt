@@ -6,7 +6,7 @@ package fp.kotlin.example.chapter03.solution
  * 연습문제 3-10에서 작성한 ``factorial`` 함수를 함수형 프로그래밍에 적합한 방식으로 성능을 개선해 보라.
  */
 
-fun main(args: Array<String>) {
+fun main() {
     println(factorial(1))   // 1
     println(factorial(4))   // 24
     println(factorial(7))   // 5040

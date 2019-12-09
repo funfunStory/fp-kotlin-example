@@ -5,7 +5,7 @@ import fp.kotlin.example.chapter10.solution.fmap
 import fp.kotlin.example.chapter10.solution.funStreamOf
 import fp.kotlin.example.chapter10.solution.printFunStream
 
-fun main(args: Array<String>) {
+fun main() {
     functionalFunction(funStreamOf(1, 2, 3))
 
     println("**** Log in higher order function ****")

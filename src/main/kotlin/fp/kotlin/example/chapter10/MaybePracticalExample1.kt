@@ -5,7 +5,7 @@ class B1(val c: C1?)
 class C1(val d: D1?)
 class D1(val value: String?)
 
-fun main(args: Array<String>) {
+fun main() {
     val a = A1(B1(C1(D1("someValue"))))
 
     println(getValueOfD1(a))     // someValue

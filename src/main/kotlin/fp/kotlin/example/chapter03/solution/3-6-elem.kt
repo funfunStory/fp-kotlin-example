@@ -12,7 +12,7 @@ import fp.kotlin.example.tail
  * fun elem(n: Int, list: List<Int>): Boolean
  */
 
-fun main(args: Array<String>) {
+fun main() {
     println(elem(5, listOf(1, 3, 5)))   // true
     println(elem(5, listOf(1, 3, 7)))   // false
 }

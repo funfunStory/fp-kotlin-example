@@ -9,7 +9,7 @@ package fp.kotlin.example.chapter03.exercise
  * fun power(x: Double, n: Int): Double
  */
 
-fun main(args: Array<String>) {
+fun main() {
     require(25.0 == power(5.0, 2))
     require(1024.0 == power(2.0, 10))
 }

@@ -6,7 +6,7 @@ package fp.kotlin.example.chapter09.solution
  *
  * ``foldMap`` 함수를 사용하여 폴더블 리스트에 ``contains`` 함수를 구현해 보자.
  */
-fun main(args: Array<String>) {
+fun main() {
 
     val funList = Cons(1, Cons(2, Cons(3, Cons(4, Cons(5, Nil)))))
     val funList2 = Cons('a', Cons('b', Cons('c', Cons('d', Cons('e', Nil)))))

@@ -4,7 +4,7 @@ import fp.kotlin.example.chapter10.Just
 import fp.kotlin.example.chapter10.Maybe
 import fp.kotlin.example.chapter10.Nothing
 
-fun main(args: Array<String>) {
+fun main() {
     when(val result = divSubTenBy(5)) {
         is Nothing -> println("divSubTenBy(5) error")
         is Just -> println("divSubTenBy(5) returns ${result.value}")

@@ -1,6 +1,6 @@
 package fp.kotlin.example.chapter04
 
-fun main(args: Array<String>) {
+fun main() {
     println(twice(5))
     println(partialTwice(105))
 

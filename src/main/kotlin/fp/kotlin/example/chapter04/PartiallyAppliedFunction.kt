@@ -1,6 +1,6 @@
 package fp.kotlin.example.chapter04
 
-fun main(args: Array<String>) {
+fun main() {
     val func = { a: String, b: String -> a + b }
 
     val partiallyAppliedFunc1 = func.partial1("Hello")

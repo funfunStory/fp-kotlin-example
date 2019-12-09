@@ -11,7 +11,7 @@ import fp.kotlin.example.chapter03.trampoline
  * 연습문제 3-17에서 작성한 함수를 ``trampoline`` 함수를 사용하여 재작성해보자.
  */
 
-fun main(args: Array<String>) {
+fun main() {
     println(trampoline(squareRoot(5.0)))  // 0.528685631720282
 }
 

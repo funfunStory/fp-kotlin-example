@@ -1,6 +1,6 @@
 package fp.kotlin.example.chapter01
 
-fun main(args: Array<String>) {
+fun main() {
     val fpCalculator = FpCalculator()
 
     println(fpCalculator.calculate({ n1, n2 -> n1 + n2 }, 3, 1))    // 4

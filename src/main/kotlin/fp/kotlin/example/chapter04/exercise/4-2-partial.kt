@@ -6,7 +6,7 @@ package fp.kotlin.example.chapter04.exercise
  * 매개변수 3개를 받는 부분 적용 함수 3개를 직접 구현하라.
  */
 
-fun main(args: Array<String>) {
+fun main() {
     /*
      * 주석을 해제하고 partial1, partial2, partial3을 구현해보세요.
      */

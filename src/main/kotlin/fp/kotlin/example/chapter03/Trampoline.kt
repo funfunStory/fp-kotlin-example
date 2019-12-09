@@ -9,7 +9,7 @@ tailrec fun <A> trampoline(bounce: Bounce<A>): A = when (bounce) {
     is More -> trampoline(bounce.thunk())
 }
 
-fun main(args: Array<String>) {
+fun main() {
     println(trampoline(even(999999)))   // false
     println(trampoline(odd(999999)))   // true
 }

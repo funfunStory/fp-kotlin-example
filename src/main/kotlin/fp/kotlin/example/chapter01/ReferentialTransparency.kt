@@ -1,6 +1,6 @@
 package fp.kotlin.example.chapter01
 
-fun main(args: Array<String>) {
+fun main() {
     val result = transparent("Joe")
     print(result)
 }

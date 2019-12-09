@@ -8,7 +8,7 @@ import fp.kotlin.example.chapter05.funListOf
  *
  * 리스트 모노이드가 모노이드의 법칙을 만족하는지 확인해 보자.
  */
-fun main(args: Array<String>) {
+fun main() {
 
     val x = funListOf(1, 2, 3)
     val y = funListOf(4, 5, 6)

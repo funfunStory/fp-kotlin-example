@@ -7,7 +7,7 @@ package fp.kotlin.example.chapter03.exercise
  *
  * 힌트: tailrec 어노테이션을 활용하자.
  */
-fun main(args: Array<String>) {
+fun main() {
     require(1 == factorial(1))
     require(24 == factorial(4))
     require(5040 == factorial(7))

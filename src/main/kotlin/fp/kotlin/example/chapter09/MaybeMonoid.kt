@@ -1,6 +1,6 @@
 package fp.kotlin.example.chapter09
 
-fun main(args: Array<String>) {
+fun main() {
     val x = Just(1)
     val y = Just(2)
     val z = Just(3)

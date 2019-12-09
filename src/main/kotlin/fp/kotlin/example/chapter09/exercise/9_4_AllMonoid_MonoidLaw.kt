@@ -8,7 +8,7 @@ package fp.kotlin.example.chapter09.exercise
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
     val x = true
     val y = false
     val z = true

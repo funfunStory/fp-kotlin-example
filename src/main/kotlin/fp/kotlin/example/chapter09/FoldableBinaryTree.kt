@@ -1,6 +1,6 @@
 package fp.kotlin.example.chapter09
 
-fun main(args: Array<String>) {
+fun main() {
     val tree = Node(1,
             Node(2,
                     Node(3), Node(4)),

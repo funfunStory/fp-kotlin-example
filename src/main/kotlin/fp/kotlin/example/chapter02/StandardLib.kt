@@ -1,6 +1,6 @@
 package fp.kotlin.example.chapter02
 
-fun main(args: Array<String>) {
+fun main() {
     let()   // Person(name=Kotlin, age=10)
     with()  // Person(name=Kotlin, age=10)
     run()   // Person(name=Kotlin, age=10)

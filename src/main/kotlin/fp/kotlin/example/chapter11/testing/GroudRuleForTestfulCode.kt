@@ -77,7 +77,7 @@ fun getPersonNameFromDB(id: Int, db: Database): String {
 }
 
 fun checkName(person: Person, validName: String): Boolean {
-    return validName.equals(person.name)
+    return validName == person.name
 }
 
 fun getPersonFromDB(id: Int, db: Database): Maybe<Person> = try {

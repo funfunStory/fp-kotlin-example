@@ -3,7 +3,7 @@ package fp.kotlin.example.chapter03
 import fp.kotlin.example.head
 import fp.kotlin.example.tail
 
-fun main(args: Array<String>) {
+fun main() {
     // [[], [3], [2], [2, 3], [1], [1, 3], [1, 2], [1, 2, 3]]
     println(powerset(setOf(1, 2, 3)))
     // [[], [1], [2], [1, 2], [3], [1, 3], [2, 3], [1, 2, 3]]

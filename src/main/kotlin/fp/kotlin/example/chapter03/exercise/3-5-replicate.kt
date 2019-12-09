@@ -10,7 +10,7 @@ package fp.kotlin.example.chapter03.exercise
  * fun replicate(n: Int, element: Int): List<Int>
  */
 
-fun main(args: Array<String>) {
+fun main() {
     require(listOf(5, 5, 5) == replicate(3, 5))
     require(listOf(1, 1, 1, 1, 1) == replicate(5, 1))
 }

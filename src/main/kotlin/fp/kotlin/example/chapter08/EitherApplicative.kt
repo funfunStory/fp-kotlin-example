@@ -9,11 +9,11 @@ fun main() {
 
     // pure test
     println(Either.pure(10))    // Right(10)
-    println(Either.pure({ x: Int -> x * 2 }))   // Right((kotlin.Int) -> kotlin.Int)
+    println(Either.pure { x: Int -> x * 2 })   // Right((kotlin.Int) -> kotlin.Int)
 
     // apply test
-    println(Either.pure({ x: Int -> x * 2 }) apply Left("error"))   // Left(error)
-    println(Either.pure({ x: Int -> x * 2 }) apply Right(10))   // Right(20)
+    println(Either.pure { x: Int -> x * 2 } apply Left("error"))   // Left(error)
+    println(Either.pure { x: Int -> x * 2 } apply Right(10))   // Right(20)
     println(Either.pure({ x: Int, y: Int -> x * y }.curried())
         apply Left("error")
         apply Right(10)

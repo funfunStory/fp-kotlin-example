@@ -11,7 +11,7 @@ import fp.kotlin.example.tail
  * 힌트 : ``generateSequence(1) { it + 1 }`` 는 초깃값 1을 기준으로 값이 1씩 무한대로 증가하는 무한대의 리스트를 표현한다.
  */
 
-fun main(args: Array<String>) {
+fun main() {
     println(takeWhile({ p -> p < 10 }, generateSequence(1) { it + 1 }))   // [1, 2]
 }
 

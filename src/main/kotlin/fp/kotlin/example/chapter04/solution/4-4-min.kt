@@ -6,7 +6,7 @@ package fp.kotlin.example.chapter04.solution
  * ``min`` 함수를 ``curried`` 함수를 사용해서 작성하라.
  */
 
-fun main(args: Array<String>) {
+fun main() {
     val curriedMin = min.curried()
     println(curriedMin(10)(30))    // 30
 }

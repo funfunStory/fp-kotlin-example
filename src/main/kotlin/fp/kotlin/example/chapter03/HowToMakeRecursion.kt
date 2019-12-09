@@ -1,6 +1,6 @@
 package fp.kotlin.example.chapter03
 
-fun main(args: Array<String>) {
+fun main() {
     println(func(5))    // 15
 }
 

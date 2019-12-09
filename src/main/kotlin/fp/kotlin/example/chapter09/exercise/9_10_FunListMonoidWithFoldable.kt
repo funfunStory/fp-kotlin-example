@@ -9,7 +9,7 @@ import fp.kotlin.example.chapter09.SumMonoid
  *
  * 리스트 모노이드를 ``Foldable`` 타입 클래스의 인스턴스로 만들어서 ``foldLeft`` 함수를 작성하고, ``foldMap`` 함수를 테스트해 보자.
  */
-fun main(args: Array<String>) {
+fun main() {
 
     val list1 = Cons(1, Cons(2, Cons(3, Cons(4, Nil))))
 

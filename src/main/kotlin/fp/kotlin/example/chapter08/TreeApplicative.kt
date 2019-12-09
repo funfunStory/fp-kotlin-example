@@ -6,7 +6,7 @@ fun main() {
     val tree = Node(1, listOf(Node(2), Node(3)))
 
     println(tree.fmap { it * 2 })   // 2 [4 [], 6 []]
-    println(Tree.pure({ x: Int -> x * 2 }) apply tree)  // 2 [4 [], 6 []]
+    println(Tree.pure { x: Int -> x * 2 } apply tree)  // 2 [4 [], 6 []]
 
     println(Tree.pure({ x: Int, y: Int -> x * y }.curried())
         apply Node(1, listOf(Node(2), Node(3)))

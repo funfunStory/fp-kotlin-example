@@ -2,7 +2,7 @@ package fp.kotlin.example.chapter10
 
 import java.io.File
 
-fun main(args: Array<String>) {
+fun main() {
     val filePath = ClassLoader.getSystemResource("someArticle.txt").path
     println(getFirstWord(filePath))     // Why
 

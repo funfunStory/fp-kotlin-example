@@ -9,7 +9,7 @@ package fp.kotlin.example.chapter03.exercise
  * fun gcd(m: Int, n: Int): Int
  */
 
-fun main(args: Array<String>) {
+fun main() {
     require(6 == gcd(12, 18))
     require(12 == gcd(60, 48))
     require(6 == gcd(366, 60))

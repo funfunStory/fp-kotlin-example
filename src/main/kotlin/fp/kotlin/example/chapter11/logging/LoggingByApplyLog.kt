@@ -7,7 +7,7 @@ import fp.kotlin.example.chapter10.solution.funStreamOf
 import fp.kotlin.example.chapter10.solution.mappend
 import fp.kotlin.example.chapter10.solution.printFunStream
 
-fun main(args: Array<String>) {
+fun main() {
     val result = functionalSolution3(funStreamOf(1, 2, 3))
     printFunStream(result.fmap { it.first })   // [false, false, true]
     printFunStream(

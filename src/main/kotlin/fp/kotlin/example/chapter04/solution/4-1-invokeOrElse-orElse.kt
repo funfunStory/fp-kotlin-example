@@ -43,7 +43,7 @@ class PartialFunction<P, R>(
 fun <P, R> ((P) -> R).toPartialFunction(definedAt: (P) -> Boolean)
         : PartialFunction<P, R> = PartialFunction(definedAt, this)
 
-fun main(args: Array<String>) {
+fun main() {
     val condition: (Int) -> Boolean = { 0 == it.rem(2) }
     val body: (Int) -> String = { "$it is even" }
 

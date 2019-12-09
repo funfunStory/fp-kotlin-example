@@ -1,6 +1,6 @@
 package fp.kotlin.example.chapter11.logging
 
-fun main(args: Array<String>) {
+fun main() {
     println(imperativeFunction(listOf(1, 2, 3)))
 
     /*

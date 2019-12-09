@@ -1,13 +1,13 @@
 package fp.kotlin.example.chapter04
 
-fun main(args: Array<String>) {
+fun main() {
     val ints: List<Int> = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 
     // 명령형 프로그래밍 예
     val over10Values: ArrayList<Int> = ArrayList()
 
-    for (i in 0 until ints.size) {
-        val twiceInt = ints[i] * 2
+    for (element in ints) {
+        val twiceInt = element * 2
         if(twiceInt > 10){
             over10Values.add(twiceInt)
         }

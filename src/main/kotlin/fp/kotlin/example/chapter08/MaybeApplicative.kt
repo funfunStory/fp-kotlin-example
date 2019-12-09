@@ -9,11 +9,11 @@ fun main() {
 
     // pure test
     println(Maybe.pure(10))  // Just(10)
-    println(Maybe.pure({ x: Int -> x * 2 }))  // Just((kotlin.Int) -> kotlin.Int)
+    println(Maybe.pure { x: Int -> x * 2 })  // Just((kotlin.Int) -> kotlin.Int)
 
     // apply test
-    println(Maybe.pure({ x: Int -> x * 2 }) apply Just(10))  // Just(20)
-    println(Maybe.pure({ x: Int -> x * 2 }) apply Nothing)   // Nothing
+    println(Maybe.pure { x: Int -> x * 2 } apply Just(10))  // Just(20)
+    println(Maybe.pure { x: Int -> x * 2 } apply Nothing)   // Nothing
 
     // applicative style programming test
 //    println(AMaybe.pure({ x: Int, y: Int -> x * y}) apply Just(10) apply Just(20))  // compile error

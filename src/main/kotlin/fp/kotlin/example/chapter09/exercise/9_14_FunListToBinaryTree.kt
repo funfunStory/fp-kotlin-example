@@ -11,7 +11,7 @@ import fp.kotlin.example.chapter05.funListOf
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
 
     val tree =
         Node(1, Cons(

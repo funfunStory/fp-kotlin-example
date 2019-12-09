@@ -1,13 +1,12 @@
 package fp.kotlin.example.chapter09
 
 import fp.kotlin.example.chapter05.FunList
-import fp.kotlin.example.chapter05.concat
 import fp.kotlin.example.chapter05.funListOf
 import fp.kotlin.example.chapter05.printFunList
 import fp.kotlin.example.chapter09.solution.AnyMonoid
 import fp.kotlin.example.chapter09.solution.FunListMonoid
 
-fun main(args: Array<String>) {
+fun main() {
     val tree = Node("a",
             Node("b",
                     Node("c"), Node("d")),

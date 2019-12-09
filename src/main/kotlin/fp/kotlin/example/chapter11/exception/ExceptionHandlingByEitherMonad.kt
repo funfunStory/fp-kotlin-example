@@ -1,6 +1,6 @@
 package fp.kotlin.example.chapter11.exception
 
-fun main(args: Array<String>) {
+fun main() {
     when(val result = divSubTenBy(5)) {
         is Left -> println("divSubTenBy(5) error by ${result.value}")
         is Right -> println("divSubTenBy(5) returns ${result.value}")

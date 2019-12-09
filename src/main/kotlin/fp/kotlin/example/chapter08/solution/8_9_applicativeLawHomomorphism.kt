@@ -11,7 +11,7 @@ package fp.kotlin.example.chapter08.solution
 fun main() {
 
     val function: (Int) -> Int = { x: Int -> x * 10 }
-    val value: Int = 1
+    val value = 1
 
     val left = FunList.pure(function) apply FunList.pure(value)
     val right = FunList.pure(function(value))

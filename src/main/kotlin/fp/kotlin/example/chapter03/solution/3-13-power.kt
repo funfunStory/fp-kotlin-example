@@ -8,7 +8,7 @@ package fp.kotlin.example.chapter03.solution
  * 힌트: tailrec 어노테이션을 활용하자.
  */
 
-fun main(args: Array<String>) {
+fun main() {
     println(power(5.0, 2))   // 25.0
     println(power(2.0, 10))  // 1024.0
 }

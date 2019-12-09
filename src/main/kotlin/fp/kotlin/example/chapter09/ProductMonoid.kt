@@ -2,7 +2,7 @@ package fp.kotlin.example.chapter09
 
 import fp.kotlin.example.chapter05.funListOf
 
-fun main(args: Array<String>) {
+fun main() {
     val x = 1
     val y = 2
     val z = 3

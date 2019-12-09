@@ -3,7 +3,7 @@ package fp.kotlin.example.chapter04
 import fp.kotlin.example.chapter04.solution.curried
 import kotlin.math.abs
 
-fun main(args: Array<String>) {
+fun main() {
     println(composed(3))    // 9
 
     val addThree = { i: Int -> i + 3 }
@@ -11,8 +11,8 @@ fun main(args: Array<String>) {
     val composedFunc = addThree compose twice
     println(composedFunc(3)) // 9
 
-    val absolute = { i: List<Int> -> i.map { it -> abs(it) } }
-    val negative = { i: List<Int> -> i.map { it -> -it } }
+    val absolute = { i: List<Int> -> i.map { abs(it) } }
+    val negative = { i: List<Int> -> i.map { -it } }
     val minimum = { i: List<Int> -> i.min() }
 
     val result1 = minimum(negative(absolute(listOf(3, -1, 5, -2, -4, 8, 14))))

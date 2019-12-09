@@ -13,7 +13,7 @@ import fp.kotlin.example.tail
  * 힌트2: 리스트를 분할하기 위해 함수 ``partition``을 활용하자.
  */
 
-fun main(args: Array<String>) {
+fun main() {
     println(quicksort(listOf(5, 3, 7, 6, 2, 1, 4)))     // [1, 2, 3, 4, 5, 6, 7]
 }
 

@@ -12,7 +12,7 @@ import java.math.BigDecimal
  * 힌트: java.math.BigDecimal을 사용하라.
  */
 
-fun main(args: Array<String>) {
+fun main() {
     require(BigDecimal(3628800) == trampoline(factorial(BigDecimal(10))))
     require(BigDecimal(Long.MAX_VALUE) < trampoline(factorial(BigDecimal(100000))))
 }

@@ -9,7 +9,7 @@ import fp.kotlin.example.chapter10.solution.mappend
 import fp.kotlin.example.chapter10.solution.mempty
 import fp.kotlin.example.chapter10.solution.printFunStream
 
-fun main(args: Array<String>) {
+fun main() {
     val result = functionalSolution4(funStreamOf(1, 2, 3))
 
     printFunStream(result.fmap { it.value })    // [false, false, true]

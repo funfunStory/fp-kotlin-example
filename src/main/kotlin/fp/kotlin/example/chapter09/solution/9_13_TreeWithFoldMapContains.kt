@@ -8,7 +8,7 @@ package fp.kotlin.example.chapter09.solution
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
 
     val tree = Node(1,
         Cons(Node(2, Cons(Node(3), Cons(Node(4), Nil))),

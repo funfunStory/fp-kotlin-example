@@ -10,7 +10,7 @@ package fp.kotlin.example.chapter03.solution
  * fun replicate(n: Int, element: Int): List<Int>
  */
 
-fun main(args: Array<String>) {
+fun main() {
     println(replicate(3, 5))    // [5, 5, 5]
     println(replicate(5, 1))    // [1, 1, 1, 1, 1]
 }

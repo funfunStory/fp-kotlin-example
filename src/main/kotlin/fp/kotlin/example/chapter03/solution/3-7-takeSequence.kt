@@ -14,7 +14,7 @@ import fp.kotlin.example.tail
  * fun takeSequence(n: Int, sequence: Sequence<Int>): List<Int>
  */
 
-fun main(args: Array<String>) {
+fun main() {
     println(takeSequence(5, repeat(3))) // [3, 3, 3, 3, 3]
 }
 

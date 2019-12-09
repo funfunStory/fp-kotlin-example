@@ -9,7 +9,7 @@ package fp.kotlin.example.chapter03.solution
  * fun toBinary(n: Int): String
  */
 
-fun main(args: Array<String>) {
+fun main() {
     println(toBinary(10))   // 1010
     println(toBinary(27))   // 11011
     println(toBinary(255))  // 11111111

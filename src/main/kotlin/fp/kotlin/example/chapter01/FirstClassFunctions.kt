@@ -25,4 +25,4 @@ fun doSomething(): (Int) -> String {
 }
 
 // 함수를 List 자료구조에 담을 수 있다
-var funcList: List<(Int) -> String> = listOf({ value -> value.toString() })
+var funcList: List<(Int) -> String> = listOf { value -> value.toString() }

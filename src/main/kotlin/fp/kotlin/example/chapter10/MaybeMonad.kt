@@ -1,17 +1,17 @@
 package fp.kotlin.example.chapter10
 
-fun main(args: Array<String>) {
+fun main() {
     // fmap test
     println(Just(10).fmap { it + 10 })   // Just(20)
     println(Nothing.fmap { x: Int -> x + 10 })  // Nothing
 
     // pure test
     println(Maybe.pure(10))  // Just(10)
-    println(Maybe.pure({ x: Int -> x * 2 }))  // Just((kotlin.Int) -> kotlin.Int)
+    println(Maybe.pure { x: Int -> x * 2 })  // Just((kotlin.Int) -> kotlin.Int)
 
     // apply test
-    println(Maybe.pure({ x: Int -> x * 2 }) apply Just(10))  // Just(20)
-    println(Maybe.pure({ x: Int -> x * 2 }) apply Nothing)   // Nothing
+    println(Maybe.pure { x: Int -> x * 2 } apply Just(10))  // Just(20)
+    println(Maybe.pure { x: Int -> x * 2 } apply Nothing)   // Nothing
     println(Maybe.pure({ x: Int, y: Int -> x * y }.curried())
             apply Just(10)
             apply Just(20)

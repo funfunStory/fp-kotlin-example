@@ -2,25 +2,25 @@ package fp.kotlin.example.chapter08
 
 fun main() {
     // fmap test
-    println(AJust(10).fmap { it + 10 })   // AJust(20)
-    println(ANothing.fmap { it: Int -> it + 10 })  // ANothing
+    println(AJust(10).fmap { it + 10 })     // AJust(20)
+    println(ANothing.fmap { it: Int -> it + 10 })   // ANothing
 
     // pure test
-    println(AMaybe.pure(10))  // AJust(10)
+    println(AMaybe.pure(10))                // AJust(10)
 
     // apply test
-    println(AJust(10) apply AJust({ x: Int -> x * 2 }))   // AJust(20)
-    println(ANothing apply AJust({ x: Int -> x * 2 }))    // ANothing
-    println(AJust(10).apply(AJust({ x: Int -> x * 2 })) )   // AJust(20)
+    println(AJust(10) apply AJust { x: Int -> x * 2 })   // AJust(20)
+    println(ANothing apply AJust { x: Int -> x * 2 })            // ANothing
+    println(AJust(10).apply(AJust { x: Int -> x * 2 }))  // AJust(20)
 
     // applicative style programming test
     println(AMaybe.pure(10)
-            apply AJust({ x: Int -> x * 2 })
-            apply AJust({ x: Int -> x + 10 }))    // AJust(30)
+        apply AJust { x: Int -> x * 2 }
+        apply AJust { x: Int -> x + 10 })    // AJust(30)
 
-//    println(AMaybe.pure({ x: Int -> x * 2 })
-//            apply AJust(5)
-//            apply AJust(10))    // compile error
+    //    println(AMaybe.pure({ x: Int -> x * 2 })
+    //            apply AJust(5)
+    //            apply AJust(10))    // compile error
 
 }
 

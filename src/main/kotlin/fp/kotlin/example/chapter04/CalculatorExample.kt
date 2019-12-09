@@ -1,6 +1,6 @@
 package fp.kotlin.example.chapter04
 
-fun main(args: Array<String>) {
+fun main() {
     // OOP 예제
     val calcSum = Sum()
     val calcMinus = Minus()

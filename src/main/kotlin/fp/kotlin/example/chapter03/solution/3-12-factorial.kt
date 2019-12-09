@@ -7,7 +7,7 @@ package fp.kotlin.example.chapter03.solution
  *
  * 힌트: tailrec 어노테이션을 활용하자.
  */
-fun main(args: Array<String>) {
+fun main() {
     println(factorial(1))   // 1
     println(factorial(4))   // 24
     println(factorial(7))   // 5040

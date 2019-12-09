@@ -14,7 +14,7 @@ import fp.kotlin.example.chapter09.SumMonoid
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
 
     val node = Node(1)
     val node2 = Node(1, Cons(Node(2), Nil))

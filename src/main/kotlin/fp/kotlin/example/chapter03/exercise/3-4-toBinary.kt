@@ -9,7 +9,7 @@ package fp.kotlin.example.chapter03.exercise
  * fun toBinary(n: Int): String
  */
 
-fun main(args: Array<String>) {
+fun main() {
     require("1010" == toBinary(10))
     require("11011" == toBinary(27))
     require("11111111" == toBinary(255))

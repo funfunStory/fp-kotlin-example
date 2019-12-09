@@ -1,6 +1,6 @@
 package fp.kotlin.example.chapter10
 
-fun main(args: Array<String>) {
+fun main() {
     val x = 10
     val f = { a: Int -> Just(a * 2) }
     val g = { a: Int -> Just(a + 1) }

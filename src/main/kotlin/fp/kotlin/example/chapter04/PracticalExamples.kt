@@ -5,7 +5,7 @@ import fp.kotlin.example.head
 import fp.kotlin.example.tail
 import kotlin.math.max
 
-fun main(args: Array<String>) {
+fun main() {
     val list1 = listOf(6, 3, 2, 1, 4)
     val list2 = listOf(7, 4, 2, 6, 3)
 

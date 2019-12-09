@@ -1,6 +1,6 @@
 package fp.kotlin.example.chapter11.exception
 
-fun main(args: Array<String>) {
+fun main() {
 
     println(divideTenBy(0))    // -1
     println(subtractTenBy(10))  // 0

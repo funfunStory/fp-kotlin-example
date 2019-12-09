@@ -11,7 +11,7 @@ import fp.kotlin.example.chapter09.solution.AnyMonoid
  *
  */
 
-fun main(args: Array<String>) {
+fun main() {
     AnyMonoid().apply {
         require(mappend(true, mempty()))
         require(!mappend(false, mempty()))

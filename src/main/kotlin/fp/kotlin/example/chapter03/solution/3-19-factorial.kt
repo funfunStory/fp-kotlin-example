@@ -14,7 +14,7 @@ import java.math.BigDecimal
  * 힌트: java.math.BigDecimal을 사용하라.
  */
 
-fun main(args: Array<String>) {
+fun main() {
     println(trampoline(factorial(BigDecimal(10))))  // 3628800
     println(trampoline(factorial(BigDecimal(100000))))  // Very big number
 }

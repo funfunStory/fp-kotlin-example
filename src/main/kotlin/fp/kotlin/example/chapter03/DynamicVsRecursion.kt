@@ -1,6 +1,6 @@
 package fp.kotlin.example.chapter03
 
-fun main(args: Array<String>) {
+fun main() {
     println(fiboDynamic(10, IntArray(100)))    // 55
     println(fiboRecursion(10))    // 55
     require(fiboDynamic(10, IntArray(100)) == fiboRecursion(10))

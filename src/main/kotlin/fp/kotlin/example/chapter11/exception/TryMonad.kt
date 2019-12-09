@@ -3,18 +3,18 @@ package fp.kotlin.example.chapter11.exception
 import fp.kotlin.example.chapter10.Monad
 import java.lang.NullPointerException
 
-fun main(args: Array<String>) {
+fun main() {
     // fmap test
     println(Success(10).fmap { it + 10 })     // Success(20)
     println(Failure(NullPointerException("NPE")).fmap { x: Int -> x + 10 })    // Failure(NPE)
 
     // pure test
     println(Try.pure(10))    // Success(10)
-    println(Try.pure({ x: Int -> x * 2 }))   // Success((kotlin.Int) -> kotlin.Int)
+    println(Try.pure { x: Int -> x * 2 })   // Success((kotlin.Int) -> kotlin.Int)
 
     // apply test
-    println(Try.pure({ x: Int -> x * 2 }) apply Failure(NullPointerException("NPE")))   // Failure(NPE)
-    println(Try.pure({ x: Int -> x * 2 }) apply Success(10))   // Success(20)
+    println(Try.pure { x: Int -> x * 2 } apply Failure(NullPointerException("NPE")))   // Failure(NPE)
+    println(Try.pure { x: Int -> x * 2 } apply Success(10))   // Success(20)
     println(Try.pure({ x: Int, y: Int -> x * y }.curried())
             apply Failure(NullPointerException("NPE"))
             apply Success(10)
@@ -46,7 +46,7 @@ sealed class Try<out R> : Monad<R> {
     }
 }
 
-data class Failure(val e: Throwable) : Try<kotlin.Nothing>() {
+data class Failure(val e: Throwable) : Try<Nothing>() {
     override fun toString(): String = "Failure(${e.message})"
 }
 

@@ -10,7 +10,7 @@ package fp.kotlin.example.chapter03.exercise
  * 2) 제곱근은 java.lang.Math.sqrt() 함수를 사용하여 구할 수 있다.
  */
 
-fun main(args: Array<String>) {
+fun main() {
     require(0.528685631720282 == squareRoot(5.0))
 }
 

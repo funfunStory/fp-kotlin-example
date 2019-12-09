@@ -1,6 +1,6 @@
 package fp.kotlin.example.chapter04
 
-fun main(args: Array<String>) {
+fun main() {
     val result = object : CallBack1 {
         override fun callBack(x1: String): CallBack2 {
             return object : CallBack2 {

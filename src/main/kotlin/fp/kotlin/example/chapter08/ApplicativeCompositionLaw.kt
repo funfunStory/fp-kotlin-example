@@ -4,8 +4,8 @@ package fp.kotlin.example.chapter08
 // pure(compose) apply af1 apply af2 apply af3 = af1 apply (af2 apply af3)
 
 fun main() {
-    val maybeAf1 = Just({ x: Int -> x * 2 })
-    val maybeAf2 = Just({ x: Int -> x + 1})
+    val maybeAf1 = Just { x: Int -> x * 2 }
+    val maybeAf2 = Just { x: Int -> x + 1}
     val maybeAf3 = Just(30)
     val leftMaybe = Maybe.pure(compose<Int, Int, Int>().curried()) apply maybeAf1 apply maybeAf2 apply maybeAf3
     val rightMaybe = maybeAf1 apply (maybeAf2 apply maybeAf3)
@@ -18,8 +18,8 @@ fun main() {
     val rightTree = treeAf1 apply (treeAf2 apply treeAf3)
     println(leftTree.toString() == rightTree.toString())    // true
 
-    val eitherAf1 = Right({ x: Int -> x * 2 })
-    val eitherAf2 = Right({ x: Int -> x + 1 })
+    val eitherAf1 = Right { x: Int -> x * 2 }
+    val eitherAf2 = Right { x: Int -> x + 1 }
     val eitherAf3 = Right(10)
     val leftEither = Either.pure(compose<Int, Int, Int>().curried()) apply eitherAf1 apply eitherAf2 apply eitherAf3
     val rightEither = eitherAf1 apply (eitherAf2 apply eitherAf3)

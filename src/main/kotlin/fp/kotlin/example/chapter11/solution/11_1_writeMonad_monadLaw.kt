@@ -19,6 +19,6 @@ fun main() {
     val m = WriterMonad.pure(value)
     require(m flatMap { WriterMonad.pure(it) } == m)
 
-    val g = {x : Int -> WriterMonad.pure(value) }
+    val g = { _: Int -> WriterMonad.pure(value) }
     require((m flatMap f) flatMap g == m flatMap { x :Int -> f(x) flatMap g })
 }

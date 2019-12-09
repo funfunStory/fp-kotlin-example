@@ -9,7 +9,7 @@ package fp.kotlin.example.chapter03.solution
  * fun power(x: Double, n: Int): Double
  */
 
-fun main(args: Array<String>) {
+fun main() {
     println(power(5.0, 2))   // 25.0
     println(power(2.0, 10))  // 1024.0
 }

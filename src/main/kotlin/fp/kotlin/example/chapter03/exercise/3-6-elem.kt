@@ -9,7 +9,7 @@ package fp.kotlin.example.chapter03.exercise
  * fun elem(n: Int, list: List<Int>): Boolean
  */
 
-fun main(args: Array<String>) {
+fun main() {
     require(elem(5, listOf(1, 3, 5)))
     require(!elem(5, listOf(1, 3, 7)))
 }

@@ -1,6 +1,12 @@
 package fp.kotlin.example.chapter02
 
 fun main(args: Array<String>) {
+    let()   // Person(name=Kotlin, age=10)
+    with()  // Person(name=Kotlin, age=10)
+    run()   // Person(name=Kotlin, age=10)
+    run2()  // Person(name=Kotlin, age=10)
+    apply() // Person(name=Kotlin, age=10)
+    also()  // Person(name=Kotlin, age=10)
     codeBlock()
 }
 
@@ -10,50 +16,62 @@ fun normal() {
     val person = Person("FP", 30)
     person.name = "Kotlin"
     person.age = 10
-    println("person is : $person")  // person is : Person(name=Kotlin, age=10)
+    println("$person")  // Person(name=Kotlin, age=10)
 }
 
 fun let() {
-    val result = Person("FP", 30).let {
+    val person = Person("FP", 30)
+    val result = person.let {
         it.name = "Kotlin"
         it.age = 10
-        println("person is : $it")  // person is : Person(name=Kotlin, age=10)
+        it
     }
-    println(result) // kotlin.Unit
-}
-
-fun run() {
-    val result = Person("FP", 30).run {
-        name = "Kotlin"
-        age = 10
-        println("person is : $this")  // person is : Person(name=Kotlin, age=10)
-    }
-    println(result) // kotlin.Unit
+    println(result) // Person(name=Kotlin, age=10)
 }
 
 fun with() {
-    val result = with(Person("FP", 30)) {
+    val person = Person("FP", 30)
+    val result = with(person) {
         name = "Kotlin"
         age = 10
-        println("person is : $this")  // person is : Person(name=Kotlin, age=10)
+        this
     }
-    println(result) // kotlin.Unit
+    println(result) // Person(name=Kotlin, age=10)
+}
+
+fun run() {
+    val person = Person("FP", 30)
+    val result = person.run {
+        name = "Kotlin"
+        age = 10
+        this
+    }
+    println(result) // Person(name=Kotlin, age=10)
+}
+
+fun run2() {
+    val person = run {
+        val name = "Kotlin"
+        val age = 10
+        Person(name, age)
+    }
+    println(person) // Person(name=Kotlin, age=10)
 }
 
 fun apply() {
-    val result = Person("FP", 30).apply {
+    val person = Person("FP", 30)
+    val result = person.apply {
         name = "Kotlin"
         age = 10
-        println("person is : $this")    // person is : Person(name=Kotlin, age=10)
     }
     println(result) // Person(name=Kotlin, age=10)
 }
 
 fun also() {
-    val result = Person("FP", 30).also {
+    val person = Person("FP", 30)
+    val result = person.also {
         it.name = "Kotlin"
         it.age = 10
-        println("person is : $it")      // person is : Person(name=Kotlin, age=10)
     }
     println(result)         // Person(name=Kotlin, age=10)
 }

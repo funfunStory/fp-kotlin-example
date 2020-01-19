@@ -8,11 +8,5 @@ fun main() {
 }
 
 class FpCalculator {
-    fun calculate(calculator: (Int, Int) -> Int, num1: Int, num2: Int): Int {
-        if (num1 > num2 && 0 != num2) { // some logic
-            return calculator(num1, num2)
-        } else {
-            throw IllegalArgumentException()
-        }
-    }
+    fun calculate(calculator: (Int, Int) -> Int, num1: Int, num2: Int): Int = calculator(num1, num2)
 }

@@ -25,11 +25,5 @@ class Minus : Calculator {
 }
 
 class OopCalculator(private val calculator: Calculator) {
-    fun calculate(num1: Int, num2: Int): Int {
-        if (num1 > num2 && 0 != num2) { // some logic
-            return calculator.calculate(num1, num2)
-        } else {
-            throw IllegalArgumentException()
-        }
-    }
+    fun calculate(num1: Int, num2: Int): Int = calculator.calculate(num1, num2)
 }

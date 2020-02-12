@@ -8,7 +8,7 @@ package fp.kotlin.example.chapter04.solution
 
 fun main() {
     val curriedMin = min.curried()
-    println(curriedMin(10)(30))    // 30
+    println(curriedMin(10)(30))    // 10
 }
 
 private val min = { a: Int, b: Int -> if (a <= b) a else b }

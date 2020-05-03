@@ -43,5 +43,5 @@ fun main() {
     val isOdd = { i: Int -> "$i is odd" }.toPartialFunction{ !condition(it) }
 
     println(listOf(1, 2, 3).map { isEven.invokeOrElse(it, "$it is odd") })    // [1 is odd, 2 is even, 3 is odd]
-    println(listOf(1, 2, 3).map { isEven.orElse(isOdd) })    // [1 is odd, 2 is even, 3 is odd]
+    println(listOf(1, 2, 3).map { isEven.orElse(isOdd)(it) })    // [1 is odd, 2 is even, 3 is odd]
 }

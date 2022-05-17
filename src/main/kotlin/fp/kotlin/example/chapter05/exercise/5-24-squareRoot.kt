@@ -11,7 +11,7 @@ package fp.kotlin.example.chapter05.exercise
  */
 
 fun main() {
-//    require(squareRoot() == 10)
+    require(squareRoot() == 14)
 }
 
-//tailrec fun squareRoot(something): Int = TODO()
+tailrec fun squareRoot(num:Int = 1, acc:Int = 0): Int = TODO()

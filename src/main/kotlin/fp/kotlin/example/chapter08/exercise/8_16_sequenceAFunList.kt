@@ -1,6 +1,4 @@
-package fp.kotlin.example.chapter08.solution
-
-import fp.kotlin.example.chapter04.solution.curried
+package fp.kotlin.example.chapter08.exercise
 
 /**
  *
@@ -27,9 +25,4 @@ fun main() {
 
 private fun <T> cons() = { x: T, xs: AFunList<T> -> ACons(x, xs) }
 
-private fun <T> sequenceA(listOfList: AFunList<AFunList<T>>): AFunList<AFunList<T>> =
-    when (listOfList) {
-        ANil -> ACons(ANil, ANil)
-        is ACons -> AFunList.pure(
-            cons<T>().curried()) apply listOfList.head apply sequenceA(listOfList.tail)
-    }
+private fun <T> sequenceA(listOfList: AFunList<AFunList<T>>): AFunList<AFunList<T>> = TODO()

@@ -14,13 +14,13 @@ import fp.kotlin.example.chapter08.Right
 fun main() {
 
     val eitherList: Cons<Right<Int>> = Cons(Right(1), Cons(Right(2), Cons(Right(3), Nil)))
-    require(sequenceAByFoldRight(eitherList) == Right(Cons(1, Cons(2, Cons(3, Nil)))))
+    require(sequenceA(eitherList) == Right(Cons(1, Cons(2, Cons(3, Nil)))))
 
     val eitherList2: Cons<Either<String, Int>> = Cons(Right(1), Cons(Left("test"), Cons(Right(3), Nil)))
-    require(sequenceAByFoldRight(eitherList2) == Left("test"))
+    require(sequenceA(eitherList2) == Left("test"))
 
 }
 
 private fun <T> cons() = { x: T, xs: FunList<T> -> Cons(x, xs) }
 
-private fun <L, R> sequenceAByFoldRight(eitherList: FunList<Either<L, R>>): Either<L, FunList<R>> = TODO()
+private fun <L, R> sequenceA(eitherList: FunList<Either<L, R>>): Either<L, FunList<R>> = TODO()

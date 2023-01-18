@@ -20,7 +20,7 @@ import fp.kotlin.example.chapter05.reverse
 fun main() {
 
     val intList = Cons(1, Cons(5, Cons(3, Cons(2, Nil))))
-    require(intList.indexedMap { index, elm -> index * elm } == funListOf(0, 2, 6))
+    require(intList.indexedMap { index, elm -> index * elm } == funListOf(0, 5, 6, 6))
 }
 
 tailrec fun <T, R> FunList<T>.indexedMap(index: Int = 0, acc: FunList<R> = Nil, f: (Int, T) -> R): FunList<R> =
